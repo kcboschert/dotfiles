@@ -2,6 +2,29 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 vim.g.mapleader = "\\"
 
+-- tab handling
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.softtabstop = 2
+vim.opt.expandtab = true
+
+vim.opt.backspace = [[indent,eol,start]]
+vim.opt.completeopt = [[menuone,noinsert,noselect]]
+vim.opt.cursorline = true
+vim.opt.hidden = true
+vim.opt.hlsearch = true
+vim.opt.ignorecase = true
+vim.opt.incsearch = true
+vim.opt.mouse = ""
+vim.opt.number = true
+vim.opt.ruler = true
+vim.opt.shortmess = vim.opt.shortmess:append { c = true }-- Don't pass messages to |ins-completion-menu|
+vim.opt.showmatch = true
+vim.opt.smartcase = true
+vim.opt.smartindent = false
+vim.opt.termguicolors = true
+vim.opt.wrap = true
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
