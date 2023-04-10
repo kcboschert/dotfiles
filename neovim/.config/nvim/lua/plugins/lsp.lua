@@ -47,15 +47,15 @@ return {
       "mason.nvim"
     },
     keys = {
-      { "gd", "<cmd>Telescope lsp_definitions<cr>", desc = "Goto Definition", has = "definition" },
+      { "gd", "<cmd>Telescope lsp_definitions<cr>", desc = "Goto Definition" },
       { "gD", vim.lsp.buf.declaration, desc = "Goto Declaration" },
       { "gr", "<cmd>Telescope lsp_references<cr>", desc = "References" },
       { "gi", "<cmd>Telescope lsp_implementations<cr>", desc = "Goto Implementation" },
       { "gt", "<cmd>Telescope lsp_type_definitions<cr>", desc = "Goto Type Definition" },
       { "K", vim.lsp.buf.hover, desc = "Hover" },
       { "gK", vim.lsp.buf.signature_help, desc = "Signature Help", has = "signatureHelp" },
-      { "<c-k>", vim.lsp.buf.signature_help, mode = "i", desc = "Signature Help", has = "signatureHelp" },
-      { "<leader>ca", vim.lsp.buf.code_action, desc = "Code Action", mode = { "n", "v" }, has = "codeAction" },
+      { "<c-k>", vim.lsp.buf.signature_help, mode = "i", desc = "Signature Help" },
+      { "<leader>a", vim.lsp.buf.code_action, desc = "Code Action", mode = { "n", "v" } },
     },
     config = function()
       require("neodev").setup()
