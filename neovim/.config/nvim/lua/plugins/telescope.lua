@@ -10,8 +10,8 @@ return {
       -- find
       { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
       { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find Files (root dir)" },
-      { "<leader>fg", "<cmd>Telescope git_status<cr>", desc = "Find Files (root dir)" },
-      { "<leader>fc", "<cmd>Telescope git_commits<CR>", desc = "commits" },
+      { "<leader>fg", "<cmd>Telescope git_status<cr>", desc = "Find Files (git status)" },
+      { "<leader>fc", "<cmd>Telescope git_commits<CR>", desc = "Find commits" },
       { "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recent" },
       -- search
       { "<leader>sa", "<cmd>Telescope autocommands<cr>", desc = "Auto Commands" },
@@ -29,29 +29,14 @@ return {
     },
     opts = {
       defaults = {
+        layout_strategy = "vertical",
         prompt_prefix = " ",
         selection_caret = " ",
         mappings = {
           i = {
-            ["<c-t>"] = function(...)
-              return require("trouble.providers.telescope").open_with_trouble(...)
-            end,
-            ["<a-t>"] = function(...)
-              return require("trouble.providers.telescope").open_selected_with_trouble(...)
-            end,
-            ["<C-Down>"] = function(...)
-              return require("telescope.actions").cycle_history_next(...)
-            end,
-            ["<C-Up>"] = function(...)
-              return require("telescope.actions").cycle_history_prev(...)
-            end,
-            ["<C-f>"] = function(...)
-              return require("telescope.actions").preview_scrolling_down(...)
-            end,
-            ["<C-b>"] = function(...)
-              return require("telescope.actions").preview_scrolling_up(...)
-            end,
             ["<C-h>"] = "which_key",
+            ["<C-j>"] = "move_selection_next",
+            ["<C-k>"] = "move_selection_previous",
           },
 
           n = {
@@ -68,4 +53,12 @@ return {
       },
     },
   },
+  {
+    "nvim-telescope/telescope-ui-select.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("telescope").setup({})
+      require("telescope").load_extension("ui-select")
+    end,
+  }
 }
