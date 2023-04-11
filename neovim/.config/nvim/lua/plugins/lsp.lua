@@ -56,6 +56,11 @@ return {
       { "gK", vim.lsp.buf.signature_help, desc = "Signature Help", has = "signatureHelp" },
       { "<c-k>", vim.lsp.buf.signature_help, mode = "i", desc = "Signature Help" },
       { "<leader>a", vim.lsp.buf.code_action, desc = "Code Action", mode = { "n", "v" } },
+      { "<leader>rn", vim.lsp.buf.rename, desc = "Rename" },
+      { "<space>d", vim.diagnostic.open_float, desc = "Show diagnostic" },
+      { "<leader>d", vim.diagnostic.setloclist, desc = "Show diagnostics pane" },
+      { "]d", vim.diagnostic.goto_next, desc = "Next diagnostic" },
+      { "[d", vim.diagnostic.goto_prev, desc = "Previous diagnostic" },
     },
     config = function()
       require("neodev").setup()

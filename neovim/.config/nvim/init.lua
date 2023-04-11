@@ -25,6 +25,26 @@ vim.opt.smartindent = false
 vim.opt.termguicolors = true
 vim.opt.wrap = true
 
+-- disable virtual_text (inline) diagnostics and use floating window
+-- format the message such that it shows source, message and
+-- the error code
+vim.diagnostic.config({
+  virtual_text = false,
+  signs = true,
+  underline = true,
+  float = {
+    border = "single",
+    format = function(diagnostic)
+      return string.format(
+        "%s (%s) [%s]",
+        diagnostic.message,
+        diagnostic.source,
+        diagnostic.code or diagnostic.user_data.lsp.code
+      )
+    end,
+  },
+})
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
