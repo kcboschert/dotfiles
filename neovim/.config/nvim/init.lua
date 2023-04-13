@@ -25,6 +25,10 @@ vim.opt.smartindent = false
 vim.opt.termguicolors = true
 vim.opt.wrap = true
 
+-- more intuitive up/down with j/k
+vim.api.nvim_set_keymap("n", "j", "v:count ? 'j' : 'gj'", { noremap = true, expr = true })
+vim.api.nvim_set_keymap("n", "k", "v:count ? 'k' : 'gk'", { noremap = true, expr = true })
+
 -- disable virtual_text (inline) diagnostics and use floating window
 -- format the message such that it shows source, message and
 -- the error code
