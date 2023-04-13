@@ -14,6 +14,9 @@ return {
     "jose-elias-alvarez/null-ls.nvim",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = { "mason.nvim" },
+    keys = {
+      { "<leader>F", vim.lsp.buf.format, desc = "Apply formatting (buffer)" },
+    },
     opts = function()
       local nls = require("null-ls")
       return {
@@ -23,6 +26,10 @@ return {
           nls.builtins.diagnostics.fish,
           nls.builtins.formatting.stylua,
           nls.builtins.formatting.shfmt,
+          nls.builtins.diagnostics.checkstyle.with({
+            extra_args = { "-c", "/google_checks.xml" },
+          }),
+          nls.builtins.formatting.google_java_format,
           -- nls.builtins.diagnostics.flake8,
         },
       }
@@ -53,7 +60,7 @@ return {
       { "gi", "<cmd>Telescope lsp_implementations<cr>", desc = "Goto Implementation" },
       { "gt", "<cmd>Telescope lsp_type_definitions<cr>", desc = "Goto Type Definition" },
       { "K", vim.lsp.buf.hover, desc = "Hover" },
-      { "gK", vim.lsp.buf.signature_help, desc = "Signature Help", has = "signatureHelp" },
+      { "gK", vim.lsp.buf.signature_help, desc = "Signature Help" },
       { "<c-k>", vim.lsp.buf.signature_help, mode = "i", desc = "Signature Help" },
       { "<leader>a", vim.lsp.buf.code_action, desc = "Code Action", mode = { "n", "v" } },
       { "<leader>rn", vim.lsp.buf.rename, desc = "Rename" },
@@ -96,6 +103,15 @@ return {
           lspconfig.jdtls.setup({
             init_options = {
               jvm_args = { "-javaagent:/usr/local/share/lombok/lombok.jar" }
+            }
+          })
+        end,
+        ["clangd"] = function()
+          local compile_commands_path = vim.fn.expand("$HOME/.config/nvim/config/clangd/compile_flags.txt")
+          lspconfig.clangd.setup({
+            cmd = {
+              "clangd",
+              "-compile-commands-dir=" .. compile_commands_path,
             }
           })
         end,

@@ -9,7 +9,7 @@ if [[ "$(uname)" == "Darwin" ]]; then
   fi
   nvm install --lts
 
-  brew install neovim ripgrep
+  brew install neovim ripgrep boost pybind11
 elif [[ "$(uname)" == "Linux" ]]; then
   sudo apt-get install neovim ripgrep
 fi
