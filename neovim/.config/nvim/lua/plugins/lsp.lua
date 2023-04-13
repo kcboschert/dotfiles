@@ -70,7 +70,9 @@ return {
       { "[d", vim.diagnostic.goto_prev, desc = "Previous diagnostic" },
     },
     config = function()
-      require("neodev").setup()
+      require("neodev").setup({
+        library = { plugins = { "neotest" }, types = true },
+      })
 
       local lspconfig = require("lspconfig")
       require("mason-lspconfig").setup_handlers({
