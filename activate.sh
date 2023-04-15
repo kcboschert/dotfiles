@@ -8,6 +8,10 @@ install_module () {
     exit 1
   fi
 
+  if ! type "curl" > /dev/null; then
+    sudo apt-get install curl
+  fi
+
   preinstall_script=${1}/pre-install.sh
   if [[ -f $preinstall_script ]]; then
     ./${preinstall_script}
