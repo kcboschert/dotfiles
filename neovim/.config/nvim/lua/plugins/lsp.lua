@@ -51,7 +51,11 @@ return {
     dependencies = {
       { "folke/neoconf.nvim", cmd = "Neoconf", config = true },
       { "folke/neodev.nvim", opts = { experimental = { pathStrict = true } } },
-      "mason.nvim"
+      "mason.nvim",
+      "hrsh7th/nvim-cmp",
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
     },
     keys = {
       { "gd", "<cmd>Telescope lsp_definitions<cr>", desc = "Goto Definition" },
@@ -72,6 +76,54 @@ return {
     config = function()
       require("neodev").setup({
         library = { plugins = { "neotest" }, types = true },
+      })
+      local cmp = require('cmp')
+      cmp.setup({
+        window = {
+          completion = cmp.config.window.bordered(),
+        },
+        mapping = cmp.mapping.preset.insert({
+          ["<C-p>"] = cmp.mapping.select_prev_item(),
+          ["<C-n>"] = cmp.mapping.select_next_item(),
+          ["<C-u>"] = cmp.mapping.scroll_docs(-4),
+          ["<C-d>"] = cmp.mapping.scroll_docs(4),
+          ["<C-Space>"] = cmp.mapping.complete(),
+          ["<C-e>"] = cmp.mapping.close(),
+          ["<CR>"] = cmp.mapping.confirm {
+            behavior = cmp.ConfirmBehavior.Replace,
+            select = true,
+          },
+          ["<Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              cmp.select_next_item()
+            --elseif require("luasnip").expand_or_jumpable() then
+            --  vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-expand-or-jump", true, true, true), "")
+            else
+              fallback()
+            end
+          end, {
+            "i",
+            "s",
+          }),
+          ["<S-Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              cmp.select_prev_item()
+            --elseif require("luasnip").jumpable(-1) then
+            --  vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-jump-prev", true, true, true), "")
+            else
+              fallback()
+            end
+          end, {
+            "i",
+            "s",
+          }),
+        }),
+        sources = cmp.config.sources(
+        {
+          { name = "nvim_lsp" },
+          { name = "buffer" },
+          { name = "path" },
+        })
       })
 
       local lspconfig = require("lspconfig")
@@ -119,5 +171,9 @@ return {
         end,
       })
     end,
-  }
+  },
+  {
+    "hrsh7th/nvim-cmp",
+    dependencies = { "neovim/nvim-lspconfig" },
+  },
 }
