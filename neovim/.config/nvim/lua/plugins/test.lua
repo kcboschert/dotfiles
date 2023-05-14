@@ -5,10 +5,10 @@ return {
       "preservim/vimux"
     },
     keys = {
-      { "<leader>rf", "<cmd>TestNearest<cr>", desc = "Run focused (nearest) test" },
-      { "<leader>rb", "<cmd>TestFile<cr>", desc = "Run tests in buffer" },
-      { "<leader>ra", "<cmd>TestNearest<cr>", desc = "Run all tests" },
-      { "<leader>rl", "<cmd>TestLast<cr>", desc = "Run previous test" },
+      { "<leader>rf", "<cmd>wa<cr><cmd>TestNearest<cr>", desc = "Run focused (nearest) test" },
+      { "<leader>rb", "<cmd>wa<cr><cmd>TestFile<cr>", desc = "Run tests in buffer" },
+      { "<leader>ra", "<cmd>wa<cr><cmd>TestNearest<cr>", desc = "Run all tests" },
+      { "<leader>rl", "<cmd>wa<cr><cmd>TestLast<cr>", desc = "Run previous test" },
     },
     config = function()
       vim.g["test#strategy"] = "vimux"
