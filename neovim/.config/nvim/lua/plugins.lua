@@ -1,6 +1,9 @@
 return {
   {
     "lewis6991/gitsigns.nvim",
+    keys = {
+      { "<leader>gb", "<cmd>Gitsigns toggle_current_line_blame<cr>", desc = "Git blame (line, toggle)" },
+    },
     event = { "BufReadPost", "BufNewFile" },
     config = function()
       require("gitsigns").setup({
@@ -11,7 +14,14 @@ return {
           topdelete    = { text = '‾' },
           changedelete = { text = '~' },
           untracked    = { text = '┆' },
-        }
+        },
+        current_line_blame_opts = {
+          virt_text = true,
+          virt_text_pos = 'eol', -- 'eol' | 'overlay' | 'right_align'
+          delay = 300,
+          ignore_whitespace = false,
+        },
+        current_line_blame_formatter = '<abbrev_sha> <author_time:%Y-%m-%d> - <author>: <summary>',
       })
     end,
   },
