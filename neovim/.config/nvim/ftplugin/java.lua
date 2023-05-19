@@ -2,6 +2,7 @@ vim.opt_local.tabstop=4
 vim.opt_local.shiftwidth=4
 vim.opt_local.softtabstop=4
 
+local java_17_jdk_path = '/Library/Java/JavaVirtualMachines/jdk-17.0.4.jdk/Contents/Home/bin/java'
 local jdtls_dir = vim.fn.expand('$HOME/.local/share/nvim/mason/packages/jdtls/')
 -- If you started neovim within `~/dev/xy/project-1` this would resolve to `project-1`
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
@@ -15,7 +16,7 @@ local config = {
   cmd = {
 
     -- 💀
-    '/Library/Java/JavaVirtualMachines/jdk-17.0.4.jdk/Contents/Home/bin/java', -- or '/path/to/java17_or_newer/bin/java'
+    java_17_jdk_path, -- or '/path/to/java17_or_newer/bin/java'
             -- depends on if `java` is in your $PATH env variable and if it points to the right version.
 
     '-Declipse.application=org.eclipse.jdt.ls.core.id1',
