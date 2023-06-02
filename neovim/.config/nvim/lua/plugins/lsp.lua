@@ -44,9 +44,9 @@ return {
           nls.builtins.formatting.stylua,
           nls.builtins.formatting.shfmt,
           nls.builtins.formatting.google_java_format,
-          nls.builtins.diagnostics.checkstyle.with({
-            extra_args = { "-c", "/google_checks.xml" },
-          }),
+          -- nls.builtins.diagnostics.checkstyle.with({
+          --   extra_args = { "-c", "/google_checks.xml" },
+          -- }),
           -- nls.builtins.diagnostics.flake8,
         },
       }
@@ -86,7 +86,7 @@ return {
       { "<leader>a", vim.lsp.buf.code_action, desc = "Code Action", mode = { "n", "v" } },
       { "<leader>rn", vim.lsp.buf.rename, desc = "Rename" },
       { "<space>d", vim.diagnostic.open_float, desc = "Show diagnostic" },
-      { "<leader>d", vim.diagnostic.setloclist, desc = "Show diagnostics pane" },
+      { "<leader>n", vim.diagnostic.setloclist, desc = "Show diagnostics pane" },
       { "]d", vim.diagnostic.goto_next, desc = "Next diagnostic" },
       { "[d", vim.diagnostic.goto_prev, desc = "Previous diagnostic" },
     },
@@ -191,15 +191,15 @@ return {
             },
           })
         end,
-        ["jdtls"] = function()
-          lspconfig.jdtls.setup({
-            on_attach = on_attach_codelens,
-            capabilities = cmp_capabilities,
-            init_options = {
-              jvm_args = { "-javaagent:/usr/local/share/lombok/lombok.jar" }
-            }
-          })
-        end,
+        -- ["jdtls"] = function()
+        --   lspconfig.jdtls.setup({
+        --     on_attach = on_attach_codelens,
+        --     capabilities = cmp_capabilities,
+        --     init_options = {
+        --       jvm_args = { "-javaagent:/usr/local/share/lombok/lombok.jar" }
+        --     }
+        --   })
+        -- end,
         ["clangd"] = function()
           local compile_commands_path = vim.fn.expand("$HOME/.config/nvim/config/clangd/compile_flags.txt")
           lspconfig.clangd.setup({
@@ -231,6 +231,12 @@ return {
           border = "single"   -- double, rounded, single, shadow, none, or a table of borders
         },
       })
+    end,
+  },
+  {
+    "mfussenegger/nvim-dap",
+    config = function()
+
     end,
   },
 }

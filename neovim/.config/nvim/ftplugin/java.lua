@@ -2,8 +2,15 @@ vim.opt_local.tabstop=4
 vim.opt_local.shiftwidth=4
 vim.opt_local.softtabstop=4
 
-local java_17_jdk_path = '/Library/Java/JavaVirtualMachines/jdk-17.0.4.jdk/Contents/Home/bin/java'
+-- Linux / WSL
+local java_17_jdk_path = '/usr/lib/jvm/java-17-openjdk-amd64/bin/java'
+-- MacOS
+if vim.loop.os_uname().sysname == "Darwin" then
+  java_17_jdk_path = '/Library/Java/JavaVirtualMachines/jdk-17.0.4.jdk/Contents/Home/bin/java'
+end
+
 local jdtls_dir = vim.fn.expand('$HOME/.local/share/nvim/mason/packages/jdtls/')
+local java_debug_path = vim.fn.expand('$HOME/.java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar')
 -- If you started neovim within `~/dev/xy/project-1` this would resolve to `project-1`
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
 local workspace_dir = vim.fn.expand('$HOME/.workspace/' .. project_name)
@@ -69,7 +76,9 @@ local config = {
   --
   -- If you don't plan on using the debugger or other eclipse.jdt.ls plugins you can remove this
   init_options = {
-    bundles = {}
+    bundles = {
+      vim.fn.glob(java_debug_path, 1)
+    },
   },
   on_attach = function(_, bufnr)
     vim.lsp.codelens.refresh()
@@ -78,8 +87,15 @@ local config = {
         buffer = bufnr,
         callback = vim.lsp.codelens.refresh,
     })
+    -- With `hotcodereplace = 'auto' the debug adapter will try to apply code changes
+    -- you make during a debug session immediately.
+    -- Remove the option if you do not want that.
+    -- You can use the `JdtHotcodeReplace` command to trigger it manually
+    require('jdtls').setup_dap({ hotcodereplace = 'auto' })
   end,
   capabilities = require('cmp_nvim_lsp').default_capabilities()
 }
 
+-- mason-lspconfig for jdtls "just works" on Linux.
+-- For Mac, we have to configure it ourselves
 require('jdtls').start_or_attach(config)
