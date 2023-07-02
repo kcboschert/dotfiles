@@ -15,6 +15,11 @@
 2. Install jdtls via `:Mason`
 3. Modify variables in `neovim/.config/nvim/ftplugin/java.lua` so `java_17_jdk_path` points to the JDK and the `jdtls_dir` points to the installation directory of eclipse.jdt.ls.
 
+### Windows
+
+1. Download and install FiraCode Nerd Font from [https://www.nerdfonts.com/font-downloads](https://www.nerdfonts.com/font-downloads)
+2. Copy `alacritty/.alacritty.yml` to `%AppData%\Roaming\alacritty\alacritty.yml`
+
 ## Local Configurations
 
 You may have some configurations you'd only like present on certain machines. The following are loaded if present.
