@@ -23,4 +23,5 @@ elif [[ "$(uname)" == "Linux" ]]; then
   if ! command -v nvim $>/dev/null; then
     install_nvim_linux
   fi
+  sudo apt-get install openjdk-17-jdk checkstyle
 fi

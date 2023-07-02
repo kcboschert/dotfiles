@@ -45,6 +45,7 @@ if [[ "$(uname)" == "Darwin" ]]; then
   export PATH="/usr/local/sbin:$PATH"
 elif [[ "$(uname)" == "Linux" ]]; then
   eval `dircolors $HOME/.dircolors`
+  alias ls='ls --color=auto'
 fi
 
 bindkey -v
@@ -61,3 +62,6 @@ fi
 
 # Uncomment this line and the top `zmodload zsh/zprof` line to run a profiler on startup
 # zprof
+
+# To customize prompt, run `p10k configure` or edit ~/git/dotfiles/shell/.p10k.zsh.
+[[ ! -f ~/git/dotfiles/shell/.p10k.zsh ]] || source ~/git/dotfiles/shell/.p10k.zsh
