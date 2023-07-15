@@ -73,3 +73,8 @@ window:
   padding:
     x: 5
     y: 0
+# shell:
+#   program: 'C:\WINDOWS\system32\wsl.exe'
+#   args:
+#     - '-d Debian'
+#     - '--cd ~'

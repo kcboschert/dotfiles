@@ -18,7 +18,7 @@
 ### Windows
 
 1. Download and install FiraCode Nerd Font from [https://www.nerdfonts.com/font-downloads](https://www.nerdfonts.com/font-downloads)
-2. Copy `alacritty/.alacritty.yml` to `%AppData%\Roaming\alacritty\alacritty.yml`
+2. Copy `alacritty/.alacritty.yml` to `%AppData%\alacritty\alacritty.yml` and uncomment everything under the `shell` top-level key.
 
 ## Local Configurations
 
