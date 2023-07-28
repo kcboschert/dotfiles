@@ -19,9 +19,9 @@
   oneline = log --pretty=format:\"%h %ad%x20%s%x20%x28%an%x29\" --date=short
   ds = diff --staged
 [pager]
-  log = diff-highlight | less -r
-  show = diff-highlight | less -r
-  diff = diff-highlight | less -r
+  log = diff-highlight | less -Ri
+  show = diff-highlight | less -Ri
+  diff = diff-highlight | less -Ri
 [interactive]
   diffFilter = diff-highlight
 [include]
