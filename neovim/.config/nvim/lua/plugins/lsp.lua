@@ -27,31 +27,6 @@ return {
       require("mason").setup()
     end,
   },
-
-  --formatters
-  {
-    "jose-elias-alvarez/null-ls.nvim",
-    event = { "BufReadPre", "BufNewFile" },
-    dependencies = { "mason.nvim" },
-    keys = {
-      { "<leader>F", vim.lsp.buf.format, desc = "Apply formatting (buffer)" },
-    },
-    opts = function()
-      local nls = require("null-ls")
-      return {
-        root_dir = require("null-ls.utils").root_pattern(".null-ls-root", ".neoconf.json", "Makefile", ".git"),
-        sources = {
-          nls.builtins.formatting.stylua,
-          nls.builtins.formatting.shfmt,
-          nls.builtins.formatting.google_java_format,
-          nls.builtins.diagnostics.checkstyle.with({
-            extra_args = { "-c", "/google_checks.xml" },
-          }),
-          -- nls.builtins.diagnostics.flake8,
-        },
-      }
-    end,
-  },
   {
     "williamboman/mason-lspconfig.nvim",
     lazy = false,
