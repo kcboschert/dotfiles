@@ -8,6 +8,7 @@ local jdtls_dir = vim.fn.expand('$HOME/.local/share/nvim/mason/packages/jdtls/')
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
 local workspace_dir = vim.fn.expand('$HOME/.workspace/' .. project_name)
 local lombok_path = jdtls_dir .. 'lombok.jar'
+local equinox_launcher_path = vim.fn.globpath(jdtls_dir .. 'plugins', 'org.eclipse.equinox.launcher_*.jar')
 
 -- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
 local config = {
@@ -31,10 +32,10 @@ local config = {
     '-javaagent:' .. lombok_path,
 
     -- 💀
-    '-jar', jdtls_dir .. 'plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar',
-         -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                                       ^^^^^^^^^^^^^^
-         -- Must point to the                                                     Change this to
-         -- eclipse.jdt.ls installation                                           the actual version
+    '-jar', equinox_launcher_path,
+         -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+         -- Must point to the
+         -- eclipse.jdt.ls installation
 
 
     -- 💀
@@ -56,8 +57,44 @@ local config = {
   -- Here you can configure eclipse.jdt.ls specific settings
   -- See https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
   -- for a list of options
+  -- Plugin author's config is here: https://github.com/mfussenegger/dotfiles/blob/c2c5922e6562d3e762f5004ad9cd1d7bc277fca2/vim/.config/nvim/ftplugin/java.lua#L1-L91
   settings = {
     java = {
+      completion = {
+        favoriteStaticMembers = {
+          "org.junit.Assert.*",
+          "org.mockito.Mockito.*",
+          "org.mockito.ArgumentMatchers.*",
+        }
+      },
+      inlayHints = {
+        parameterNames = { enabled = "all"}
+      },
+      implementationsCodeLens = {
+        enabled = true,
+      },
+      referencesCodeLens = {
+        enabled = true,
+      },
+      format = {
+        enabled = true,
+      },
+    },
+    configuration = {
+      runtimes = {
+        {
+          name = "JavaSE-1.8",
+          path = "/Library/Java/JavaVirtualMachines/zulu-sa-1.8.0_232.jdk/Contents/Home",
+        },
+        {
+          name = "JavaSE-11",
+          path = "/Library/Java/JavaVirtualMachines/zulu-sa-11.0.10.jdk/Contents/Home",
+        },
+        {
+          name = "JavaSE-17",
+          path = "/Library/Java/JavaVirtualMachines/jdk-17.0.4.jdk/Contents/Home",
+        },
+      },
     }
   },
 
