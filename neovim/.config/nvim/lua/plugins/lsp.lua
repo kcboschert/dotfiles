@@ -208,4 +208,8 @@ return {
       })
     end,
   },
+  {
+    "hashivim/vim-terraform",
+    ft = { "terraform" },
+  }
 }
