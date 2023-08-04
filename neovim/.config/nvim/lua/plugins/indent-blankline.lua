@@ -1,6 +1,9 @@
 return {
   {
     "lukas-reineke/indent-blankline.nvim",
+    keys = {
+      { "<leader>il", "<cmd>IndentBlanklineToggle<cr>", desc = "Toggle Indentlines"}
+    },
     event = { "BufReadPost", "BufNewFile" },
     config = function()
       vim.cmd [[highlight IndentBlanklineIndent1 guibg=#1f1f1f gui=nocombine]]
