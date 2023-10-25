@@ -186,6 +186,14 @@ return {
             }
           })
         end,
+        ["omnisharp"] = function()
+          local omnisharp_path = vim.fn.expand('$HOME/.local/share/nvim/mason/packages/omnisharp/libexec/OmniSharp.dll')
+          lspconfig.omnisharp.setup({
+            on_attach = on_attach_codelens,
+            capabilities = cmp_capabilities,
+            cmd = { "dotnet", omnisharp_path },
+          })
+        end,
       })
     end,
   },
