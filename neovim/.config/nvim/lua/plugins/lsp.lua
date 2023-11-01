@@ -1,28 +1,8 @@
-vim.api.nvim_create_autocmd('LspAttach', {
-  once = true,
-  callback = function(args)
-    local client = vim.lsp.get_client_by_id(args.data.client_id)
-    if client.server_capabilities.codeLensProvider then
-      vim.lsp.codelens.refresh()
-    end
-  end,
-})
-
-local on_attach_codelens = function(_, bufnr)
-  vim.lsp.codelens.refresh()
-  -- refresh codelens on TextChanged and InsertLeave as well
-  vim.api.nvim_create_autocmd({ 'BufEnter', 'TextChanged', 'InsertLeave' }, {
-      buffer = bufnr,
-      callback = vim.lsp.codelens.refresh,
-  })
-end
-
 return {
   {
     "williamboman/mason.nvim",
     lazy = false,
     priority = 999,
-    build = ":MasonUpdate",
     config = function()
       require("mason").setup()
     end,
@@ -33,7 +13,9 @@ return {
     priority = 998,
     dependencies = { "mason.nvim" },
     config = function()
-      require("mason-lspconfig").setup()
+      require("mason-lspconfig").setup({
+        ensure_installed = { "lua_ls", "tsserver", "yamlls", "jdtls", "clangd", "omnisharp" }
+      })
     end,
   },
   {
@@ -58,6 +40,7 @@ return {
       { "K", vim.lsp.buf.hover, desc = "Hover" },
       { "gK", vim.lsp.buf.signature_help, desc = "Signature Help" },
       { "<c-k>", vim.lsp.buf.signature_help, mode = "i", desc = "Signature Help" },
+      { "<leader>cl", vim.lsp.codelens.refresh, desc = "Refresh Code Lens" },
       { "<leader>a", vim.lsp.buf.code_action, desc = "Code Action", mode = { "n", "v" } },
       { "<leader>rn", vim.lsp.buf.rename, desc = "Rename" },
       { "<space>d", vim.diagnostic.open_float, desc = "Show diagnostic" },
@@ -132,13 +115,11 @@ return {
       require("mason-lspconfig").setup_handlers({
         function(server_name)
           lspconfig[server_name].setup({
-            on_attach = on_attach_codelens,
             capabilities = cmp_capabilities,
           })
         end,
         ["lua_ls"] = function()
           lspconfig.lua_ls.setup({
-            on_attach = on_attach_codelens,
             capabilities = cmp_capabilities,
             settings = {
               Lua = {
@@ -150,7 +131,6 @@ return {
         end,
         ["tsserver"] = function()
           lspconfig.tsserver.setup({
-            on_attach = on_attach_codelens,
             capabilities = cmp_capabilities,
             init_options = {
               completionDisableFilterText = true, -- prevent omni completion from inserting extra period
@@ -159,7 +139,6 @@ return {
         end,
         ["yamlls"] = function()
           lspconfig.yamlls.setup({
-            on_attach = on_attach_codelens,
             capabilities = cmp_capabilities,
             settings = {
               yaml = { keyOrdering = false },
@@ -168,7 +147,6 @@ return {
         end,
         ["jdtls"] = function()
           lspconfig.jdtls.setup({
-            on_attach = on_attach_codelens,
             capabilities = cmp_capabilities,
             init_options = {
               jvm_args = { "-javaagent:/usr/local/share/lombok/lombok.jar" }
@@ -178,18 +156,13 @@ return {
         ["clangd"] = function()
           local compile_commands_path = vim.fn.expand("$HOME/.config/nvim/config/clangd/compile_flags.txt")
           lspconfig.clangd.setup({
-            on_attach = on_attach_codelens,
             capabilities = cmp_capabilities,
-            cmd = {
-              "clangd",
-              "-compile-commands-dir=" .. compile_commands_path,
-            }
+            cmd = { "clangd", "-compile-commands-dir=" .. compile_commands_path },
           })
         end,
         ["omnisharp"] = function()
           local omnisharp_path = vim.fn.expand('$HOME/.local/share/nvim/mason/packages/omnisharp/libexec/OmniSharp.dll')
           lspconfig.omnisharp.setup({
-            on_attach = on_attach_codelens,
             capabilities = cmp_capabilities,
             cmd = { "dotnet", omnisharp_path },
           })
