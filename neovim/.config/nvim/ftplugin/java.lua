@@ -108,14 +108,6 @@ local config = {
   init_options = {
     bundles = {}
   },
-  on_attach = function(_, bufnr)
-    vim.lsp.codelens.refresh()
-    -- refresh codelens on TextChanged and InsertLeave as well
-    vim.api.nvim_create_autocmd({ 'TextChanged', 'InsertLeave' }, {
-        buffer = bufnr,
-        callback = vim.lsp.codelens.refresh,
-    })
-  end,
   capabilities = require('cmp_nvim_lsp').default_capabilities()
 }
 
