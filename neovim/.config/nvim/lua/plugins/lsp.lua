@@ -150,7 +150,8 @@ return {
             capabilities = cmp_capabilities,
             init_options = {
               jvm_args = { "-javaagent:/usr/local/share/lombok/lombok.jar" }
-            }
+            },
+            autostart = false,
           })
         end,
         ["clangd"] = function()
