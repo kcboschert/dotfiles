@@ -1,9 +1,6 @@
 return {
   {
     "lewis6991/gitsigns.nvim",
-    keys = {
-      { "<leader>gb", "<cmd>Gitsigns toggle_current_line_blame<cr>", desc = "Git blame (line, toggle)" },
-    },
     event = { "BufReadPost", "BufNewFile" },
     config = function()
       require("gitsigns").setup({
@@ -24,6 +21,14 @@ return {
         current_line_blame_formatter = '<abbrev_sha> <author_time:%Y-%m-%d> - <author>: <summary>',
       })
     end,
+  },
+
+  {
+    "tpope/vim-fugitive",
+    event = "VeryLazy",
+    keys = {
+      { "<leader>gb", "<cmd>Git blame<cr>", desc = "Git blame" },
+    },
   },
 
   {
