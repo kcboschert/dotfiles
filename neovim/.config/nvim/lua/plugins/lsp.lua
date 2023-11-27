@@ -166,7 +166,20 @@ return {
           lspconfig.omnisharp.setup({
             capabilities = cmp_capabilities,
             cmd = { "dotnet", omnisharp_path },
+            organize_imports_on_format = true,
+            enable_import_completion = true,
           })
+        end,
+        ["omnisharp_mono"] = function()
+          -- WIP: not sure what needs to happen to get this working, or if it will fix autocompletion for godot
+          -- local omnisharp_mono_path = vim.fn.expand('$HOME/.local/share/nvim/mason/bin/omnisharp-mono')
+          -- lspconfig.omnisharp.setup({
+          --   capabilities = cmp_capabilities,
+          --   cmd = { omnisharp_mono_path },
+          --   enable_roslyn_analyzers = true,
+          --   organize_imports_on_format = true,
+          --   enable_import_completion = true,
+          -- })
         end,
       })
     end,
