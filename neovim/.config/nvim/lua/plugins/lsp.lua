@@ -146,13 +146,13 @@ return {
           })
         end,
         ["jdtls"] = function()
-          lspconfig.jdtls.setup({
-            capabilities = cmp_capabilities,
-            init_options = {
-              jvm_args = { "-javaagent:/usr/local/share/lombok/lombok.jar" }
-            },
-            autostart = false,
-          })
+          -- this should all be handled in ftplugin/java.lua
+          -- lspconfig.jdtls.setup({
+          --   capabilities = cmp_capabilities,
+          --   init_options = {
+          --     jvm_args = { "-javaagent:/usr/local/share/lombok/lombok.jar" }
+          --   }
+          -- })
         end,
         ["clangd"] = function()
           local compile_commands_path = vim.fn.expand("$HOME/.config/nvim/config/clangd/compile_flags.txt")
