@@ -34,7 +34,7 @@ return {
     opts = {
       ensure_installed = "all",
       highlight = { enable = true },
-      indent = { enable = true },
+      indent = { enable = true, disable = {"ruby"} },
       context_commentstring = { enable = true, enable_autocmd = false },
       incremental_selection = {
         enable = true,
