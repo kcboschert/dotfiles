@@ -181,6 +181,11 @@ return {
           --   enable_import_completion = true,
           -- })
         end,
+        ["solargraph"] = function()
+          lspconfig.solargraph.setup({
+            capabilities = cmp_capabilities,
+          })
+        end,
       })
     end,
   },
