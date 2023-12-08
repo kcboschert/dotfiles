@@ -12,11 +12,10 @@ function install_nvim_linux() {
 }
 
 if [[ "$(uname)" == "Darwin" ]]; then
-	if [ -f ~/.nvm/nvm.sh ]; then
+	if ! command -v nvm $>/dev/null; then
 		brew install nvm
-		. ~/.nvm/nvm.sh
+		nvm install --lts || true
 	fi
-	nvm install --lts
 
 	brew install neovim ripgrep boost pybind11
 elif [[ "$(uname)" == "Linux" ]]; then
