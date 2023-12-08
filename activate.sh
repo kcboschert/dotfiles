@@ -17,7 +17,12 @@ install_module () {
     ./${preinstall_script}
   fi
 
-  stow --verbose --target=$HOME --restow $1
+  custom_stow=${1}/stow-custom.sh
+  if [[ -f $custom_stow ]]; then
+    ./${custom_stow}
+  else
+    stow --verbose --target=$HOME --restow $1
+  fi
 
   postinstall_script=${1}/post-install.sh
   if [[ -f $postinstall_script ]]; then
