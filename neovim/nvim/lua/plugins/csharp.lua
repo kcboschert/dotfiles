@@ -1,10 +1,10 @@
---stylua: ignore
-if true then return {} end
-
 return {
   {
     "stevearc/conform.nvim",
     opts = {
+      format = {
+        timeout_ms = 3000,
+      },
       formatters_by_ft = {
         cs = { "csharpier" },
       },
@@ -14,6 +14,7 @@ return {
           args = { "--write-stdout" },
         },
       },
+      --log_level = vim.log.levels.TRACE,
     },
   },
 }
