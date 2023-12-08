@@ -1,2 +1,3 @@
 pre-install.sh
 post-install.sh
+stow-custom.sh
