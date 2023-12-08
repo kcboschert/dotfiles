@@ -1,4 +1,0 @@
--I/usr/local/Cellar/boost/1.81.0_1/include
--L/usr/local/Cellar/boost/1.81.0_1/lib
--I/usr/local/Cellar/pybind11/2.10.4/include
--L/usr/local/Cellar/pybind11/2.10.4/lib
