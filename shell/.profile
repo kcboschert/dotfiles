@@ -17,11 +17,11 @@ if [ -n "$BASH_VERSION" ]; then
 fi
 
 # set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/.bin" ] ; then
+if [ -d "$HOME/.bin" ]; then
   PATH="$HOME/.bin:$PATH"
 fi
 
-if [ -d "$HOME/.rvm/bin" ] ; then
+if [ -d "$HOME/.rvm/bin" ]; then
   export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 fi
 
@@ -35,8 +35,7 @@ fi
 
 export GOPATH="$HOME/go"
 export PATH=$PATH:$GOPATH/bin
-export EDITOR=vim
-export TERM=xterm-256color
+export EDITOR=nvim
 
 [[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
 
