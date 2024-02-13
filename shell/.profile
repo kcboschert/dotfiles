@@ -25,6 +25,10 @@ if [ -d "$HOME/.rvm/bin" ]; then
   export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 fi
 
+if [ -f "$HOME/.profile.local" ]; then
+  source $HOME/.profile.local
+fi
+
 if [ -f "$HOME/.aliases.local" ]; then
   source $HOME/.aliases.local
 fi

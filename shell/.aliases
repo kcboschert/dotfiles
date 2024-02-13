@@ -1,4 +1,4 @@
 alias g="git"
 alias gt="git status"
 alias gd="git diff"
-alias http="python3 -m http.server 9000"
+alias http="python3 -m http.server 80"
