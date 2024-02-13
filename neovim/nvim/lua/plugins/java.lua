@@ -20,18 +20,22 @@ local opts = {
         },
         {
           name = "JavaSE-11",
-          path = "/Library/Java/JavaVirtualMachines/zulu-sa-11.0.10.jdk/Contents/Home",
+          path = "/Library/Java/JavaVirtualMachines/openjdk-11.jdk/Contents/Home",
         },
         {
           name = "JavaSE-17",
-          path = "/Library/Java/JavaVirtualMachines/jdk-17.0.4.jdk/Contents/Home",
+          path = "/Library/Java/JavaVirtualMachines/JDK-17.0.8_zulu_v2/Contents/Home",
+        },
+        {
+          name = "JavaSE-21",
+          path = "/Library/Java/JavaVirtualMachines/openjdk-21.jdk/Contents/Home",
         },
       },
     },
   },
 }
 if os.getenv("JAVA_HOME") ~= nil then
-  local java_path = "/Library/Java/JavaVirtualMachines/jdk-17.0.4.jdk/Contents/Home/bin/java"
+  local java_path = "/Library/Java/JavaVirtualMachines/openjdk-21.jdk/Contents/Home/bin/java"
   local jdtls_dir = vim.fn.expand("$HOME/.local/share/nvim/mason/packages/jdtls/")
   local lombok_path = jdtls_dir .. "lombok.jar"
   local equinox_launcher_path = vim.fn.globpath(jdtls_dir .. "plugins", "org.eclipse.equinox.launcher_*.jar")
