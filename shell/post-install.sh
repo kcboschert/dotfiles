@@ -16,6 +16,7 @@ if [[ "$(uname)" == "Darwin" ]]; then
   if ! command -v gls >/dev/null 2>&1; then
     brew install coreutils
   fi
+  brew tap homebrew/cask-fonts
   for pkg in \
     font-fira-code-nerd-font \
     gnu-sed \
