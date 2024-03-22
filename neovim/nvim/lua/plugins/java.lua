@@ -16,7 +16,7 @@ local opts = {
       runtimes = {
         {
           name = "JavaSE-1.8",
-          path = "/Library/Java/JavaVirtualMachines/zulu-sa-1.8.0_232.jdk/Contents/Home",
+          path = "/Library/Java/JavaVirtualMachines/JDK-1.8.351_zulu_v6/Contents/Home",
         },
         {
           name = "JavaSE-11",
