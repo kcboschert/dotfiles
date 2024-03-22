@@ -38,7 +38,8 @@ if [[ "$(uname)" == "Darwin" ]]; then
 fi
 
 export GOPATH="$HOME/go"
-export PATH=$PATH:$GOPATH/bin
+export PATH="$PATH:$GOPATH/bin"
+export PATH="$PATH:$HOME/bin"
 export EDITOR=nvim
 
 [[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
