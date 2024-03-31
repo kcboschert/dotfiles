@@ -3,7 +3,7 @@
 set -euo pipefail
 
 function install_nvim_linux() {
-	sudo apt-get install gcc g++ ripgrep
+	sudo apt-get install gcc g++
 
 	curl -L -o nvim.tar.gz https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.tar.gz
 	tar xzvf nvim.tar.gz
