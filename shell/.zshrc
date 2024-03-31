@@ -11,18 +11,19 @@ fi
 [[ -s "$HOME/.profile" ]] && source "$HOME/.profile" # Load the default .profile
 source "${HOME}/.zplug/init.zsh"
 
-export NVM_LAZY_LOAD=true
-export NVM_LAZY_LOAD_EXTRA_COMMANDS=('nvim')
-
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 
 zplug "plugins/command-not-found", from:oh-my-zsh
 zplug "plugins/colored-man-pages", from:oh-my-zsh
+if [ -d "$HOME/.asdf" ]; then
+  export ASDF_GOLANG_MOD_VERSION_ENABLED=false
+  zplug "plugins/asdf", from:oh-my-zsh
+fi
 
 zplug "zsh-users/zsh-syntax-highlighting"
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-autosuggestions"
-zplug "lukechilds/zsh-nvm"
+
 
 zplug "romkatv/powerlevel10k", use:powerlevel10k.zsh-theme
 

@@ -21,10 +21,6 @@ if [ -d "$HOME/.bin" ]; then
 	PATH="$HOME/.bin:$PATH"
 fi
 
-if [ -d "$HOME/.rvm/bin" ]; then
-	export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-fi
-
 if [ -f "$HOME/.profile.local" ]; then
 	source $HOME/.profile.local
 fi
@@ -40,7 +36,3 @@ fi
 export GOPATH="$HOME/go"
 export PATH=$PATH:"$GOPATH/bin:$HOME/.local/bin:$HOME/bin"
 export EDITOR=nvim
-
-[[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
-
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
