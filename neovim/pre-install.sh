@@ -17,9 +17,4 @@ elif [[ "$(uname)" == "Linux" ]]; then
 	install_nvim_linux
 
 	sudo apt-get install bison ripgrep openjdk-17-jdk checkstyle
-
-	# go version manager
-	if ! command -v gvm $ >/dev/null; then
-		bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
-	fi
 fi
