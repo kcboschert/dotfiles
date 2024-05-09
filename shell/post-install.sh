@@ -38,6 +38,7 @@ declare -A plugins
 plugins[nodejs]=https://github.com/asdf-vm/asdf-nodejs.git
 plugins[ruby]=https://github.com/asdf-vm/asdf-ruby
 plugins[golang]=https://github.com/asdf-community/asdf-golang.git
+plugins[python]=https://github.com/asdf-community/asdf-python.git
 
 for lang in "${!plugins[@]}"; do
 	if ! asdf list | grep ${lang} >/dev/null 2>&1; then
