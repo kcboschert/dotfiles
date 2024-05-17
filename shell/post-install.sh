@@ -18,7 +18,6 @@ if [[ "$(uname)" == "Darwin" ]]; then
 			coreutils \
 			libyaml # required for installing ruby versions with psych
 	fi
-	brew tap homebrew/cask-fonts
 	for pkg in \
 		font-fira-code-nerd-font \
 		gawk \
