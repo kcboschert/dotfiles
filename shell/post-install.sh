@@ -14,7 +14,9 @@ fi
 
 if [[ "$(uname)" == "Darwin" ]]; then
 	if ! command -v gls >/dev/null 2>&1; then
-		brew install coreutils
+		brew install \
+			coreutils \
+			libyaml # required for installing ruby versions with psych
 	fi
 	brew tap homebrew/cask-fonts
 	for pkg in \
