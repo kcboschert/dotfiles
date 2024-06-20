@@ -39,7 +39,7 @@ fi
 if [[ "$(uname)" == "Darwin" ]]; then
   if ! command -v brew >/dev/null 2>&1; then
     echo "Homebrew not found. Installing..."
-    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   fi
 elif [[ "$(uname)" == "Linux" ]]; then
   if ! command -v stow >/dev/null 2>&1; then
