@@ -27,6 +27,8 @@ zplug "zsh-users/zsh-autosuggestions"
 
 zplug "romkatv/powerlevel10k", use:powerlevel10k.zsh-theme
 
+zplug "atuinsh/atuin"
+
 if ! zplug check --verbose; then
   printf "Install? [y/N]: "
   if read -q; then
@@ -49,10 +51,13 @@ elif [[ "$(uname)" == "Linux" ]]; then
   alias ls='ls --color=auto'
 fi
 
+eval "$(atuin init zsh)"
+
 bindkey -v
-bindkey '^R' history-incremental-search-backward
-bindkey '^A' vi-beginning-of-line
-bindkey '^E' vi-end-of-line
+bindkey "^A" vi-beginning-of-line
+bindkey "^E" vi-end-of-line
+bindkey "^[[1;3C" forward-word    # Alt+Right
+bindkey "^[[1;3D" backward-word   # Alt+Left
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
