@@ -74,6 +74,7 @@ semantic_escape_chars = ".,│`|:;\"' ()[]{}<>\t"
 
 [window]
 opacity = 0.95
+option_as_alt = "Both"
 
 [window.padding]
 x = 5
