@@ -2,14 +2,13 @@
 
 set -euo pipefail
 
-if ! command -v zsh $ >/dev/null; then
-	if [[ "$(uname)" == "Darwin" ]]; then
-		brew install bash zsh
-	elif [[ "$(uname)" == "Linux" ]]; then
-		sudo apt-get install zsh
-	fi
+if [[ "$(uname)" == "Darwin" ]]; then
+  brew tap homebrew/command-not-found
+  brew install bash zsh
+elif [[ "$(uname)" == "Linux" ]]; then
+  sudo apt-get install command-not-found zsh
 fi
 
 if ! command -v asdf $ >/dev/null; then
-	git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.0
+  git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.0
 fi
