@@ -1,13 +1,6 @@
 # Uncomment this line and the last `zprof` line to run a profiler on startup
 # zmodload zsh/zprof
 
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 [[ -s "$HOME/.profile" ]] && source "$HOME/.profile" # Load the default .profile
 source "${HOME}/.zplug/init.zsh"
 
@@ -49,8 +42,6 @@ elif [[ "$(uname)" == "Linux" ]]; then
   alias ls='ls --color=auto'
 fi
 
-eval "$(atuin init zsh)"
-
 bindkey -v
 bindkey "^A" vi-beginning-of-line
 bindkey "^E" vi-end-of-line
@@ -58,14 +49,12 @@ bindkey "^[[1;3C" forward-word    # Alt+Right
 bindkey "^[[1;3D" backward-word   # Alt+Left
 bindkey "\e[3~" delete-char       # Delete
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
 if [ -f "$HOME/.env.local" ]; then
   source $HOME/.env.local
 fi
 
+eval "$(atuin init zsh)"
+eval "$(starship init zsh)"
+
 # Uncomment this line and the top `zmodload zsh/zprof` line to run a profiler on startup
 # zprof
-
-eval "$(starship init zsh)"
