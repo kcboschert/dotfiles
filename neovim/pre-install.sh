@@ -15,5 +15,5 @@ if [[ "$(uname)" == "Linux" ]] && ! command -v brew >/dev/null 2>&1; then
 	install_nvim_linux
 	sudo apt-get install bison ripgrep
 else
-	brew install neovim bison ripgrep pybind11
+	brew install neovim bison ripgrep pybind11 fd lazygit
 fi
