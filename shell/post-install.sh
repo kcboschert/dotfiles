@@ -14,22 +14,18 @@ install_zplug() {
 
 install_cli_tools() {
 	if [[ "$(uname)" == "Darwin" ]]; then
-		if ! command -v gls >/dev/null 2>&1; then
-			brew install \
-				coreutils \
-				libyaml # required for installing ruby versions with psych
-		fi
-		for pkg in \
+		brew install \
+			coreutils \
+			libyaml \
 			font-fira-code-nerd-font \
 			gawk \
 			gnu-sed \
 			gnu-tar \
 			gnu-which \
 			gpg \
-			grep; do
-			brew install ${pkg}
-		done
+			grep
 	fi
+	brew install acl
 }
 
 install_languages() {
@@ -59,7 +55,7 @@ install_languages() {
 
 install_atuin() {
 	echo "Installing Atuin shell history manager..."
-  brew install atuin
+	brew install atuin
 }
 
 install_zplug

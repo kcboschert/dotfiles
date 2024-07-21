@@ -8,6 +8,10 @@ install_module() {
 		exit 1
 	fi
 
+	echo ""
+	echo "---------- INSTALLING MODULE '${1}' ----------"
+	echo ""
+
 	preinstall_script=${1}/pre-install.sh
 	if [[ -f $preinstall_script ]]; then
 		./${preinstall_script}
@@ -30,6 +34,10 @@ install_cli_tools() {
 	if ! type "curl" >/dev/null; then
 		echo "curl not found. Installing..."
 		brew install curl
+	fi
+	if ! command -v git >/dev/null 2>&1; then
+		echo "git not found. Installing..."
+		brew install git
 	fi
 }
 
