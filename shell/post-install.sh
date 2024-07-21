@@ -43,7 +43,6 @@ install_languages() {
 	plugins[ruby]=https://github.com/asdf-vm/asdf-ruby
 	plugins[golang]=https://github.com/asdf-community/asdf-golang.git
 	plugins[python]=https://github.com/asdf-community/asdf-python.git
-	plugins[rust]=https://github.com/code-lever/asdf-rust
 
 	for lang in "${!plugins[@]}"; do
 		if ! asdf list | grep ${lang} >/dev/null 2>&1; then
@@ -56,18 +55,11 @@ install_languages() {
 			echo "    ${lang} already installed!"
 		fi
 	done
-	mkdir -p "${HOME}/.cargo/bin"
 }
 
 install_atuin() {
 	echo "Installing Atuin shell history manager..."
-
-	if [[ "$(uname)" == "Darwin" ]]; then
-		brew install atuin
-	elif [[ "$(uname)" == "Linux" ]]; then
-		sudo apt-get install protobuf-compiler
-		cargo install --root "${HOME}/.cargo" atuin
-	fi
+  brew install atuin
 }
 
 install_zplug

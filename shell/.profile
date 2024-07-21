@@ -30,6 +30,5 @@ if [ -f "$HOME/.aliases.local" ]; then
 fi
 
 export GOPATH="$HOME/go"
-export CARGO_HOME="$HOME/.cargo"
-export PATH=$PATH:"$GOPATH/bin:$CARGO_HOME/bin:$HOME/.local/bin:$HOME/bin"
+export PATH=$PATH:"$GOPATH/bin:$HOME/.local/bin:$HOME/bin"
 export EDITOR=nvim
