@@ -56,6 +56,7 @@ bindkey "^A" vi-beginning-of-line
 bindkey "^E" vi-end-of-line
 bindkey "^[[1;3C" forward-word    # Alt+Right
 bindkey "^[[1;3D" backward-word   # Alt+Left
+bindkey "\e[3~" delete-char       # Delete
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
