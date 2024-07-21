@@ -1,1 +1,2 @@
 /neovim/nvim/lua/plugins/local.lua
+/tmux/.tmux/plugins/**/*
