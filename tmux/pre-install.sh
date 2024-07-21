@@ -3,5 +3,5 @@
 set -euo pipefail
 
 if ! command -v tmux $ >/dev/null; then
-  brew install tmux
+	brew install tmux
 fi
