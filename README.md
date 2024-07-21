@@ -35,3 +35,7 @@ You may have some configurations you'd only like present on certain machines. Th
 3. [feat] shortcut for formatting visual selection instead of entire file
 4. [fix] strange interaction where tab key after a newline will jump to a seemingly-random line in insert mode. Seems related to LSP setup or lsp_signature
 5. [feat] shortcuts for toggling indentlines for nicer copy/paste
+
+## Resources
+
+- [Nerd Fonts Cheat Sheet](https://www.nerdfonts.com/cheat-sheet) - Find nerd font icons
