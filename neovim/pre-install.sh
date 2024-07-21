@@ -11,10 +11,9 @@ function install_nvim_linux() {
 	rm -rf nvim-linux64 nvim.tar.gz
 }
 
-if [[ "$(uname)" == "Darwin" ]]; then
-	brew install neovim ripgrep boost pybind11
-elif [[ "$(uname)" == "Linux" ]]; then
-	install_nvim_linux
-
-	sudo apt-get install bison ripgrep openjdk-17-jdk checkstyle
+if [[ "$(uname)" == "Linux" ]] && ! command -v brew >/dev/null 2>&1; then
+  install_nvim_linux
+  sudo apt-get install bison ripgrep openjdk-17-jdk checkstyle
+else
+	brew install neovim bison ripgrep pybind11
 fi
