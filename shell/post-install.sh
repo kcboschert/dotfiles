@@ -39,6 +39,7 @@ install_languages() {
 	plugins[ruby]=https://github.com/asdf-vm/asdf-ruby
 	plugins[golang]=https://github.com/asdf-community/asdf-golang.git
 	plugins[python]=https://github.com/asdf-community/asdf-python.git
+	plugins[java]=https://github.com/halcyon/asdf-java.git
 
 	for lang in "${!plugins[@]}"; do
 		if ! asdf list | grep ${lang} >/dev/null 2>&1; then
@@ -51,6 +52,10 @@ install_languages() {
 			echo "    ${lang} already installed!"
 		fi
 	done
+
+	asdf install java openjdk-11.0.2
+	asdf install java openjdk-17.0.2
+	asdf install java openjdk-21.0.2
 }
 
 install_atuin() {
