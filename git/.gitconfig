@@ -33,3 +33,5 @@
   required = true
 [merge]
   conflictStyle = diff3
+[rebase]
+	autosquash = true
