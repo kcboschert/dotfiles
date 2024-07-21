@@ -12,8 +12,8 @@ function install_nvim_linux() {
 }
 
 if [[ "$(uname)" == "Linux" ]] && ! command -v brew >/dev/null 2>&1; then
-  install_nvim_linux
-  sudo apt-get install bison ripgrep openjdk-17-jdk checkstyle
+	install_nvim_linux
+	sudo apt-get install bison ripgrep openjdk-17-jdk checkstyle
 else
 	brew install neovim bison ripgrep pybind11
 fi
