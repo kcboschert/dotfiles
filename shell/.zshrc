@@ -15,6 +15,7 @@ zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 
 zplug "plugins/command-not-found", from:oh-my-zsh
 zplug "plugins/colored-man-pages", from:oh-my-zsh
+
 if [ -d "$HOME/.asdf" ]; then
   export ASDF_GOLANG_MOD_VERSION_ENABLED=false
   zplug "plugins/asdf", from:oh-my-zsh
@@ -23,9 +24,6 @@ fi
 zplug "zsh-users/zsh-syntax-highlighting"
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-autosuggestions"
-
-
-zplug "romkatv/powerlevel10k", use:powerlevel10k.zsh-theme
 
 zplug "atuinsh/atuin"
 
@@ -69,5 +67,4 @@ fi
 # Uncomment this line and the top `zmodload zsh/zprof` line to run a profiler on startup
 # zprof
 
-# To customize prompt, run `p10k configure` or edit ~/git/dotfiles/shell/.p10k.zsh.
-[[ ! -f ~/git/dotfiles/shell/.p10k.zsh ]] || source ~/git/dotfiles/shell/.p10k.zsh
+eval "$(starship init zsh)"
