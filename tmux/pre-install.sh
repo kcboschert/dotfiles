@@ -3,10 +3,12 @@
 set -euo pipefail
 
 install_tpm() {
-	if [ ! -d ${HOME}/.tmux/plugins ]; then
+	mkdir -p ${HOME}/.tmux/plugins
+
+	if [ ! -d ${HOME}/.tmux/plugins/tpm ]; then
 		git clone https://github.com/tmux-plugins/tpm ${HOME}/.tmux/plugins/tpm
 	else
-		pushd ${HOME}/.tmux/plugins
+		pushd ${HOME}/.tmux/plugins/tpm
 		git pull
 		popd
 	fi
