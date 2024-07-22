@@ -24,8 +24,9 @@ install_cli_tools() {
 			gnu-which \
 			gpg \
 			grep
+	elif [[ "$(uname)" == "Linux" ]]; then
+		brew install acl
 	fi
-	brew install acl
 }
 
 install_languages() {
