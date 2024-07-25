@@ -45,18 +45,23 @@ install_languages() {
 	for lang in "${!plugins[@]}"; do
 		if ! asdf list | grep ${lang} >/dev/null 2>&1; then
 			echo "    ${lang} Installing..."
+
 			asdf plugin add ${lang} ${plugins[$lang]}
-			asdf install ${lang} latest
-			asdf global ${lang} latest
+
+			if [[ "${lang}" == "java" ]]; then
+				asdf install java openjdk-11.0.2
+				asdf install java openjdk-17.0.2
+				asdf install java openjdk-21.0.2
+			else
+				asdf install ${lang} latest
+				asdf global ${lang} latest
+			fi
+
 			echo "    ...done."
 		else
 			echo "    ${lang} already installed!"
 		fi
 	done
-
-	asdf install java openjdk-11.0.2
-	asdf install java openjdk-17.0.2
-	asdf install java openjdk-21.0.2
 }
 
 install_atuin() {
