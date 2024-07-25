@@ -58,6 +58,11 @@ mods = "Control"
 save_to_clipboard = true
 semantic_escape_chars = ".,│`|:;\"' ()[]{}<>\t"
 
+# Config for launching WSL
+# [shell]
+# args = ["-d Debian", "--cd ~"]
+# program = 'C:\Windows\system32\wsl.exe'
+
 [window]
 opacity = 0.95
 option_as_alt = "Both"
