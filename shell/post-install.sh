@@ -2,16 +2,6 @@
 
 set -euo pipefail
 
-install_zplug() {
-	if [ ! -d ${HOME}/.zplug ]; then
-		git clone https://github.com/zplug/zplug.git "${HOME}/.zplug"
-	else
-		pushd ${HOME}/.zplug
-		git pull
-		popd
-	fi
-}
-
 install_cli_tools() {
 	if [[ "$(uname)" == "Darwin" ]]; then
 		brew install \
@@ -69,7 +59,6 @@ install_atuin() {
 	brew install atuin
 }
 
-install_zplug
 install_cli_tools
 install_languages
 install_atuin

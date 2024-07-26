@@ -2,34 +2,28 @@
 # zmodload zsh/zprof
 
 [[ -s "$HOME/.profile" ]] && source "$HOME/.profile" # Load the default .profile
-source "${HOME}/.zplug/init.zsh"
+source "${HOME}/.zgenom/zgenom.zsh"
 
-zplug 'zplug/zplug', hook-build:'zplug --self-manage'
+zgenom autoupdate
+# if the init script doesn't exist
+if ! zgenom saved; then
+	zgenom ohmyzsh
 
-zplug "plugins/command-not-found", from:oh-my-zsh
-zplug "plugins/colored-man-pages", from:oh-my-zsh
+	zgenom ohmyzsh plugins/command-not-found
+	zgenom ohmyzsh plugins/colored-man-pages
 
-if [ -d "$HOME/.asdf" ]; then
-  export ASDF_GOLANG_MOD_VERSION_ENABLED=false
-  zplug "plugins/asdf", from:oh-my-zsh
+	[ -d "$HOME/.asdf" ] && zgenom ohmyzsh plugins/asdf
+
+	zgenom load zsh-users/zsh-syntax-highlighting
+	zgenom load zsh-users/zsh-completions
+	zgenom load zsh-users/zsh-autosuggestions
+
+	zgenom load atuinsh/atuin
+
+	# generate the init script from plugins above
+	zgenom save
 fi
-
-zplug "zsh-users/zsh-syntax-highlighting"
-zplug "zsh-users/zsh-completions"
-zplug "zsh-users/zsh-autosuggestions"
-
-zplug "atuinsh/atuin"
-
-if ! zplug check --verbose; then
-  printf "Install? [y/N]: "
-  if read -q; then
-    echo; zplug install
-  else
-    echo
-  fi
-fi
-
-zplug load
+[ -d "$HOME/.asdf" ] && export ASDF_GOLANG_MOD_VERSION_ENABLED=false
 
 source ~/.aliases
 if [[ "$(uname)" == "Darwin" ]]; then
