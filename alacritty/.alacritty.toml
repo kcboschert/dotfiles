@@ -1,46 +1,73 @@
 [colors]
 transparent_background_colors = true
 
-# TokyoNight-Night Alacritty Colors
-# Default colors
-[colors.primary]
-background = '#1a1b26'
-foreground = '#c0caf5'
+# Flow colorscheme | Alacritty
+# https://github.com/0xstepit/flow.nvim
 
-#[colors.cursor]
-#cursor = '#c0caf5'
-#text = '#1a1b26'
+# Black and white
+[colors.primary]
+background = '#1B2228'
+foreground = '#B2C1CC'
 
 # Normal colors
 [colors.normal]
-black = '#15161e'
-red = '#f7768e'
-green = '#9ece6a'
-yellow = '#e0af68'
-blue = '#7aa2f7'
-magenta = '#bb9af7'
-cyan = '#7dcfff'
-white = '#a9b1d6'
+black = '#0D0D0D'
+red = '#F07580'
+green = '#80F075'
+yellow = '#F0E575'
+blue = '#75BDF0'
+magenta = '#A875F0'
+cyan = '#75F0E6'
+white = '#F2F2F2'
 
 # Bright colors
 [colors.bright]
-black = '#414868'
-red = '#f7768e'
-green = '#9ece6a'
-yellow = '#e0af68'
-blue = '#7aa2f7'
-magenta = '#bb9af7'
-cyan = '#7dcfff'
-white = '#c0caf5'
+black = '#0D0D0D'
+red = '#F07580'
+green = '#80F075'
+yellow = '#F0E575'
+blue = '#75BDF0'
+magenta = '#A875F0'
+cyan = '#75F0E6'
+white = '#F2F2F2'
 
-# Indexed Colors
-[[colors.indexed_colors]]
-index = 16
-color = '#ff9e64'
+# Search colors
+[colors.search.matches]
+foreground = '#FF007C'
+background = '#0D0D0D'
+
+[colors.search.focused_match]
+foreground = '#0D0D0D'
+background = '#FF007C'
+
+# Selection colors
+[colors.selection]
+background = '#FF007C'
+text = '#0D0D0D'
+
+# Cursors
+# If you don't want to override original behavior, which is nice,
+# remove [colors.cursor] and [colors.vi_mode_cursor].
+[colors.cursor]
+cursor = '#FF007C'
+text = '#0D0D0D'
+
+[colors.vi_mode_cursor]
+cursor = '#FF007C'
+text = '#0D0D0D'
+
+[colors.footer_bar]
+foreground = '#FF007C'
+background = '#0D0D0D'
 
 [[colors.indexed_colors]]
-index = 17
-color = '#db4b4b'
+index = 93
+color = '#A875F0'
+
+# Fluo Colors
+[[colors.indexed_colors]]
+index = 198
+color = '#FF007C'
 
 [font]
 size = 12
