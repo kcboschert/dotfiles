@@ -1,8 +1,10 @@
 # Refer to https://starship.rs/config/
 # and https://www.nerdfonts.com/cheat-sheet
+continuation_prompt = "[󰇘 ](blue)"
+
 format = """
 [░▒▓](#a3aed2)\
-[  ](bg:#a3aed2 fg:#090c0c)\
+[ $os ](bg:#a3aed2 fg:#090c0c)\
 [](bg:#769ff0 fg:#a3aed2)\
 $directory\
 [](fg:#769ff0 bg:#394260)\
@@ -66,6 +68,11 @@ staged = "[[+${count}](fg:2 bg:#394260)]($style)"
 renamed = "[[»${count}](fg:4 bg:#394260)]($style)"
 deleted = "[[✘${count}](fg:9 bg:#394260)]($style)"
 
+[golang]
+symbol = ""
+style = "bg:#212736"
+format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
+
 [java]
 symbol = ""
 style = "bg:#212736"
@@ -76,15 +83,19 @@ symbol = ""
 style = "bg:#212736"
 format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
 
-[rust]
-symbol = ""
-style = "bg:#212736"
-format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
+[os]
+format = "[$symbol]($style)"
+style = "fg:prim bg:sec"
+disabled = false
 
-[golang]
-symbol = ""
-style = "bg:#212736"
-format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
+[os.symbols]
+Debian=""
+Linux=""
+Macos=""
+Raspbian=""
+Windows=""
+Ubuntu=""
+Unknown=""
 
 [php]
 symbol = ""
@@ -98,6 +109,11 @@ format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
 
 [ruby]
 symbol = ""
+style = "bg:#212736"
+format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
+
+[rust]
+symbol = ""
 style = "bg:#212736"
 format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
 
