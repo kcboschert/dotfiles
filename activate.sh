@@ -2,6 +2,19 @@
 
 set -euo pipefail
 
+prompt() {
+	while true; do
+		message=$1
+		read -p "${message} [y/n]" -n 1 -r yn
+
+		case $yn in
+		[Yy]) return 0 ;;
+		[Nn]) return 1 ;;
+		*) echo "Invalid response." ;;
+		esac
+	done
+}
+
 install_module() {
 	if ! [[ -d "$1" ]]; then
 		echo "Module '$1' does not exist."
@@ -43,9 +56,9 @@ install_cli_tools() {
 
 install_homebrew() {
 	if ! command -v brew >/dev/null 2>&1; then
-		echo "Homebrew not found. Installing..."
-		/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
+		if prompt "Homebrew not found. Many modules require this prerequisite. Install?"; then
+			/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+		fi
 	fi
 }
 
