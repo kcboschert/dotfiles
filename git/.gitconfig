@@ -34,5 +34,5 @@
 [merge]
   conflictStyle = diff3
 [rebase]
-	autosquash = true
-	autostash = true
+  autosquash = true
+  autostash = true
