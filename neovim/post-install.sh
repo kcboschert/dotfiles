@@ -2,6 +2,8 @@
 
 set -euo pipefail
 
-for pkg in ctags jq; do
-	brew install ${pkg}
-done
+if command -v brew >/dev/null 2>&1; then
+	brew install ctags jq
+else
+	sudo apt-get install jq
+fi
