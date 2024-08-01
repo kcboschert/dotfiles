@@ -1,5 +1,15 @@
 return {
   {
+    {
+      "folke/which-key.nvim",
+      opts = {
+        spec = {
+          { "<leader>r", group = "run tests" },
+        },
+      },
+    },
+  },
+  {
     "vim-test/vim-test",
     dependencies = {
       "preservim/vimux",
