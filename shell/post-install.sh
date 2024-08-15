@@ -31,6 +31,7 @@ install_languages() {
 	plugins[golang]=https://github.com/asdf-community/asdf-golang.git
 	plugins[python]=https://github.com/asdf-community/asdf-python.git
 	plugins[java]=https://github.com/halcyon/asdf-java.git
+	plugins[dotnet]=https://github.com/hensou/asdf-dotnet.git
 
 	for lang in "${!plugins[@]}"; do
 		if ! asdf list | grep ${lang} >/dev/null 2>&1; then
