@@ -25,6 +25,8 @@ if ! zgenom saved; then
 fi
 [ -d "$HOME/.asdf" ] && export ASDF_GOLANG_MOD_VERSION_ENABLED=false
 
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=5"
+
 source ~/.aliases
 if [[ "$(uname)" == "Darwin" ]]; then
   alias ls='gls --color=auto'
