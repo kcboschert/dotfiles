@@ -7,7 +7,6 @@ install_cli_tools() {
 		brew install \
 			coreutils \
 			libyaml \
-			font-fira-code-nerd-font \
 			gawk \
 			gnu-sed \
 			gnu-tar \
