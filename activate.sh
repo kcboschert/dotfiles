@@ -65,7 +65,11 @@ install_homebrew() {
 install_stow() {
 	if ! command -v stow >/dev/null 2>&1; then
 		echo "Stow not found. Installing..."
-		brew install stow
+		if ! command -v brew >/dev/null 2>&1; then
+			brew install stow
+		else
+			sudo apt-get install stow
+		fi
 	fi
 }
 
