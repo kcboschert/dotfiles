@@ -9,16 +9,14 @@ Activate modules:
 
 ## Manual Steps (required)
 
-### nvim+jdtls
+### Java
 
-1. Install Java JDK
-2. Install jdtls via `:Mason`
-3. Modify variables in `neovim/.config/nvim/ftplugin/java.lua` so `java_17_jdk_path` points to the JDK and the `jdtls_dir` points to the installation directory of eclipse.jdt.ls.
+1. Ensure the runtime variables in `neovim/nvim/lua/plugins/java.lua` all point to the correct paths.
 
 ### Windows
 
-1. Download and install FiraCode Nerd Font from [https://www.nerdfonts.com/font-downloads](https://www.nerdfonts.com/font-downloads)
-2. Copy `alacritty/.alacritty.yml` to `%AppData%\alacritty\alacritty.yml` and uncomment everything under the `shell` top-level key.
+1. Download and install FiraCode/CaskaydiaMono Nerd Font from [https://www.nerdfonts.com/font-downloads](https://www.nerdfonts.com/font-downloads)
+2. Copy `alacritty/.alacritty.toml` to `%AppData%\alacritty\alacritty.toml` and uncomment everything under the `shell` top-level key.
 
 ## Local Configurations
 
@@ -30,11 +28,7 @@ You may have some configurations you'd only like present on certain machines. Th
 
 ## TODO
 
-1. [fix] codelens doesn't show up for Lombok private fields
-2. [feat] [nvim-dap](https://github.com/mfussenegger/nvim-dap) for debugging
-3. [feat] shortcut for formatting visual selection instead of entire file
-4. [fix] strange interaction where tab key after a newline will jump to a seemingly-random line in insert mode. Seems related to LSP setup or lsp_signature
-5. [feat] shortcuts for toggling indentlines for nicer copy/paste
+1. [feat] [nvim-dap](https://github.com/mfussenegger/nvim-dap) for debugging
 
 ## Resources
 
