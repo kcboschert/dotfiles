@@ -10,15 +10,15 @@
 
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
-  # include .bashrc if it exists
-  if [ -f "$HOME/.bashrc" ]; then
-    . "$HOME/.bashrc"
-  fi
+	# include .bashrc if it exists
+	if [ -f "$HOME/.bashrc" ]; then
+		. "$HOME/.bashrc"
+	fi
 fi
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/.bin" ]; then
-  PATH="$HOME/.bin:$PATH"
+	PATH="$HOME/.bin:$PATH"
 fi
 
 if [ -f "$HOME/.profile.local" ]; then
@@ -30,5 +30,5 @@ if [ -f "$HOME/.aliases.local" ]; then
 fi
 
 export GOPATH="$HOME/go"
-export PATH=$PATH:"$GOPATH/bin:$HOME/.local/bin:$HOME/bin"
+export PATH=$PATH:"$GOPATH/bin:$HOME/.local/bin:$HOME/bin:$HOME/.local/share/nvim/mason/bin"
 export EDITOR=nvim
