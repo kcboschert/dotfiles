@@ -45,18 +45,18 @@ install_module() {
 
 install_cli_tools() {
 	if ! type "curl" >/dev/null; then
-		echo "curl not found. Installing..."
+		echo "\ncurl not found. Installing..."
 		brew install curl
 	fi
 	if ! command -v git >/dev/null 2>&1; then
-		echo "git not found. Installing..."
+		echo "\ngit not found. Installing..."
 		brew install git
 	fi
 }
 
 install_homebrew() {
 	if ! command -v brew >/dev/null 2>&1; then
-		if prompt "Homebrew not found. Many modules require this prerequisite. Install?"; then
+		if prompt "\nHomebrew not found. Many modules require this prerequisite. Install?"; then
 			/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 		fi
 	fi
@@ -64,11 +64,11 @@ install_homebrew() {
 
 install_stow() {
 	if ! command -v stow >/dev/null 2>&1; then
-		echo "Stow not found. Installing..."
+		echo "\nStow not found. Installing..."
 		if ! command -v brew >/dev/null 2>&1; then
-			brew install stow
-		else
 			sudo apt-get install stow
+		else
+			brew install stow
 		fi
 	fi
 }
