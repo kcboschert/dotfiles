@@ -30,9 +30,11 @@ return {
     config = function()
       require("flow").setup({
         transparent = true, -- Set transparent background.
-        fluo_color = "pink", --  Fluo color: pink, yellow, orange, or green.
-        mode = "normal", -- Intensity of the palette: normal, bright, desaturate, or dark. Notice that dark is ugly!
-        aggressive_spell = false, -- Display colors for spell check.
+        fluo_color = "pink", -- Color used as fluo. Available values are pink, yellow, orange, or green.
+        mode = "desaturate", -- Mode of the colors. Available values are: dark, bright, desaturate, or base.
+        dark_theme = true, -- Set the theme with dark background.
+        high_contrast = false, -- Make the dark background darker or the light background lighter.
+        aggressive_spell = false, -- Use colors for spell check.
       })
     end,
   },
