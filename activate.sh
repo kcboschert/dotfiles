@@ -81,6 +81,9 @@ fi
 
 if [[ "$(uname)" == "Linux" ]]; then
 	sudo apt-get update
+	if ! dpkg -l | grep build-essential >/dev/null 2>&1; then
+		sudo apt-get install build-essential
+	fi
 fi
 
 install_cli_tools
