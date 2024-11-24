@@ -83,8 +83,8 @@ if [[ "$(uname)" == "Linux" ]]; then
 	sudo apt-get update
 fi
 
-install_homebrew
 install_cli_tools
+install_homebrew
 install_stow
 
 case $1 in
