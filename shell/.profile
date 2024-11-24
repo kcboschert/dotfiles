@@ -16,11 +16,29 @@ if [ -n "$BASH_VERSION" ]; then
 	fi
 fi
 
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/.bin" ]; then
-	PATH="$HOME/.bin:$PATH"
+if [ -d "$HOME/go" ]; then
+	export GOPATH="$HOME/go"
 fi
 
+# optional PATHs
+if [ -d "$HOME/.bin" ]; then
+	export PATH="$PATH:$HOME/.bin"
+fi
+if [ -d "$HOME/.local/bin" ]; then
+	export PATH=$PATH:"$HOME/.local/bin"
+fi
+if [ -d "$GOPATH/bin" ]; then
+	export PATH=$PATH:"$GOPATH/bin"
+fi
+if [ -d "$HOME/.local/share/nvim/mason/bin" ]; then
+	export PATH=$PATH:"$HOME/.local/share/nvim/mason/bin"
+fi
+
+if [ -f "$HOME/.cargo/env" ]; then
+	. "$HOME/.cargo/env"
+fi
+
+# local customizations
 if [ -f "$HOME/.profile.local" ]; then
 	. $HOME/.profile.local
 fi
@@ -29,6 +47,14 @@ if [ -f "$HOME/.aliases.local" ]; then
 	. $HOME/.aliases.local
 fi
 
-export GOPATH="$HOME/go"
-export PATH=$PATH:"$GOPATH/bin:$HOME/.local/bin:$HOME/bin:$HOME/.local/share/nvim/mason/bin"
+# Homebrew
+if [[ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]]; then
+	eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
+
+if [[ -f "/opt/homebrew/bin/brew" ]]; then
+	eval "$(/opt/homebrew/bin/brew shellenv)"
+	export PATH=/usr/local/opt/grep/libexec/gnubin:/usr/local/opt/gnu-which/libexec/gnubin:/usr/local/opt/gnu-tar/libexec/gnubin:/usr/local/opt/gnu-sed/libexec/gnubin:$PATH
+fi
+
 export EDITOR=nvim
