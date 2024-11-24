@@ -79,6 +79,10 @@ if [ $# -eq 0 ]; then
 	exit 1
 fi
 
+if [[ "$(uname)" == "Linux" ]]; then
+	sudo apt-get update
+fi
+
 install_homebrew
 install_cli_tools
 install_stow
