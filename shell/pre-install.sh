@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -euo pipefail
+set -o nounset -o pipefail -o errexit
 
 install_zgenom() {
 	if [ ! -d ${HOME}/.zgenom ]; then

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -euo pipefail
+set -o nounset -o pipefail -o errexit
 
 install_cli_tools() {
 	if [[ "$(uname)" == "Darwin" ]]; then
