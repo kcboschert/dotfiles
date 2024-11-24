@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -euo pipefail
+set -o nounset -o pipefail -o errexit
 
 function install_nvim_linux() {
 	sudo apt-get install gcc g++
