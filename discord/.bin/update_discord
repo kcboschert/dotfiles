@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+# source: https://gist.github.com/triangletodd/e529d3b1a64db6d1cb5a4f18d48bd3af
+
+set -o nounset -o pipefail -o errexit
+
+tmpfile="$(mktemp)"
+
+# set -o errexit is important in case mktemp above fails
+trap '{ rm -f $tmpfile; }' EXIT
+
+main() {
+	curl -Lo "$tmpfile" 'https://discord.com/api/download?platform=linux'
+	sudo dpkg -i "$tmpfile"
+}
+
+main "$@"
