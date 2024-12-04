@@ -51,8 +51,27 @@ return {
     lazy = false,
     priority = 1000,
     opts = {
-      transparent = true,
+      transparent = {
+        bg = true,
+      },
     },
+  },
+  {
+    "neanias/everforest-nvim",
+    lazy = false,
+    version = false,
+    priority = 1000,
+    config = function()
+      require("everforest").setup({
+        background = "medium",
+        transparent_background_level = 1,
+        italics = true,
+        disable_italic_comments = false,
+        on_highlights = function(hl, _)
+          hl["@string.special.symbol.ruby"] = { link = "@field" }
+        end,
+      })
+    end,
   },
   {
     "LazyVim/LazyVim",
