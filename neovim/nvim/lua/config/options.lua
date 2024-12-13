@@ -16,4 +16,4 @@ opt.ruler = true
 opt.showmatch = true
 opt.wrap = true
 
-vim.g.lazyvim_ruby_lsp = "solargraph" -- "solargraph"/"ruby_lsp"
+vim.g.lazyvim_ruby_lsp = "ruby_lsp" -- "solargraph"/"ruby_lsp"
