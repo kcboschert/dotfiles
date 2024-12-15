@@ -12,8 +12,6 @@ if ! zgenom saved; then
 	zgenom ohmyzsh plugins/command-not-found
 	zgenom ohmyzsh plugins/colored-man-pages
 
-	[ -d "$HOME/.asdf" ] && zgenom ohmyzsh plugins/asdf
-
 	zgenom load zsh-users/zsh-syntax-highlighting
 	zgenom load zsh-users/zsh-completions
 	zgenom load zsh-users/zsh-autosuggestions
@@ -23,7 +21,6 @@ if ! zgenom saved; then
 	# generate the init script from plugins above
 	zgenom save
 fi
-[ -d "$HOME/.asdf" ] && export ASDF_GOLANG_MOD_VERSION_ENABLED=false
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=5"
 
@@ -51,6 +48,7 @@ fi
 
 eval "$(atuin init zsh)"
 eval "$(starship init zsh)"
+eval "$(mise activate zsh)"
 
 # Uncomment this line and the top `zmodload zsh/zprof` line to run a profiler on startup
 # zprof
