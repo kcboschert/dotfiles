@@ -19,8 +19,10 @@ brew install bash zsh starship
 # echo "Setting zsh as default shell..."
 # chsh -s $(which zsh)
 
-if ! command -v asdf $ >/dev/null; then
-	git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.0
+if ! command -v mise $ >/dev/null; then
+	brew install mise
+	mkdir -p /etc/bash_completion.d/
+	mise completion bash >/etc/bash_completion.d/mise
 fi
 
 install_zgenom

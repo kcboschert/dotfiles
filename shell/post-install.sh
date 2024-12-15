@@ -21,31 +21,15 @@ install_cli_tools() {
 install_languages() {
 	# Install asdf plugins for common languages
 	echo ""
-	echo "Installing asdf Version Manager plugins for languages..."
-	source ~/.asdf/asdf.sh
+	echo "Installing mise Version Manager plugins for languages..."
 
-	declare -A plugins
-	plugins[nodejs]=https://github.com/asdf-vm/asdf-nodejs.git
-	plugins[ruby]=https://github.com/asdf-vm/asdf-ruby
-	plugins[golang]=https://github.com/asdf-community/asdf-golang.git
-	plugins[python]=https://github.com/asdf-community/asdf-python.git
-	plugins[java]=https://github.com/halcyon/asdf-java.git
-	plugins[dotnet]=https://github.com/hensou/asdf-dotnet.git
+	declare -a languages=("nodejs" "ruby" "go" "python" "java" "dotnet")
 
-	for lang in "${!plugins[@]}"; do
-		if ! asdf list | grep ${lang} >/dev/null 2>&1; then
+	for lang in "${languages[@]}"; do
+		if ! mise ls --installed | grep "${lang}" >/dev/null 2>&1; then
 			echo "    ${lang} Installing..."
 
-			asdf plugin add ${lang} ${plugins[$lang]}
-
-			if [[ "${lang}" == "java" ]]; then
-				asdf install java openjdk-11.0.2
-				asdf install java openjdk-17.0.2
-				asdf install java openjdk-21.0.2
-			else
-				asdf install ${lang} latest
-				asdf global ${lang} latest
-			fi
+			mise install "${lang}"@latest
 
 			echo "    ...done."
 		else
