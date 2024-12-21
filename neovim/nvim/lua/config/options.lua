@@ -17,3 +17,4 @@ opt.showmatch = true
 opt.wrap = true
 
 vim.g.lazyvim_ruby_lsp = "ruby_lsp" -- "solargraph"/"ruby_lsp"
+vim.g.root_spec = { "cwd" }
