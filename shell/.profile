@@ -57,4 +57,8 @@ if [[ -f "/opt/homebrew/bin/brew" ]]; then
 	export PATH=/usr/local/opt/grep/libexec/gnubin:/usr/local/opt/gnu-which/libexec/gnubin:/usr/local/opt/gnu-tar/libexec/gnubin:/usr/local/opt/gnu-sed/libexec/gnubin:$PATH
 fi
 
+if which godot >/dev/null 2>&1; then
+	export GODOT_BIN=$(which godot)
+fi
+
 export EDITOR=nvim
