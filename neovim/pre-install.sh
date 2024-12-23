@@ -13,7 +13,7 @@ function install_nvim_linux() {
 
 if [[ "$(uname)" == "Linux" ]] && ! command -v brew >/dev/null 2>&1; then
 	install_nvim_linux
-	sudo apt-get install bison ripgrep fzf
+	sudo apt-get install bison ripgrep fzf luarocks
 else
-	brew install neovim bison ripgrep pybind11 fd lazygit fzf
+	brew install neovim bison ripgrep pybind11 fd lazygit fzf luarocks
 fi
