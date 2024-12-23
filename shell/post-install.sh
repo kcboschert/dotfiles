@@ -23,7 +23,7 @@ install_languages() {
 	echo ""
 	echo "Installing mise Version Manager plugins for languages..."
 
-	declare -a languages=("nodejs" "ruby" "go" "python" "java" "dotnet")
+	declare -a languages=("nodejs" "ruby" "go" "python" "dotnet" "lua")
 
 	for lang in "${languages[@]}"; do
 		if ! mise ls --installed | grep "${lang}" >/dev/null 2>&1; then
