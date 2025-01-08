@@ -50,5 +50,10 @@ eval "$(atuin init zsh)"
 eval "$(starship init zsh)"
 eval "$(mise activate zsh)"
 
+# zsh completions
+
+autoload -Uz compinit
+compinit
+
 # Uncomment this line and the top `zmodload zsh/zprof` line to run a profiler on startup
 # zprof
