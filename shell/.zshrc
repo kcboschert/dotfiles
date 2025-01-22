@@ -28,10 +28,8 @@ source ~/.aliases
 if [[ "$(uname)" == "Darwin" ]]; then
   alias ls='gls --color=auto'
   alias ctags="`brew --prefix`/bin/ctags"
-  eval `gdircolors $HOME/.dircolors`
   export PATH="/usr/local/sbin:$PATH"
 elif [[ "$(uname)" == "Linux" ]]; then
-  eval `dircolors $HOME/.dircolors`
   alias ls='ls --color=auto'
 fi
 

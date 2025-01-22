@@ -35,16 +35,16 @@ if [ -d "$HOME/.local/share/nvim/mason/bin" ]; then
 fi
 
 if [ -f "$HOME/.cargo/env" ]; then
-	. "$HOME/.cargo/env"
+	. "$HOME"/.cargo/env
 fi
 
 # local customizations
 if [ -f "$HOME/.profile.local" ]; then
-	. $HOME/.profile.local
+	. "$HOME"/.profile.local
 fi
 
 if [ -f "$HOME/.aliases.local" ]; then
-	. $HOME/.aliases.local
+	. "$HOME"/.aliases.local
 fi
 
 # Homebrew
