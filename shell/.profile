@@ -50,6 +50,7 @@ fi
 # Homebrew
 if [[ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]]; then
 	eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+	export HOMEBREW_NO_ENV_HINTS=true
 fi
 
 if [[ -f "/opt/homebrew/bin/brew" ]]; then
