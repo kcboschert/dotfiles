@@ -13,7 +13,7 @@ install_zgenom() {
 }
 
 brew tap homebrew/command-not-found
-brew install bash zsh starship
+brew install bash zsh starship gum
 # echo "Adding zsh as a valid login shell..."
 # sudo sh -c "echo $(which zsh) >> /etc/shells"
 # echo "Setting zsh as default shell..."
