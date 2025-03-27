@@ -1,5 +1,6 @@
 [core]
   pager = diff-highlight | less -FRi
+  excludesfile = ~/.gitignore
 [color]
   ui = auto
 [init]
