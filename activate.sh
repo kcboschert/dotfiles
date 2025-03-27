@@ -2,44 +2,38 @@
 
 set -o nounset -o pipefail -o errexit
 
-prompt() {
-	while true; do
-		message=$1
-		read -p "${message} [y/n]" -n 1 -r yn
-
-		case $yn in
-		[Yy]) return 0 ;;
-		[Nn]) return 1 ;;
-		*) echo "Invalid response." ;;
-		esac
-	done
-}
+source ./util.sh
 
 install_module() {
-	if ! [[ -d "$1" ]]; then
-		echo "Module '$1' does not exist."
-		exit 1
+	local module_dir=$1
+
+	if ! [[ -d "$module_dir" ]]; then
+		echo "Module '$module_dir' does not exist."
+		return 1
 	fi
 
 	echo ""
-	echo "---------- INSTALLING MODULE '${1}' ----------"
+	echo "---------- INSTALLING MODULE '${module_dir}' ----------"
 	echo ""
 
-	preinstall_script=${1}/pre-install.sh
+	local preinstall_script="${module_dir}/pre-install.sh"
 	if [[ -f $preinstall_script ]]; then
-		./${preinstall_script}
+		echo "Running pre-install script for ${module_dir}..."
+		./"${preinstall_script}"
 	fi
 
-	custom_stow=${1}/stow-custom.sh
+	local custom_stow="${module_dir}/stow-custom.sh"
 	if [[ -f $custom_stow ]]; then
-		./${custom_stow}
+		echo "Running custom stow script for ${module_dir}..."
+		./"${custom_stow}"
 	else
-		stow --verbose --target=$HOME --restow $1
+		stow --verbose --target="$HOME" --restow "${module_dir}"
 	fi
 
-	postinstall_script=${1}/post-install.sh
+	local postinstall_script="${module_dir}/post-install.sh"
 	if [[ -f $postinstall_script ]]; then
-		./${postinstall_script}
+		echo "Running post-install script for ${module_dir}..."
+		./"${postinstall_script}"
 	fi
 }
 
@@ -48,6 +42,7 @@ install_cli_tools() {
 		echo "\ncurl not found. Installing..."
 		brew install curl
 	fi
+
 	if ! command -v git >/dev/null 2>&1; then
 		echo "\ngit not found. Installing..."
 		brew install git
@@ -58,6 +53,8 @@ install_homebrew() {
 	if ! command -v brew >/dev/null 2>&1; then
 		if prompt "\nHomebrew not found. Many modules require this prerequisite. Install?"; then
 			/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+		else
+			echo "Homebrew installation skipped."
 		fi
 	fi
 }
@@ -82,6 +79,7 @@ fi
 if [[ "$(uname)" == "Linux" ]]; then
 	sudo apt-get update
 	if ! dpkg -l | grep build-essential >/dev/null 2>&1; then
+		echo "\nbuild-essential not found. Installing..."
 		sudo apt-get install build-essential
 	fi
 fi
