@@ -62,4 +62,8 @@ if which godot >/dev/null 2>&1; then
 	export GODOT_BIN=$(which godot)
 fi
 
+if which ollama >/dev/null 2>&1; then
+	export OLLAMA_API_BASE=http://127.0.0.1:11434
+fi
+
 export EDITOR=nvim

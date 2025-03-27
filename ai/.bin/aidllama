@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+set -o nounset -o pipefail -o errexit
+
+ollama ls | tail -n +2 | awk '{ print "ollama_chat/" $1 }' | gum choose | xargs -n 1 -o aider --no-auto-commits --watch-files --model
