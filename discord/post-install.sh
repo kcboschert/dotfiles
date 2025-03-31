@@ -2,4 +2,6 @@
 
 set -o nounset -o pipefail -o errexit
 
-"$(dirname "$0")/.bin/update_discord"
+if [[ "$(uname)" == "Linux" ]]; then
+  "$(dirname "$1")/.bin/update-discord"
+fi
