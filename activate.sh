@@ -92,11 +92,11 @@ case $1 in
 all)
 	for dir in *; do
 		if [[ -d "$dir" && ! -L "$dir" ]]; then
-			install_module ${dir}
+			install_module "${dir}"
 		fi
 	done
 	;;
 *)
-	install_module $1
+	install_module "$1"
 	;;
 esac
