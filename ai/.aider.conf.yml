@@ -99,10 +99,10 @@ verify-ssl: true
 #architect: false
 
 ## Enable/disable automatic acceptance of architect changes (default: True)
-#auto-accept-architect: true
+auto-accept-architect: false
 
 ## Specify the model to use for commit messages and chat history summarization (default depends on --model)
-#weak-model: xxx
+weak-model: ollama_chat/llama3.2:3b
 
 ## Specify the model to use for editor tasks (default depends on --model)
 #editor-model: xxx
@@ -168,7 +168,7 @@ cache-prompts: true
 #pretty: true
 
 ## Enable/disable streaming responses (default: True)
-#stream: true
+stream: false
 
 ## Set the color for user input (default: #00cc00)
 #user-input-color: #00cc00
@@ -372,7 +372,7 @@ auto-test: true
 read:
   - CONVENTIONS.md
 ## Use VI editing mode in the terminal (default: False)
-#vim: false
+vim: true
 
 ## Specify the language to use in the chat (default: None, uses system settings)
 #chat-language: xxx

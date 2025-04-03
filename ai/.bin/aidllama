@@ -2,4 +2,24 @@
 
 set -o nounset -o pipefail -o errexit
 
-ollama ls | tail -n +2 | awk '{ print "ollama_chat/" $1 }' | gum choose | xargs -n 1 -o aider --no-auto-commits --watch-files --model
+choose_model() {
+	local include_none=$1
+	local header=$2
+	mapfile -t models < <(ollama ls | tail -n +2 | awk '{ print "ollama_chat/" $1 }' | sort -V)
+
+	if [[ $include_none == true ]]; then
+		gum choose --header "$header" "None" "${models[@]}"
+	else
+		gum choose --header "$header" "${models[@]}"
+	fi
+}
+
+code_model=$(choose_model false "Editor")
+
+architect_model=$(choose_model true "Architect")
+
+if [[ "$architect_model" == "None" ]]; then
+	aider --no-auto-commits --watch-files --model "$code_model"
+else
+	aider --no-auto-commits --watch-files --architect --model "$architect_model" --editor-model "$code_model"
+fi
