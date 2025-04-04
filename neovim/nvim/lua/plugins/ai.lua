@@ -12,7 +12,9 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
-      { "stevearc/dressing.nvim", opts = {} }, -- Optional: Improves the default Neovim UI
+      "folke/snacks.nvim",
+      "echasnovski/mini.diff",
+      -- { "stevearc/dressing.nvim", opts = {} }, -- Optional: Improves the default Neovim UI
     },
     keys = {
       { "<leader>aa", "<cmd>CodeCompanionActions<cr>", mode = { "n", "v" }, desc = "AI Action" },
@@ -25,23 +27,33 @@ return {
         chat = {
           adapter = "ollama",
           slash_commands = {
-            ["buffer"] = { opts = { provider = "fzf_lua" } },
-            ["file"] = { opts = { provider = "fzf_lua" } },
-            ["help"] = { opts = { provider = "fzf_lua" } },
-            ["symbols"] = { opts = { provider = "fzf_lua" } },
+            ["buffer"] = { opts = { provider = "snacks" } },
+            ["file"] = { opts = { provider = "snacks" } },
+            ["help"] = { opts = { provider = "snacks" } },
+            ["symbols"] = { opts = { provider = "snacks" } },
           },
         },
         inline = { adapter = "ollama" },
-        agent = { adapter = "ollama" },
       },
       adapters = {
         ollama = function()
           return require("codecompanion.adapters").extend("ollama", {
             schema = {
-              model = { default = "llama3.2" },
+              model = { default = "qwen2.5-coder:7b" },
+              num_ctx = { default = 32768 },
             },
           })
         end,
+      },
+      display = {
+        chat = {
+          auto_scroll = true,
+          show_header_separator = true,
+          show_references = true,
+        },
+        diff = {
+          provider = "mini_diff",
+        },
       },
     },
   },
