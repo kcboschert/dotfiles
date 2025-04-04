@@ -120,4 +120,12 @@ return {
       })
     end,
   },
+  {
+    "ggml-org/llama.vim",
+    -- init = function()
+    --   vim.g.llama_config = {
+    --     keymap_accept_full = "<C-s>",
+    --   }
+    -- end
+  },
 }

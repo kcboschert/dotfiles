@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+set -o nounset -o pipefail -o errexit
+
+mem_size_gb=0
+if [[ "$(uname)" == "Darwin" ]]; then
+	# assumes shared RAM/VRAM
+  mem_size=$(sysctl -n hw.memsize)
+  mem_size_gb=$((mem_size / 1024**3))
+elif [[ "$(uname)" == "Linux" ]]; then
+  # TODO: test with an nvidia GPU
+  mem_size=$(nvidia-smi --query-gpu=memory.total --format=csv,noheader | awk '{print $1}')
+  mem_size_gb=$((mem_size / 1024))
+fi
+
+# assemble a list of models that can be loaded
+models=()
+if (( mem_size_gb >= 16 )); then
+  models+=("qwen-7b")
+fi
+if (( mem_size_gb >= 8 )); then
+  models+=("qwen-3b")
+fi
+models+=("qwen-1.5b")
+
+model=$(gum choose --header "FIM Model" "${models[@]}")
+
+llama-server --fim-${model}-default
