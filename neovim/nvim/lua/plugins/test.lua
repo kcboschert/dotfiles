@@ -27,10 +27,10 @@ return {
         vim.g["test#java#maventest#executable"] = "mvnd"
       end
       -- if project has addons/gdunit4 directory, make it the dotnet test executable
-      if vim.fn.findfile("addons/gdUnit4/runtest.sh") then
+      if vim.fn.findfile("addons/gdUnit4/runtest.sh") ~= "" then
         vim.g["test#custom_runners"] = { ["csharp"] = { "Gdunit4" } }
 
-        if vim.fn.findfile("Makefile") then
+        if vim.fn.findfile("Makefile") ~= "" then
           vim.g["test#custom_transformations"] = {
             ["makefile"] = function(cmd)
               return "make build && " .. cmd
