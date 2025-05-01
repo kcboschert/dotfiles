@@ -37,7 +37,6 @@ if ! command -v ollama &>/dev/null; then
 	fi
 fi
 
-# TODO: handle updates
 if ! command -v llama-server &>/dev/null; then
 	install_llamacpp
 fi
