@@ -2,6 +2,8 @@
 # zmodload zsh/zprof
 
 [[ -s "$HOME/.profile" ]] && source "$HOME/.profile" # Load the default .profile
+
+. "$HOME/.atuin/bin/env"
 source "${HOME}/.zgenom/zgenom.zsh"
 
 zgenom autoupdate
@@ -44,7 +46,6 @@ if [ -f "$HOME/.env.local" ]; then
   source $HOME/.env.local
 fi
 
-eval "$(atuin init zsh)"
 eval "$(starship init zsh)"
 eval "$(mise activate zsh)"
 
