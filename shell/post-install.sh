@@ -40,7 +40,8 @@ install_languages() {
 
 install_atuin() {
 	echo "Installing Atuin shell history manager..."
-	brew install atuin
+	#brew install atuin
+	curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh
 }
 
 install_cli_tools
