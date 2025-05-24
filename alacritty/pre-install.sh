@@ -2,11 +2,13 @@
 
 set -o nounset -o pipefail -o errexit
 
+brew install \
+	font-caskaydia-mono-nerd-font \
+	font-fira-code-nerd-font \
+	font-hack-nerd-font
+
 if [[ "$(uname)" == "Darwin" ]]; then
-	brew install \
-		alacritty \
-		font-caskaydia-mono-nerd-font \
-		font-fira-code-nerd-font
+	brew install alacritty
 elif [[ "$(uname)" == "Linux" ]]; then
 	if ! command -v alacritty >/dev/null 2>&1; then
 		# alacritty dependencies on debian
