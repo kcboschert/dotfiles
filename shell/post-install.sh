@@ -39,8 +39,12 @@ install_languages() {
 }
 
 install_atuin() {
+	if command -v atuin &>/dev/null; then
+		echo "Atuin already installed!"
+		return
+	fi
+
 	echo "Installing Atuin shell history manager..."
-	#brew install atuin
 	curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh
 }
 
