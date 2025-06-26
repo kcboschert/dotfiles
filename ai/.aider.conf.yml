@@ -370,7 +370,8 @@ auto-test: true
 #read: xxx
 ## Specify multiple values like this:
 read:
-  - CONVENTIONS.md
+  - ~/.config/ducky/DUCKY.md
+  - DUCKY.md
 ## Use VI editing mode in the terminal (default: False)
 vim: true
 
