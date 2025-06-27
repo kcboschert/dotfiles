@@ -8,6 +8,7 @@ opt.shiftwidth = 2
 opt.softtabstop = 2
 opt.expandtab = false
 
+opt.completeopt = "menuone,noselect,popup"
 opt.autoindent = true
 opt.smartindent = true
 opt.ignorecase = true
