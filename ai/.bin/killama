@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+set -o nounset -o pipefail -o errexit
+
+running_models=$(ollama ps | tail -n +2 | awk '{print $1}')
+
+if [[ -z "$running_models" ]]; then
+	echo "No running models found."
+	exit 0
+fi
+
+for model in $running_models; do
+	echo "Stopping ${model}"
+	ollama stop "$model"
+done
