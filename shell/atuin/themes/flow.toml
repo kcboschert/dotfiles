@@ -1,0 +1,13 @@
+[theme]
+name = "flow"
+parent = "default"
+
+[colors]
+AlertInfo = "#80f075"
+AlertWarn = "#f0e575"
+AlertError = "#f07580"
+Annotation = "#ff007c"
+Base = "#b2c1cc"
+Guidance = "#a875f0"
+Important = "#75f0e6"
+Title = "#75bdf0"
