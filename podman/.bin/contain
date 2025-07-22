@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+set -o nounset -o pipefail -o errexit
+
+# if there is less than one or more than two parameters, display usage
+if [[ "$#" -lt 1 || "$#" -gt 2 ]]; then
+  filename="$(basename "$0")"
+  echo "Usage: $filename IMAGE [COMMAND]"
+  exit 1
+fi
+
+image="$1"
+command="/bin/bash"
+if [[ "$#" -gt 1 ]]; then
+  command="$2"
+fi
+
+dirname="$(basename "${PWD}")"
+container_path="/opt/${dirname}"
+
+podman run \
+  --rm \
+  --interactive \
+  --tty \
+  --volume "$(pwd):${container_path}" \
+  --workdir "${container_path}" \
+  --userns=keep-id \
+  --user "$(id -u):$(id -g)" \
+  --passwd-entry '$USERNAME:*:$UID:$GID:$NAME:/home:/bin/sh' \
+  "${image}" \
+  ${command}
