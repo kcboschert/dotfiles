@@ -43,5 +43,13 @@ return {
     picker = { name = "snacks.pick" },
     sort_by = "accessed",
     ui = { enable = false },
+    callbacks = {
+      enter_note = function(_, note)
+        vim.keymap.set("n", "gf", "<cmd>ObsidianFollowLink<cr>", {
+          buffer = note.bufnr,
+          desc = "Follow link under cursor",
+        })
+      end,
+    },
   },
 }
