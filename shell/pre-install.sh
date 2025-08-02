@@ -22,11 +22,8 @@ brew install \
   gum \
   starship \
   vhs \
+  zoxide \
   zsh
-# echo "Adding zsh as a valid login shell..."
-# sudo sh -c "echo $(which zsh) >> /etc/shells"
-# echo "Setting zsh as default shell..."
-# chsh -s $(which zsh)
 
 if ! command -v mise $ >/dev/null; then
   brew install mise

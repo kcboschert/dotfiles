@@ -48,6 +48,7 @@ fi
 
 eval "$(starship init zsh)"
 eval "$(mise activate zsh)"
+eval "$(zoxide init zsh)"
 
 # zsh completions
 
