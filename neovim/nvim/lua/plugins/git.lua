@@ -1,9 +1,9 @@
 return {
   {
-    "tpope/vim-fugitive",
-    event = "VeryLazy",
+    "lewis6991/gitsigns.nvim",
     keys = {
-      { "<leader>gb", "<cmd>Git blame<cr>", desc = "Blame file" },
+      { "<leader>ga", "<cmd>Gitsigns toggle_current_line_blame<cr>", desc = "Blame line (virtual)" },
+      { "<leader>gb", "<cmd>Gitsigns blame<cr>", desc = "Blame file" },
     },
   },
   {
