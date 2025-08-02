@@ -26,15 +26,6 @@ function! test#csharp#gdunit4#build_position(type, position) abort
 
 	if a:type ==# 'nearest'
 		return ['--add', file, '--continue']
-		" if !empty(test_name)
-		"   return [project_path, '--filter', 'FullyQualifiedName=' . nearest_test]
-		" else
-		"   if !empty(namespace)
-		"     return [project_path, '--filter', 'FullyQualifiedName~' . namespace]
-		"   else
-		"     return [project_path]
-		"   endif
-		" endif
 	elseif a:type ==# 'file'
 		return ['--add', file, '--continue']
 	elseif a:type ==# 'suite'
