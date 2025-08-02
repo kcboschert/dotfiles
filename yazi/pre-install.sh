@@ -13,6 +13,7 @@ brew install \
   fzf \
   zoxide \
   resvg \
-  imagemagick
+  imagemagick \
+  jstkdng/programs/ueberzugpp
 
 mkdir -p "$HOME"/.config
