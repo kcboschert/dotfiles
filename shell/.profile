@@ -10,60 +10,62 @@
 
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
-	# include .bashrc if it exists
-	if [ -f "$HOME/.bashrc" ]; then
-		. "$HOME/.bashrc"
-	fi
+  # include .bashrc if it exists
+  if [ -f "$HOME/.bashrc" ]; then
+    . "$HOME/.bashrc"
+  fi
 fi
 
 if [ -d "$HOME/go" ]; then
-	export GOPATH="$HOME/go"
+  export GOPATH="$HOME/go"
 fi
 
 # optional PATHs
 if [ -d "$HOME/.bin" ]; then
-	export PATH="$PATH:$HOME/.bin"
+  export PATH="$PATH:$HOME/.bin"
 fi
 if [ -d "$HOME/.local/bin" ]; then
-	export PATH=$PATH:"$HOME/.local/bin"
+  export PATH=$PATH:"$HOME/.local/bin"
 fi
 if [ -d "$GOPATH/bin" ]; then
-	export PATH=$PATH:"$GOPATH/bin"
+  export PATH=$PATH:"$GOPATH/bin"
 fi
 if [ -d "$HOME/.local/share/nvim/mason/bin" ]; then
-	export PATH=$PATH:"$HOME/.local/share/nvim/mason/bin"
+  export PATH=$PATH:"$HOME/.local/share/nvim/mason/bin"
 fi
 
 if [ -f "$HOME/.cargo/env" ]; then
-	. "$HOME"/.cargo/env
+  . "$HOME"/.cargo/env
 fi
 
 # local customizations
 if [ -f "$HOME/.profile.local" ]; then
-	. "$HOME"/.profile.local
+  . "$HOME"/.profile.local
 fi
 
 if [ -f "$HOME/.aliases.local" ]; then
-	. "$HOME"/.aliases.local
+  . "$HOME"/.aliases.local
 fi
 
 # Homebrew
 if [[ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]]; then
-	eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-	export HOMEBREW_NO_ENV_HINTS=true
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  export HOMEBREW_NO_ENV_HINTS=true
 fi
 
 if [[ -f "/opt/homebrew/bin/brew" ]]; then
-	eval "$(/opt/homebrew/bin/brew shellenv)"
-	export PATH=/usr/local/opt/grep/libexec/gnubin:/usr/local/opt/gnu-which/libexec/gnubin:/usr/local/opt/gnu-tar/libexec/gnubin:/usr/local/opt/gnu-sed/libexec/gnubin:$PATH
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+  export PATH=/usr/local/opt/grep/libexec/gnubin:/usr/local/opt/gnu-which/libexec/gnubin:/usr/local/opt/gnu-tar/libexec/gnubin:/usr/local/opt/gnu-sed/libexec/gnubin:$PATH
 fi
 
 if which godot >/dev/null 2>&1; then
-	export GODOT_BIN=$(which godot)
+  export GODOT_BIN=$(which godot)
 fi
 
 if which ollama >/dev/null 2>&1; then
-	export OLLAMA_API_BASE=http://127.0.0.1:11434
+  export OLLAMA_API_BASE=http://127.0.0.1:11434
 fi
+
+export DOTNET_CLI_TELEMETRY_OPTOUT=true
 
 export EDITOR=nvim
