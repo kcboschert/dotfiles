@@ -8,12 +8,6 @@ return {
       formatters_by_ft = {
         cs = { "csharpier" },
       },
-      formatters = {
-        csharpier = {
-          command = vim.fn.expand("~/.local/share/nvim/mason/bin/") .. "dotnet-csharpier",
-          args = { "--write-stdout" },
-        },
-      },
       log_level = vim.log.levels.TRACE,
     },
   },
