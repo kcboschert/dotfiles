@@ -19,7 +19,7 @@
   co = checkout
   st = status
   aa = add --all --verbose .
-  oneline = log --pretty=format:\"%h %ad%x20%s%x20%x28%an%x29\" --date=short
+  oneline = log --pretty=format:'%h %ad%x20%s%x20%x28%an%x29' --date=short
   ds = diff --staged
 [interactive]
   diffFilter = diff-highlight
