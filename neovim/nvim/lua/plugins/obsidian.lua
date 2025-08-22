@@ -2,6 +2,9 @@ return {
   "obsidian-nvim/obsidian.nvim",
   version = "*", -- latest release
   lazy = true,
+  enabled = function()
+    return vim.fn.isdirectory(vim.fn.expand("~/Notes")) == 1
+  end,
   ft = "markdown",
   ---@module 'obsidian'
   ---@type obsidian.config
