@@ -24,4 +24,4 @@ models+=("qwen-1.5b")
 
 model=$(gum choose --header "FIM Model" "${models[@]}")
 
-LD_LIBRARY_PATH=/usr/local/bin llama-server -ngl 999 --fim-${model}-default --flash-attn --ubatch-size 1024 --batch-size 1024 --defrag-thold 0.1 --cache-reuse 256
+LD_LIBRARY_PATH=/usr/local/bin llama-server -ngl 999 --fim-${model}-default --flash-attn on --ubatch-size 1024 --batch-size 1024 --defrag-thold 0.1 --cache-reuse 256
