@@ -13,6 +13,7 @@ $git_status\
 $git_state\
 [](fg:#394260 bg:#212736)\
 $ruby\
+$dotnet\
 $python\
 $nodejs\
 $rust\
@@ -27,7 +28,7 @@ $cmd_duration\
 [character]
 success_symbol = "[❱](green)"
 error_symbol = "[❱](red)"
-vicmd_symbol = "[❰](cyan)"
+vimcmd_symbol = "[❰](cyan)"
 
 [cmd_duration]
 style = "bg:#1d2230"
@@ -38,12 +39,6 @@ style = "fg:#e3e5e5 bg:#769ff0"
 format = "[ $path ]($style)"
 truncation_length = 0
 truncation_symbol = "…/"
-
-[directory.substitutions]
-"Documents" = "󰈙 "
-"Downloads" = " "
-"Music" = " "
-"Pictures" = " "
 
 [git_branch]
 symbol = ""
@@ -67,6 +62,11 @@ modified = "[[~${count}](fg:3 bg:#394260)]($style)"
 staged = "[[+${count}](fg:2 bg:#394260)]($style)"
 renamed = "[[»${count}](fg:4 bg:#394260)]($style)"
 deleted = "[[✘${count}](fg:9 bg:#394260)]($style)"
+
+[dotnet]
+symbol = ''
+style = "bg:#212736"
+format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
 
 [golang]
 symbol = ""
