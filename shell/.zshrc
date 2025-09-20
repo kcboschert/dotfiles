@@ -28,11 +28,8 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=5"
 
 source ~/.aliases
 if [[ "$(uname)" == "Darwin" ]]; then
-  alias ls='gls --color=auto'
   alias ctags="`brew --prefix`/bin/ctags"
   export PATH="/usr/local/sbin:$PATH"
-elif [[ "$(uname)" == "Linux" ]]; then
-  alias ls='ls --color=auto'
 fi
 
 bindkey -v

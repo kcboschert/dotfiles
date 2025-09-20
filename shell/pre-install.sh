@@ -17,6 +17,7 @@ brew install \
   bash \
   bottom \
   dust \
+  eza \
   glow \
   gotop \
   gum \
