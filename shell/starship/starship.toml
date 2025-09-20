@@ -2,16 +2,18 @@
 # and https://www.nerdfonts.com/cheat-sheet
 continuation_prompt = "[󰇘 ](blue)"
 
+palette = "tokyonight"
+
 format = """
-[░▒▓](#a3aed2)\
-[ $os ](bg:#a3aed2 fg:#090c0c)\
-[](bg:#769ff0 fg:#a3aed2)\
+[░▒▓](lightgray)\
+[ $os ](bg:lightgray fg:black)\
+[](bg:main fg:lightgray)\
 $directory\
-[](fg:#769ff0 bg:#394260)\
+[](fg:main bg:gray)\
 $git_branch\
 $git_status\
 $git_state\
-[](fg:#394260 bg:#212736)\
+[](fg:gray bg:darkgray)\
 $ruby\
 $dotnet\
 $python\
@@ -19,11 +21,19 @@ $nodejs\
 $rust\
 $golang\
 $php\
-[](fg:#212736 bg:#1d2230)\
+[](fg:darkgray bg:darkestgray)\
 $time\
 $cmd_duration\
-[ ](fg:#1d2230)\
+[ ](fg:darkestgray)\
 \n$character"""
+
+[palettes.tokyonight]
+lightgray='#a3aed2'
+black='#090c0c'
+main='#769ff0'
+gray='#394260'
+darkgray='#212736'
+darkestgray='#1d2230'
 
 [character]
 success_symbol = "[❱](green)"
