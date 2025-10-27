@@ -15,11 +15,10 @@ install_zgenom() {
 brew tap homebrew/command-not-found
 brew install \
   bash \
-  bottom \
+  btop \
   dust \
   eza \
   glow \
-  gotop \
   gum \
   starship \
   vhs \
