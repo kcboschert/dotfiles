@@ -12,7 +12,14 @@ install_zgenom() {
   fi
 }
 
-brew tap homebrew/command-not-found
+# if we're on linux, install the command-not-found package
+
+if [[ "$(uname)" == "Linux" ]]; then
+  if ! command -v command-not-found $ >/dev/null; then
+    sudo apt install command-not-found
+  fi
+fi
+
 brew install \
   bash \
   btop \

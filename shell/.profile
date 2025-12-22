@@ -56,6 +56,10 @@ fi
 if [[ -f "/opt/homebrew/bin/brew" ]]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
   export PATH=/usr/local/opt/grep/libexec/gnubin:/usr/local/opt/gnu-which/libexec/gnubin:/usr/local/opt/gnu-tar/libexec/gnubin:/usr/local/opt/gnu-sed/libexec/gnubin:$PATH
+  HOMEBREW_COMMAND_NOT_FOUND_HANDLER="$(brew --repository)/Library/Homebrew/command-not-found/handler.sh"
+  if [ -f "$HOMEBREW_COMMAND_NOT_FOUND_HANDLER" ]; then
+    source "$HOMEBREW_COMMAND_NOT_FOUND_HANDLER"
+  fi
 fi
 
 if which godot >/dev/null 2>&1; then
