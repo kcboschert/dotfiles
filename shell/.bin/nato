@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+
+set -o nounset -o pipefail -o errexit
+
+function charToNato() {
+  case "$1" in
+  A) echo "Alpha" ;;
+  B) echo "Bravo" ;;
+  C) echo "Charlie" ;;
+  D) echo "Delta" ;;
+  E) echo "Echo" ;;
+  F) echo "Foxtrot" ;;
+  G) echo "Golf" ;;
+  H) echo "Hotel" ;;
+  I) echo "India" ;;
+  J) echo "Juliet" ;;
+  K) echo "Kilo" ;;
+  L) echo "Lima" ;;
+  M) echo "Mike" ;;
+  N) echo "November" ;;
+  O) echo "Oscar" ;;
+  P) echo "Papa" ;;
+  Q) echo "Quebec" ;;
+  R) echo "Romeo" ;;
+  S) echo "Sierra" ;;
+  T) echo "Tango" ;;
+  U) echo "Uniform" ;;
+  V) echo "Victor" ;;
+  W) echo "Whiskey" ;;
+  X) echo "X-ray" ;;
+  Y) echo "Yankee" ;;
+  Z) echo "Zulu" ;;
+  0) echo "Zero" ;;
+  1) echo "One" ;;
+  2) echo "Two" ;;
+  3) echo "Three" ;;
+  4) echo "Four" ;;
+  5) echo "Five" ;;
+  6) echo "Six" ;;
+  7) echo "Seven" ;;
+  8) echo "Eight" ;;
+  9) echo "Nine" ;;
+  *) echo "${char}" ;;
+  esac
+}
+
+text="$*"
+length=${#text}
+
+for ((i = 0; i < length; i++)); do
+  char="${text:i:1}"
+  nato=$(charToNato "$char")
+  echo "$((i + 1)). ${nato}"
+done
