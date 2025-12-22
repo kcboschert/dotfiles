@@ -70,6 +70,8 @@ if which ollama >/dev/null 2>&1; then
   export OLLAMA_API_BASE=http://127.0.0.1:11434
 fi
 
+export DO_NOT_TRACK=1
+export HOMEBREW_NO_ANALYTICS=1
 export DOTNET_CLI_TELEMETRY_OPTOUT=true
 
 export EDITOR=nvim
