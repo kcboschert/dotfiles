@@ -79,7 +79,9 @@ return {
     priority = 1000,
     config = function()
       require("bamboo").setup({
-        -- optional configuration here
+        style = "vulgaris",
+        transparent = true,
+        dim_inactive = true,
       })
       -- require("bamboo").load()
     end,
