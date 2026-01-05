@@ -1,0 +1,50 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "theme": "tokyonight",
+  "model": "ollama/qwen3-128k:8b",
+  "disabled_providers": ["opencode"],
+  "share": "disabled",
+  "keybinds": {
+    "leader": "ctrl+o",
+    "messages_half_page_down": "ctrl+d",
+    "messages_half_page_up": "ctrl+u",
+    "messages_first": "ctrl+g",
+    "messages_last": "ctrl+G",
+  },
+  "provider": {
+    "llamacpp": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "llama.cpp",
+      "options": {
+        "baseURL": "http://localhost:8080/v1"
+      },
+      "models": {
+        "Qwen/Qwen3-8B-GGUF:Q8_0": {}
+      }
+    },
+    "ollama": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Ollama (local)",
+      "options": {
+        "baseURL": "http://localhost:11434/v1"
+      },
+      "models": {
+        "ministral-3-128k:8b": {},
+        "qwen3-128k:8b": {},
+        "qwen3-vl:8b": {},
+      }
+    }
+  },
+  "permission": {
+    "bash": "ask",
+    "edit": "ask",
+    "external_directory": "ask",
+    "webfetch": "ask"
+  },
+  "formatter": {
+    "csharpier": {
+      "command": ["csharpier", "format", "$FILE"],
+      "extensions": [".cs"]
+    }
+  }
+}
