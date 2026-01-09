@@ -9,7 +9,11 @@ config.hide_tab_bar_if_only_one_tab = true
 config.window_background_opacity = 0.91
 
 config.font = wezterm.font("Hack Nerd Font Mono")
-config.font_size = 10
+if wezterm.target_triple:find("darwin") then
+	config.font_size = 12
+else
+	config.font_size = 10
+end
 -- config.color_scheme = "Atom"
 -- config.color_scheme = "Bamboo"
 -- config.color_scheme = "carbonfox"
