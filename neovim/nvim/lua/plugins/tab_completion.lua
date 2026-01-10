@@ -11,6 +11,9 @@ return {
     completion = {
       list = { selection = { preselect = false, auto_insert = true } },
       menu = {
+        auto_show = function()
+          return vim.bo.filetype ~= "markdown"
+        end,
         draw = {
           columns = { { "kind_icon" }, { "label", "label_description", gap = 1 }, { "source_name" } },
           treesitter = { "lsp" },
