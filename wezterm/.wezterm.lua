@@ -6,7 +6,7 @@ local config = wezterm.config_builder()
 
 config.hide_tab_bar_if_only_one_tab = true
 
-config.window_background_opacity = 0.91
+config.window_background_opacity = 0.96
 
 config.font = wezterm.font("Hack Nerd Font Mono")
 if wezterm.target_triple:find("darwin") then
