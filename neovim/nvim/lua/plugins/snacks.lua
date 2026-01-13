@@ -4,8 +4,16 @@ return {
   opts = {
     picker = {
       sources = {
-        files = { hidden = true, ignored = true },
-        explorer = { hidden = true, ignored = true },
+        files = {
+          hidden = true,
+          ignored = true,
+          exclude = { "*.cs.uid" },
+        },
+        explorer = {
+          hidden = true,
+          ignored = true,
+          exclude = { "*.cs.uid" },
+        },
         grep = { hidden = true, ignored = true },
       },
     },
