@@ -5,6 +5,7 @@ return {
     priority = 1000,
     opts = {
       transparent = true,
+      style = "night",
       on_colors = function(colors)
         colors.border = "#0a0b12" -- Darker for clearer separation
       end,
@@ -15,28 +16,34 @@ return {
     lazy = false,
     name = "catppuccin",
     priority = 1000,
+    opts = {
+      transparent_background = true,
+    },
   },
   {
     "ellisonleao/gruvbox.nvim",
     priority = 1000,
     config = true,
-    opts = {},
+    opts = {
+      transparent_mode = true,
+    },
   },
   {
     "0xstepit/flow.nvim",
     lazy = false,
     priority = 1000,
-    opts = {},
-    config = function()
-      require("flow").setup({
-        transparent = true, -- Set transparent background.
-        fluo_color = "pink", -- Color used as fluo. Available values are pink, yellow, orange, or green.
-        mode = "desaturate", -- Mode of the colors. Available values are: dark, bright, desaturate, or base.
-        dark_theme = true, -- Set the theme with dark background.
-        high_contrast = false, -- Make the dark background darker or the light background lighter.
-        aggressive_spell = false, -- Use colors for spell check.
-      })
-    end,
+    opts = {
+      theme = {
+        transparent = true,
+      },
+      colors = {
+        mode = "default",
+        fluo = "pink",
+      },
+      ui = {
+        borders = "fluo",
+      },
+    },
   },
   {
     "Mofiqul/dracula.nvim",
@@ -65,8 +72,9 @@ return {
       require("everforest").setup({
         background = "hard",
         transparent_background_level = 1,
-        italics = true,
-        disable_italic_comments = false,
+        ui_contrast = "low",
+        diagnostic_text_highlight = true,
+        diagnostic_line_highlight = true,
         on_highlights = function(hl, _)
           hl["@string.special.symbol.ruby"] = { link = "@field" }
         end,
@@ -81,7 +89,6 @@ return {
       require("bamboo").setup({
         style = "vulgaris",
         transparent = true,
-        dim_inactive = true,
       })
       -- require("bamboo").load()
     end,
