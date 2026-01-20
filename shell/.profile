@@ -30,9 +30,6 @@ fi
 if [ -d "$GOPATH/bin" ]; then
   export PATH=$PATH:"$GOPATH/bin"
 fi
-if [ -d "$HOME/.local/share/nvim/mason/bin" ]; then
-  export PATH=$PATH:"$HOME/.local/share/nvim/mason/bin"
-fi
 
 if [ -f "$HOME/.cargo/env" ]; then
   . "$HOME"/.cargo/env
