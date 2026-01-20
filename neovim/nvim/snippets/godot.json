@@ -1,6 +1,6 @@
 {
     "Godot custom node template": {
-        "prefix": "node",
+        "prefix": "gnode",
         "body": [
             "using Godot;",
             "",
@@ -18,13 +18,13 @@
     },
 
     "Godot print": {
-        "prefix": "print",
+        "prefix": "gprint",
         "body": "GD.Print($1);",
         "description": "Print to Godot console"
     },
 
     "Godot _EnterTree()": {
-        "prefix": "entertree",
+        "prefix": "gentertree",
         "body": [
             "public override void _EnterTree() {",
             "    base._EnterTree();$1",
@@ -33,7 +33,7 @@
         "description": "Godot _EnterTree() virtual method"
     },
     "Godot _Ready()": {
-        "prefix": "ready",
+        "prefix": "gready",
         "body": [
             "public override void _Ready() {",
             "    base._Ready();$1",
@@ -42,7 +42,7 @@
         "description": "Godot _Ready() virtual method"
     },
     "Godot _Process()": {
-        "prefix": "process",
+        "prefix": "gprocess",
         "body": [
             "public override void _Process(double delta) {",
             "    base._Process(delta);$1",
@@ -51,7 +51,7 @@
         "description": "Godot _Process() virtual method"
     },
     "Godot _PhysicsProcess()": {
-        "prefix": "processp",
+        "prefix": "gprocessp",
         "body": [
             "public override void _PhysicsProcess(double delta) {",
             "    base._PhysicsProcess(delta);$1",
@@ -60,7 +60,7 @@
         "description": "Godot _PhysicsProcess() virtual method"
     },
     "Godot _ExitTree()": {
-        "prefix": "exittree",
+        "prefix": "gexittree",
         "body": [
             "public override void _ExitTree() {",
             "    base._ExitTree();$1",
@@ -70,7 +70,7 @@
     },
 
     "Godot _Input()": {
-        "prefix": "input",
+        "prefix": "ginput",
         "body": [
             "public override void _Input(InputEvent @event) {",
             "    base._Input(@event);$1",
@@ -79,7 +79,7 @@
         "description": "Godot _Input() virtual method"
     },
     "Godot _ShortcutInput()": {
-        "prefix": "inputs",
+        "prefix": "ginputs",
         "body": [
             "public override void _ShortcutInput(InputEvent @event) {",
             "    base._ShortcutInput(@event);$1",
@@ -88,7 +88,7 @@
         "description": "Godot _ShortcutInput() virtual method"
     },
     "Godot _UnhandledInput()": {
-        "prefix": "inputu",
+        "prefix": "ginputu",
         "body": [
             "public override void _UnhandledInput(InputEvent @event) {",
             "    base._UnhandledInput(@event);$1",
@@ -97,7 +97,7 @@
         "description": "Godot _UnhandledInput() virtual method"
     },
     "Godot _GuiInput()": {
-        "prefix": "inputg",
+        "prefix": "ginputg",
         "body": [
             "public override void _GuiInput(InputEvent @event) {",
             "    base._GuiInput(@event);$1",
@@ -107,7 +107,7 @@
     },
 
     "Godot _Notification()": {
-        "prefix": "noti",
+        "prefix": "gnoti",
         "body": [
             "public override void _Notification(int what) {",
             "    base._Notification(what);$1",
@@ -116,7 +116,7 @@
         "description": "Godot _Notification() virtual method"
     },
     "Godot _Draw()": {
-        "prefix": "draw",
+        "prefix": "gdraw",
         "body": [
             "public override void _Draw() {",
             "    base._Draw();$1",
