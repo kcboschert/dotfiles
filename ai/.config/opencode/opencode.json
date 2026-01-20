@@ -1,6 +1,8 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "theme": "tokyonight",
+  "autoupdate": "notify",
+  "default_agent": "plan",
   "model": "ollama/qwen3-128k:8b",
   "disabled_providers": ["opencode"],
   "share": "disabled",
@@ -29,14 +31,57 @@
         "baseURL": "http://localhost:11434/v1"
       },
       "models": {
-        "ministral-3-128k:8b": {},
-        "qwen3-128k:8b": {},
-        "qwen3-vl:8b": {},
+        "ministral-3-128k:8b": {
+          "name": "Ministral 3",
+          "limit": {
+            "context": 131072,
+            "output": 4096,
+          },
+        },
+        "qwen3-128k:8b": {
+          "name": "Qwen 3",
+          "limit": {
+            "context": 131072,
+            "output": 4096,
+          },
+        },
+        "qwen3-vl:8b": {
+          "name": "Qwen 3-VL",
+          "limit": {
+            "context": 131072,
+            "output": 4096,
+          },
+        },
       }
     }
   },
   "permission": {
-    "bash": "ask",
+    "bash": {
+      "*": "ask",
+      "echo *": "allow",
+      "find *": "allow",
+      "find *exec*": "ask",
+      "git branch *": "allow",
+      "git branch *-d*": "ask",
+      "git branch *-D*": "ask",
+      "git diff *": "allow",
+      "git log *": "allow",
+      "git rev-parse *": "allow",
+      "git show *": "allow",
+      "git status *": "allow",
+      "grep *": "allow",
+      "head": "allow",
+      "head *": "allow",
+      "ls": "allow",
+      "ls *": "allow",
+      "make build": "allow",
+      "make test": "allow",
+      "rg *" : "allow",
+      "sort *": "allow",
+      "tail": "allow",
+      "tail *": "allow",
+      "uniq *": "allow",
+    },
     "edit": "ask",
     "external_directory": "ask",
     "webfetch": "ask"
@@ -46,5 +91,8 @@
       "command": ["csharpier", "format", "$FILE"],
       "extensions": [".cs"]
     }
+  },
+  "watcher": {
+    "ignore": [".git/**"]
   }
 }
