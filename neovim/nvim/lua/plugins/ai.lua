@@ -4,6 +4,7 @@ return {
     init = function()
       vim.g.llama_config = {
         auto_fim = false,
+        keymap_fim_trigger = "<C-f>",
         keymap_fim_accept_line = "<C-n>",
         keymap_fim_accept_full = "<C-s>",
         keymap_fim_accept_word = nil,
