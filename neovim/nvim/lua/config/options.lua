@@ -14,7 +14,7 @@ opt.smartindent = true
 opt.ignorecase = true
 opt.smartcase = true
 
-opt.clipboard = ""
+opt.clipboard = "unnamedplus"
 opt.mouse = ""
 opt.relativenumber = false
 opt.wrap = true
