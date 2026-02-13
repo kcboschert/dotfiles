@@ -1,0 +1,61 @@
+#!/usr/bin/env bash
+
+set -o nounset -o pipefail -o errexit
+
+include_none=false
+header="Model"
+
+show_usage() {
+  echo "Usage: $0 [-0|--include-none] [--header HEADER] [PREFERRED_MODEL]"
+}
+
+# parse options with getopt. --model or -m will set the preferred_model variable
+TEMP=$(getopt --options 0 --long include-none,header: -- "$@")
+eval set -- "$TEMP"
+
+while true; do
+  case "$1" in
+  -0 | --include-none)
+    include_none=true
+    shift
+    ;;
+  --header)
+    header=$2
+    shift 2
+    ;;
+  --)
+    shift
+    break
+    ;;
+  *)
+    show_usage
+    exit 1
+    ;;
+  esac
+done
+
+choose_model() {
+  local include_none=$1
+  local header=$2
+  mapfile -t models < <(ollama ls | tail -n +2 | awk '{ print $1 }' | sort -V)
+
+  if [[ $include_none == true ]]; then
+    gum choose --header "$header" "None" "${models[@]}"
+  else
+    gum choose --header "$header" "${models[@]}"
+  fi
+}
+
+preferred_model="${1:-}"
+
+# use the already-running model if there is one
+if [[ $(ollama ps | tail -n +2 | awk '{ print $1 }') != "" ]]; then
+  model=$(ollama ps | tail -n +2 | awk '{ print $1 }')
+# use the preferred model if it's available
+elif ollama ls | tail -n +2 | awk '{ print $1 }' | grep -q "^${preferred_model}$"; then
+  model=${preferred_model}
+else
+  model=$(choose_model ${include_none} "${header}")
+fi
+
+exec echo "${model}"

@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+set -o nounset -o pipefail -o errexit
+
+exec whisper \
+  --model medium.en \
+  --language en \
+  --task transcribe \
+  --output_format txt \
+  "$1"

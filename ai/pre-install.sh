@@ -14,12 +14,12 @@ install_llamacpp() {
 }
 
 install_llamacpp_vulkan() {
-  curl -s https://api.github.com/repos/ggml-org/llama.cpp/releases/latest | jq -r '.assets[] | select(.browser_download_url | contains("bin-ubuntu-vulkan-x64.zip")) | .browser_download_url' | xargs curl -Lo llamacpp.zip
+  curl -s https://api.github.com/repos/ggml-org/llama.cpp/releases/latest | jq -r '.assets[] | select(.browser_download_url | contains("bin-ubuntu-vulkan-x64.tar.gz")) | .browser_download_url' | xargs curl -Lo llamacpp.tar.gz
   temp_dir=$(mktemp -d)
   trap 'rm -rf $temp_dir' EXIT
-  unzip llamacpp.zip -d "${temp_dir}"
-  sudo cp -r "${temp_dir}"/build/bin/* /usr/local/bin/
-  rm -rf "${temp_dir}" llamacpp.zip
+  tar -vxzf llamacpp.tar.gz -C "${temp_dir}"
+  sudo cp -r "${temp_dir}"/llama-*/* /usr/local/bin/
+  rm -rf "${temp_dir}" llamacpp.tar.gz
 }
 
 install_llamacpp_cuda() {
@@ -50,6 +50,8 @@ if ! command -v ollama &>/dev/null; then
   fi
 fi
 
-brew install opencode
+mise install opencode
+mise use -g opencode
 
 install_llamacpp
+brew install openai-whisper
