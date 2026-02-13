@@ -1,0 +1,4 @@
+--output '%(title)s.%(ext)s'
+--console-title
+--restrict-filenames
+--embed-metadata
