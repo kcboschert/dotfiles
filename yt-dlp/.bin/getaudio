@@ -4,4 +4,6 @@ set -o nounset -o pipefail -o errexit
 
 exec yt-dlp \
   --format bestaudio \
+  --extract-audio \
+  --audio-format mp3 \
   "$@"
