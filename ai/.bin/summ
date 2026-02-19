@@ -4,6 +4,6 @@ set -o nounset -o pipefail -o errexit
 
 content=$(cat "${1:--}")
 
-model=$(select-model -h "Summarizer Model" qwen3:4b)
+model=$(select-model --header "Summarizer Model")
 
-exec ollama run --hidethinking "$model" "Summarize the following text. Do not provide commentary:\n${content}" | glow
+exec ollama run --hidethinking "$model" "Summarize the following text. Do not provide commentary:\n${content}" | glow -p
