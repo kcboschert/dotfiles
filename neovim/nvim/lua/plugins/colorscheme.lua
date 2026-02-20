@@ -41,7 +41,7 @@ return {
         fluo = "pink",
       },
       ui = {
-        borders = "fluo",
+        borders = "dark",
       },
     },
   },
