@@ -1,0 +1,85 @@
+#!/usr/bin/env bash
+
+set -o nounset -o pipefail -o errexit
+
+usage() {
+  echo "Usage: $0 [-t <filetype>] <filepath/url>" >&2
+  exit 1
+}
+
+check_dependencies() {
+  missing_dependencies=0
+  if ! command -v tesseract >/dev/null 2>&1; then
+    echo "Error: tesseract not installed." >&2
+    missing_dependencies=$((missing_dependencies + 1))
+  fi
+  if ! command -v pdftotext >/dev/null 2>&1; then
+    echo "Error: tesseract not installed." >&2
+    missing_dependencies=$((missing_dependencies + 1))
+  fi
+  if ! command -v ocrmypdf >/dev/null 2>&1; then
+    echo "Error: ocrmypdf not installed." >&2
+    missing_dependencies=$((missing_dependencies + 1))
+  fi
+  if [[ $missing_dependencies -gt 0 ]]; then
+    exit 1
+  fi
+}
+
+# parse options
+while getopts ":t:" opt; do
+  case "${opt}" in
+  t)
+    filetype="${OPTARG}"
+    ;;
+  \?)
+    echo "Invalid option: -${OPTARG}" >&2
+    usage
+    ;;
+  :)
+    echo "Option -${OPTARG} requires an argument." >&2
+    ;;
+  esac
+done
+shift $((OPTIND - 1))
+
+# show usage if arguments are invalid
+if [[ $# -lt 1 ]]; then
+  usage
+fi
+
+check_dependencies
+
+filepath="$1"
+ext="${filetype:-${filepath##*.}}"
+temp_pdf=""
+tempfile=""
+cleanup() {
+  if [[ -n "${tempfile}" && -f "${tempfile}" ]]; then
+    rm -f "${tempfile}"
+  fi
+  if [[ -n "${temp_pdf}" && -f "${temp_pdf}" ]]; then
+    rm -f "${temp_pdf}"
+  fi
+}
+trap cleanup EXIT
+
+# if this is a URL, write its contents to a tempfile
+if [[ "${filepath}" =~ ^https?:// ]]; then
+  tempfile=$(mktemp --suffix=".${ext}")
+  curl -s "${filepath}" >"${tempfile}"
+  filepath="${tempfile}"
+fi
+
+if [[ ! -f "${filepath}" ]]; then
+  echo "Error: File not found: ${filepath}" >&2
+  exit 1
+fi
+
+if [[ "${ext,,}" == "pdf" ]]; then
+  temp_pdf=$(mktemp --suffix=.pdf)
+  ocrmypdf --skip-text "${filepath}" "${temp_pdf}"
+  pdftotext "${temp_pdf}" -
+else
+  tesseract "${filepath}" stdout -l eng 2>/dev/null
+fi
