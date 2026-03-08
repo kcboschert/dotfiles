@@ -1,18 +1,10 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "theme": "tokyonight",
   "autoupdate": "notify",
   "default_agent": "plan",
-  "model": "ollama/qwen3:8b",
+  "enabled_providers": ["ollama", "llamacpp"],
   "disabled_providers": ["opencode"],
   "share": "disabled",
-  "keybinds": {
-    "leader": "ctrl+o",
-    "messages_half_page_down": "ctrl+d",
-    "messages_half_page_up": "ctrl+u",
-    "messages_first": "ctrl+g",
-    "messages_last": "ctrl+G",
-  },
   "provider": {
     "llamacpp": {
       "npm": "@ai-sdk/openai-compatible",
@@ -31,27 +23,8 @@
         "baseURL": "http://localhost:11434/v1"
       },
       "models": {
-        "ministral-3:8b": {
-          "name": "Ministral 3",
-          "limit": {
-            "context": 131072,
-            "output": 4096,
-          },
-        },
-        "qwen3:8b": {
-          "name": "Qwen 3",
-          "limit": {
-            "context": 131072,
-            "output": 4096,
-          },
-        },
-        "qwen3-vl:8b": {
-          "name": "Qwen 3-VL",
-          "limit": {
-            "context": 131072,
-            "output": 4096,
-          },
-        },
+        "qwen3.5:9b": { "name": "Qwen 3.5" },
+        "ministral-3:8b": { "name": "Ministral 3" },
       }
     }
   },
@@ -81,6 +54,7 @@
       "tail": "allow",
       "tail *": "allow",
       "uniq *": "allow",
+      "wc *": "allow",
     },
     "edit": "ask",
     "external_directory": "ask",
