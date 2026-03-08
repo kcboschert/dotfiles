@@ -8,6 +8,12 @@ return {
         keymap_fim_accept_line = "<C-n>",
         keymap_fim_accept_full = "<C-s>",
         keymap_fim_accept_word = nil,
+        keymap_inst_trigger = nil,
+        keymap_inst_rerun = nil,
+        keymap_inst_continue = nil,
+        keymap_inst_accept = nil,
+        keymap_inst_cancel = nil,
+        keymap_debug_toggle = "<leader>ad",
       }
     end,
   },
@@ -29,20 +35,20 @@ return {
       vim.o.autoread = true
 
       -- Recommended/example keymaps.
-      vim.keymap.set({ "n", "x" }, "<leader>aa", function()
+      vim.keymap.set({ "n", "x" }, "<leader>aoa", function()
         require("opencode").ask("@this: ", { submit = true })
       end, { desc = "Ask opencode" })
-      vim.keymap.set({ "n", "x" }, "<leader>ax", function()
+      vim.keymap.set({ "n", "x" }, "<leader>aox", function()
         require("opencode").select()
       end, { desc = "Execute opencode action…" })
-      vim.keymap.set({ "n", "t" }, "<leader>at", function()
+      vim.keymap.set({ "n", "t" }, "<leader>aot", function()
         require("opencode").toggle()
       end, { desc = "Toggle opencode" })
 
-      vim.keymap.set({ "n", "x" }, "<leader>ao", function()
+      vim.keymap.set({ "n", "x" }, "<leader>aoo", function()
         return require("opencode").operator("@this ")
       end, { expr = true, desc = "Add range to opencode" })
-      vim.keymap.set("n", "<leader>ao", function()
+      vim.keymap.set("n", "<leader>aoo", function()
         return require("opencode").operator("@this ") .. "_"
       end, { expr = true, desc = "Add line to opencode" })
 
