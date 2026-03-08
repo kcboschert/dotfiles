@@ -4,6 +4,7 @@ set -o nounset -o pipefail -o errexit
 
 include_none=false
 header="Model"
+DEFAULT_MODEL="qwen3.5:9b"
 
 show_usage() {
   echo "Usage: $0 [-0|--include-none] [--header HEADER] [PREFERRED_MODEL]"
@@ -40,9 +41,9 @@ choose_model() {
   mapfile -t models < <(ollama ls | tail -n +2 | awk '{ print $1 }' | sort -V)
 
   if [[ $include_none == true ]]; then
-    gum choose --header "$header" "None" "${models[@]}"
+    gum choose --header "$header" --selected "${DEFAULT_MODEL}" "None" "${models[@]}"
   else
-    gum choose --header "$header" "${models[@]}"
+    gum choose --header "$header" --selected "${DEFAULT_MODEL}" "${models[@]}"
   fi
 }
 
@@ -51,8 +52,10 @@ preferred_model="${1:-}"
 # use the already-running model if there is one
 if [[ $(ollama ps | tail -n +2 | awk '{ print $1 }') != "" ]]; then
   model=$(ollama ps | tail -n +2 | awk '{ print $1 }')
+  gum log --level info "Using already running model '${model}'"
 # use the preferred model if it's available
 elif ollama ls | tail -n +2 | awk '{ print $1 }' | grep -q "^${preferred_model}$"; then
+  gum log --level info "Using preferred model '${model}'"
   model=${preferred_model}
 else
   model=$(choose_model ${include_none} "${header}")
