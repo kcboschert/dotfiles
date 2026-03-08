@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+
+set -o nounset -o pipefail -o errexit
+
+scriptname=$(basename "$0")
+usage() {
+  echo "Usage: $scriptname [question] <content>" 1>&2
+  echo "       echo 'content' | $scriptname [question]" 1>&2
+  echo "       cat content.txt | $scriptname [question]" 1>&2
+}
+# Check if content is being piped via stdin
+if [ ! -t 0 ]; then
+  # Read content from pipe/stdin
+  content=$(cat)
+
+  if [ $# -eq 0 ]; then
+    question=$(gum input --placeholder "What is your question?")
+    if [ -z "$question" ]; then
+      gum log --level error "Question cannot be empty."
+      usage
+      exit 1
+    fi
+  elif [ $# -eq 1 ]; then
+    question="$1"
+  else
+    gum log --level error "Too many arguments when piping content."
+    usage
+    exit 1
+  fi
+else
+  # No pipe - content must be provided as argument
+  if [ $# -eq 0 ]; then
+    gum log --level error "Content is required."
+    usage
+    exit 1
+  elif [ $# -eq 1 ]; then
+    # Only content provided, prompt for question
+    content="$1"
+    question=$(gum input --placeholder "What is your question?")
+    if [ -z "$question" ]; then
+      gum log --level error "Question cannot be empty."
+      usage
+      exit 1
+    fi
+  elif [ $# -eq 2 ]; then
+    question="$1"
+    content="$2"
+  else
+    gum log --level error "Too many arguments."
+    usage
+    exit 1
+  fi
+fi
+
+model=$(select-model --header "Model to ask")
+gum format -- "# Inputs" "- Content: $(echo "${content}" | wc -w) words" "- Model: ${model}" "- Question: \"${question}\"" 1>&2
+
+gum format -- "# Response" 1>&2
+echo "" 1>&2
+exec ollama run "$model" "Based on the following text, answer the question '${question}':\n\n\`\`\`\n${content}\`\`\`" --hidethinking
