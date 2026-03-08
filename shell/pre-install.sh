@@ -27,7 +27,10 @@ brew install \
   eza \
   glow \
   gum \
+  ocrmypdf \
+  pandoc \
   starship \
+  tesseract \
   vhs \
   zoxide \
   zsh
