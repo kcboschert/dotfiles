@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+set -o nounset -o pipefail -o errexit
+
+url="${1:-}"
+outfile="${2:-}"
+
+if [[ -z "$url" ]]; then
+  echo "Usage: $0 <URL> [OUTPUT_PATH]" >&2
+  exit 1
+fi
+
+for cmd in curl pandoc; do
+  if ! command -v "$cmd" &>/dev/null; then
+    echo "Error: $cmd is required but not installed." >&2
+    exit 1
+  fi
+done
+
+if [[ -n "$outfile" ]]; then
+  curl -sL "$url" | pandoc --from html --to gfm-raw_html -o "$outfile"
+  echo "Saved to $outfile"
+else
+  curl -sL "$url" | pandoc --from html --to gfm-raw_html
+fi
