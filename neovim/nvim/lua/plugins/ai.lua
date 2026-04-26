@@ -9,11 +9,13 @@ return {
         keymap_fim_accept_full = "<C-s>",
         keymap_fim_accept_word = nil,
         keymap_inst_trigger = nil,
+        keymap_inst_retry = nil,
         keymap_inst_rerun = nil,
         keymap_inst_continue = nil,
         keymap_inst_accept = nil,
         keymap_inst_cancel = nil,
         keymap_debug_toggle = "<leader>ad",
+        enable_at_startup = false,
       }
     end,
   },
