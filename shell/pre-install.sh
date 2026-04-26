@@ -22,9 +22,11 @@ fi
 
 brew install \
   bash \
+  bat \
   btop \
   dust \
   eza \
+  fzf \
   glow \
   gum \
   ocrmypdf \

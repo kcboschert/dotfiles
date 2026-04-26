@@ -1,0 +1,10 @@
+[tools]
+dotnet = "10"
+lua = "5.4.7"
+go = "1.26.1"
+ruby = "3.4.9"
+node = "25.8.2"
+opencode = "latest"
+
+[settings]
+idiomatic_version_file_enable_tools = ["ruby"]
