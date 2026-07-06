@@ -20,10 +20,6 @@ return {
       folder = "Daily",
       default_tags = { "daily" },
     },
-    completion = {
-      nvim_cmp = false,
-      blink = true,
-    },
     ---@param title string|?
     ---@return string
     note_id_func = function(title)
@@ -44,15 +40,12 @@ return {
       return tostring(os.time()) .. "-" .. suffix
     end,
     picker = { name = "snacks.pick" },
-    sort_by = "accessed",
-    ui = { enable = false },
-    callbacks = {
-      enter_note = function(_, note)
-        vim.keymap.set("n", "gf", "<cmd>ObsidianFollowLink<cr>", {
-          buffer = note.bufnr,
-          desc = "Follow link under cursor",
-        })
-      end,
+    search = {
+      sort_by = "accessed",
+      sort_reversed = true,
+      max_lines = 1000,
     },
+    ui = { enable = false },
+    legacy_commands = false,
   },
 }
