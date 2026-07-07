@@ -31,7 +31,7 @@
   process = git-lfs filter-process
   required = true
 [merge]
-  conflictStyle = diff3
+  conflictStyle = zdiff3
 [rebase]
   autosquash = true
   autostash = true
