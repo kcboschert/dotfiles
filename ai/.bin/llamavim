@@ -15,13 +15,13 @@ fi
 # assemble a list of models that can be loaded
 models=()
 if ((mem_size_gb >= 16)); then
-  models+=("qwen-7b")
+  models+=("7B")
 fi
 if ((mem_size_gb >= 8)); then
-  models+=("qwen-3b")
+  models+=("3B")
 fi
-models+=("qwen-1.5b")
+models+=("1.5B")
 
 model=$(gum choose --header "FIM Model" "${models[@]}")
 
-LD_LIBRARY_PATH=/usr/local/bin llama-server -ngl 999 --fim-${model}-default --flash-attn auto --ubatch-size 1024 --batch-size 1024 --defrag-thold 0.1 --cache-reuse 256
+llama-server --hf-repo "ggml-org/Qwen2.5-Coder-${model}-Q8_0-GGUF" --hf-file "qwen2.5-coder-${model,,}-q8_0.gguf" -c 2048
