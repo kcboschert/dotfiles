@@ -3,14 +3,16 @@
 set -o nounset -o pipefail -o errexit
 
 tmpfile=$(mktemp)
+format="lrc"
 
-trap 'rm -f ${tmpfile}.en.vtt' EXIT
+trap 'rm -f ${tmpfile}; rm -f ${tmpfile}.en.${format}' EXIT
 
 yt-dlp \
   --skip-download \
   --write-subs \
   --sub-lang en \
   --output "${tmpfile}" \
+  --convert-subs ${format} \
   "$@"
 
-cat "${tmpfile}.en.vtt" | sed 's/<[^>]*>//g'
+cat "${tmpfile}.en.${format}"
