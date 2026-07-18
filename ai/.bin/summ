@@ -6,4 +6,4 @@ content=$(cat "${1:--}")
 
 model=$(select-model --header "Summarizer Model")
 
-exec ollama run "$model" "Summarize the following text. Do not provide commentary:\n${content}" --hidethinking | glow -p
+exec ollama run "$model" "Summarize the following text. Do not provide commentary:\n${content}" --hidethinking --nowordwrap
