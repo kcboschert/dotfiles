@@ -53,7 +53,7 @@ config.font = wezterm.font("Hack Nerd Font Mono")
 if wezterm.target_triple:find("darwin") then
 	config.font_size = 12
 else
-	config.font_size = 10
+	config.font_size = 9
 end
 -- config.color_scheme = "Atom"
 -- config.color_scheme = "Bamboo"
