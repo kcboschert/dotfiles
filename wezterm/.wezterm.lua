@@ -8,6 +8,47 @@ config.hide_tab_bar_if_only_one_tab = true
 
 config.window_background_opacity = 0.96
 
+config.hyperlink_rules = {
+	-- (URL)
+	{
+		regex = [[\((\w+://\S+)\)]],
+		format = "$1",
+		highlight = 1,
+	},
+	-- [URL]
+	{
+		regex = [[\[(\w+://\S+)\)]],
+		format = "$1",
+		highlight = 1,
+	},
+	-- {URL}
+	{
+		regex = [[\{(\w+://\S+)\}]],
+		format = "$1",
+		highlight = 1,
+	},
+	-- <URL>
+	{
+		regex = [[<(\w+://\S+)>]],
+		format = "$1",
+		highlight = 1,
+	},
+	-- Unwrapped URLs: match only balanced parens or non-paren chars
+	-- https://example.com) excludes the parenthesis
+	-- https://en.wikipedia.org/wiki/Class_(set_theory) includes the parentheses
+	-- FIXME: this breaks with
+	-- (nested parentheses: (http://example.com))
+	{
+		regex = [[\b\w+://(?:[^\s()]|\([^)]*\))+]],
+		format = "$0",
+	},
+	-- mailto
+	{
+		regex = [[\b\w+@[\w-]+(\.[\w-]+)+\b]],
+		format = "mailto:$0",
+	},
+}
+
 config.font = wezterm.font("Hack Nerd Font Mono")
 if wezterm.target_triple:find("darwin") then
 	config.font_size = 12
