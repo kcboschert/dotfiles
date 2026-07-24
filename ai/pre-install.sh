@@ -50,8 +50,8 @@ if ! command -v ollama &>/dev/null; then
   fi
 fi
 
-mise install opencode
 mise use -g opencode
+mise use -g pi
 
 install_llamacpp
 brew install openai-whisper

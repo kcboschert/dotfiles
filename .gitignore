@@ -1,2 +1,6 @@
 /neovim/nvim/lua/plugins/local.lua
 /tmux/.tmux/plugins/**/*
+/ai/.pi/agent/bin
+/ai/.pi/agent/sessions
+/ai/.pi/agent/auth.json
+/ai/.pi/agent/models-store.json

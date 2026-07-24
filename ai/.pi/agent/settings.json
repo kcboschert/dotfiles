@@ -1,0 +1,33 @@
+{
+  "_docs": "https://pi.dev/docs/latest/settings",
+  "enableInstallTelemetry": false,
+  "defaultProjectTrust": "ask",
+  "theme": "jellybeans",
+  "hideThinkingBlock": false,
+  "autocompleteMaxVisible": 10,
+  "showCacheMissNotices": true,
+  "terminal": {
+    "showTerminalProgress": true
+  },
+  "defaultProvider": "llama-server=http://llamacpp:8080",
+  "defaultModel": "unsloth/gemma-4-12B-it-qat-GGUF:Q4_K_XL",
+  "defaultThinkingLevel": "medium",
+  "editorPaddingX": 1,
+  "enabledModels": [
+    "unsloth/Qwen3.5-9B-GGUF:Q4_K_XL",
+    "unsloth/gemma-4-12B-it-qat-GGUF:Q4_K_XL"
+  ],
+  "transport": "auto",
+  "httpIdleTimeoutMs": 300000,
+  "packages": [
+    "npm:pi-llama-cpp",
+    "npm:@victor-software-house/pi-curated-themes",
+    "npm:@wierdbytes/pi-facelift",
+    "git:github.com/obra/superpowers",
+    "npm:@gotgenes/pi-permission-system",
+    "npm:@gotgenes/pi-subagents",
+    "npm:@narumitw/pi-plan-mode",
+    "npm:@zigai/pi-prompt-history"
+  ],
+  "lastChangelogVersion": "0.81.1"
+}
