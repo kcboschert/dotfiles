@@ -5,11 +5,17 @@ set -o nounset -o pipefail -o errexit
 source ./util.sh
 
 install_llamacpp() {
-  if [[ "$(uname)" == "Darwin" ]]; then
-    echo "Installing llama.cpp via Homebrew..."
+  if ! command -v nvidia-smi &>/dev/null; then
+    echo "Installing/Updating llama.cpp via Homebrew..."
     brew install llama.cpp
-  elif [[ "$(uname)" == "Linux" ]]; then
-    install_llamacpp_vulkan
+  else
+    if command -v llama-server &>/dev/null; then
+      if prompt "llama-server is already installed. Reinstall/Update?"; then
+        install_llamacpp_cuda
+      else
+        echo "llama-server installation skipped."
+      fi
+    fi
   fi
 }
 
@@ -18,7 +24,7 @@ install_llamacpp_vulkan() {
   temp_dir=$(mktemp -d)
   trap 'rm -rf $temp_dir' EXIT
   tar -vxzf llamacpp.tar.gz -C "${temp_dir}"
-  sudo cp -r "${temp_dir}"/llama-*/* /usr/local/bin/
+  sudo cp -r "${temp_dir}"/llama-*/llama-* /usr/local/bin/
   rm -rf "${temp_dir}" llamacpp.tar.gz
 }
 
@@ -29,10 +35,9 @@ install_llamacpp_cuda() {
   trap 'rm -rf $temp_dir' EXIT
 
   pushd "$temp_dir"
-  # TODO: don't hardcode this path
-  CUDACXX=/usr/local/cuda-12.8/bin/nvcc cmake -B build -DGGML_CUDA=ON -DLLAMA_CURL=ON # -DGGML_VULKAN=ON
-  cmake --build build --config Release
-  sudo cp -r "$temp_dir/build/bin/"* /usr/local/bin/
+  CUDACXX=/usr/local/cuda/bin/nvcc cmake -B build -DBUILD_SHARED_LIBS=OFF -DGGML_CUDA=ON # -DGGML_VULKAN=ON
+  cmake --build build --config Release -j --clean-first --target llama-cli llama-mtmd-cli llama-server llama-gguf-split
+  sudo cp "$temp_dir"/build/bin/llama-* /usr/local/bin/
 }
 
 if ! command -v aider &>/dev/null; then
