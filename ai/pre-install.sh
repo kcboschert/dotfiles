@@ -40,12 +40,6 @@ install_llamacpp_cuda() {
   sudo cp "$temp_dir"/build/bin/llama-* /usr/local/bin/
 }
 
-if ! command -v aider &>/dev/null; then
-  echo "aider could not be found, installing..."
-  python -m pip install aider-install
-  aider-install
-fi
-
 if ! command -v ollama &>/dev/null; then
   if prompt "ollama not found. Install?"; then
     echo "Installing ollama..."
@@ -55,7 +49,6 @@ if ! command -v ollama &>/dev/null; then
   fi
 fi
 
-mise use -g opencode
 mise use -g pi
 mise use -g rtk
 
