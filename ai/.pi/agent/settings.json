@@ -22,12 +22,15 @@
   "packages": [
     "npm:pi-llama-cpp",
     "npm:@victor-software-house/pi-curated-themes",
-    "npm:@wierdbytes/pi-facelift",
     "git:github.com/obra/superpowers",
-    "npm:@gotgenes/pi-permission-system",
-    "npm:@gotgenes/pi-subagents",
+    "npm:pi-permission-system",
+    "npm:@tintinweb/pi-subagents",
     "npm:@narumitw/pi-plan-mode",
-    "npm:@zigai/pi-prompt-history"
+    "npm:@zigai/pi-prompt-history",
+    "npm:pi-tool-display",
+    "npm:pi-rtk-optimizer",
+    "npm:pi-image-tools"
   ],
-  "lastChangelogVersion": "0.81.1"
+  "lastChangelogVersion": "0.82.0",
+  "quietStartup": false
 }

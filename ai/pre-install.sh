@@ -52,6 +52,7 @@ fi
 
 mise use -g opencode
 mise use -g pi
+mise use -g rtk
 
 install_llamacpp
 brew install openai-whisper
