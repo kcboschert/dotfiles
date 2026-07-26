@@ -4,7 +4,7 @@ import { Type } from "@sinclair/typebox";
 
 export default function (pi: ExtensionAPI) {
   pi.registerTool({
-    name: "webfetch",
+    name: "web_fetch",
     label: "WebFetch",
     description: "Fetch a URL and return its text content (HTML stripped). Capped at 25K chars.",
     parameters: Type.Object({
@@ -49,22 +49,66 @@ export default function (pi: ExtensionAPI) {
   });
 
   pi.registerTool({
-    name: "websearch",
+    name: "web_search",
     label: "WebSearch",
-    description: "Search the web via DuckDuckGo and return the top ~8 results as Markdown.",
+    description: "Search the web via DuckDuckGo and return the top ~8 results as Markdown. Supports an optional page number.",
     parameters: Type.Object({
       query: Type.String({ description: "Search query" }),
+      page: Type.Optional(
+        Type.Integer({ description: "Page number of results to retrieve (1-based)", default: 1, minimum: 1 })
+      ),
     }),
-    async execute(_id, { query }) {
+    async execute(_id, { query, page }) {
       try {
+        const base = "https://html.duckduckgo.com/html/";
+        const pageNumber = typeof page === "number" && page >= 1 ? page : 1;
+
         const controller = new AbortController();
         const timer = setTimeout(() => controller.abort(), 30_000);
-        const url = `https://html.duckduckgo.com/html/?q=${encodeURIComponent(query)}`;
-        const res = await fetch(url, {
-          headers: { "User-Agent": "Mozilla/5.0 (compatible)" },
-          redirect: "follow",
-          signal: controller.signal,
-        });
+
+        let res: Response;
+        if (pageNumber <= 1) {
+          res = await fetch(`${base}?q=${encodeURIComponent(query)}`, {
+            headers: { "User-Agent": "Mozilla/5.0 (compatible)" },
+            redirect: "follow",
+            signal: controller.signal,
+          });
+        } else {
+          const tokenRes = await fetch(`${base}?q=${encodeURIComponent(query)}`, {
+            headers: { "User-Agent": "Mozilla/5.0 (compatible)" },
+            redirect: "follow",
+            signal: controller.signal,
+          });
+          if(!tokenRes.ok) {
+            clearTimeout(timer);
+            return {
+              content: [{ type: "text", text: `Error: HTTP ${tokenRes.status} ${tokenRes.statusText}`}],
+              details: {},
+              isError: true,
+            };
+          }
+          const tokenHtml = await tokenRes.text();
+          const vqd = tokenHtml.match(/name="vqd" value="([^"]+)"/i)?.[1];
+          const kl = tokenHtml.match(/name="kl" value="([^"]+)"/i)?.[1] ?? "wt-wt";
+          if (!vqd) {
+            clearTimeout(timer);
+            return {
+              content: [{ type: "text", text: "Error: DuckDuckGo did not return a pagination token."}],
+              details: {},
+              isError: true,
+            };
+          }
+          const offset = (pageNumber - 1) * 10;
+          res = await fetch(
+            `${base}?q=${encodeURIComponent(query)}&s=${offset}&dc=${offset + 1}&v=l&o=json&api=d.js&vqd=${encodeURIComponent(vqd)}&kl=${encodeURIComponent(kl)}&nextParams=`,
+            {
+              headers: { "User-Agent": "Mozilla/5.0 (compatible)" },
+              redirect: "follow",
+              signal: controller.signal,
+            },
+          );
+        }
+
         clearTimeout(timer);
         const body = await res.text();
         const titleRe = /class="result__title"[^>]*>[\s\S]*?<a[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/g;
