@@ -116,7 +116,19 @@ export default function (pi: ExtensionAPI) {
         const titles: Array<{ link: string; title: string }> = [];
         let m: RegExpExecArray | null;
         while ((m = titleRe.exec(body)) && titles.length < 8) {
-          titles.push({ link: m[1], title: m[2].replace(/<[^>]+>/g, "").trim() });
+          let link = m[1];
+          let finalLink = link;
+          try {
+            const url = new URL(link, "https://html.duckduckgo.com/");
+            if (url.searchParams.has('uddg')) {
+              finalLink = decodeURIComponent(url.searchParams.get('uddg') || link);
+            } else {
+              finalLink = url.href;
+            }
+          } catch (e) {
+            // fallback to link if URL parsing fails
+          }
+          titles.push({ link: finalLink, title: m[2].replace(/<[^>]+>/g, "").trim() });
         }
         const snippets: string[] = [];
         while ((m = snippetRe.exec(body)) && snippets.length < 8) {
