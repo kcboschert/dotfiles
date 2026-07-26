@@ -60,6 +60,31 @@ export default function (pi: ExtensionAPI) {
     }),
     async execute(_id, { query, page }) {
       try {
+        const decodeHtmlEntities = (str: string) => {
+          const entities: Record<string, string> = {
+            '&quot;': '"',
+            '&amp;': '&',
+            '&lt;': '<',
+            '&gt;': '>',
+            '&apos;': "'",
+            '&#39;': "'",
+            '&#x27;': "'",
+            '&nbsp;': ' ',
+          };
+          return str.replace(/&[a-z0-9]+;|&#[0-9]+;|&#x[0-9a-f]+;/gi, (match) => {
+            if (entities[match]) return entities[match];
+            if (match.startsWith('&#x')) {
+              const code = parseInt(match.slice(3, -1), 16);
+              return isNaN(code) ? match : String.fromCharCode(code);
+            }
+            if (match.startsWith('&#')) {
+              const code = parseInt(match.slice(2, -1), 10);
+              return isNaN(code) ? match : String.fromCharCode(code);
+            }
+            return match;
+          });
+        };
+
         const base = "https://html.duckduckgo.com/html/";
         const pageNumber = typeof page === "number" && page >= 1 ? page : 1;
 
@@ -128,11 +153,11 @@ export default function (pi: ExtensionAPI) {
           } catch (e) {
             // fallback to link if URL parsing fails
           }
-          titles.push({ link: finalLink, title: m[2].replace(/<[^>]+>/g, "").trim() });
+          titles.push({ link: finalLink, title: decodeHtmlEntities(m[2].replace(/<[^>]+>/g, "").trim()) });
         }
         const snippets: string[] = [];
         while ((m = snippetRe.exec(body)) && snippets.length < 8) {
-          snippets.push(m[1].replace(/<[^>]+>/g, "").trim());
+          snippets.push(decodeHtmlEntities(m[1].replace(/<[^>]+>/g, "").trim()));
         }
         if (titles.length === 0) {
           return {
