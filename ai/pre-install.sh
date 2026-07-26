@@ -47,11 +47,11 @@ if ! command -v aider &>/dev/null; then
 fi
 
 if ! command -v ollama &>/dev/null; then
-  if prompt "\nollama not found. Install?"; then
+  if prompt "ollama not found. Install?"; then
     echo "Installing ollama..."
     curl -fsSL https://ollama.com/install.sh | sh
   else
-    echo "ollama installation skipped."
+    printf "\nollama installation skipped."
   fi
 fi
 

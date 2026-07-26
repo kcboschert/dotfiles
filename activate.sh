@@ -44,14 +44,14 @@ install_cli_tools() {
   fi
 
   if ! command -v git >/dev/null 2>&1; then
-    echo "\ngit not found. Installing..."
+    printf "\ngit not found. Installing..."
     brew install git
   fi
 }
 
 install_homebrew() {
   if ! command -v brew >/dev/null 2>&1; then
-    if prompt "\nHomebrew not found. Many modules require this prerequisite. Install?"; then
+    if prompt "Homebrew not found. Many modules require this prerequisite. Install?"; then
       /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     else
       echo "Homebrew installation skipped."
@@ -61,7 +61,7 @@ install_homebrew() {
 
 install_stow() {
   if ! command -v stow >/dev/null 2>&1; then
-    echo "\nStow not found. Installing..."
+    printf "\nStow not found. Installing..."
     if ! command -v brew >/dev/null 2>&1; then
       sudo apt-get install stow
     else
