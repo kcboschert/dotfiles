@@ -5,3 +5,4 @@
 /ai/.pi/agent/auth.json
 /ai/.pi/agent/models-store.json
 /ai/.pi/agent/trust.json
+*.jsonl
