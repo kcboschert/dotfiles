@@ -20,7 +20,10 @@
     "edit:*.lock": "deny",
     "webfetch": "ask",
     "websearch": "ask",
-    "write": "ask"
+    "write": "ask",
+    "agent": "allow",
+    "get_subagent_result": "allow",
+    "steer_subagent": "allow"
   },
   "bash": {
     "*": "ask",

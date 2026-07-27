@@ -3,11 +3,11 @@
   "registerToolOverrides": {
     "read": true,
     "grep": true,
+    "edit": true,
+    "write": true,
     "find": true,
     "ls": true,
-    "bash": true,
-    "edit": true,
-    "write": true
+    "bash": true
   },
   "customToolOverrides": {},
   "enableNativeUserMessageBox": true,
