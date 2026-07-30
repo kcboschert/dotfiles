@@ -51,7 +51,7 @@ export default function (pi: ExtensionAPI) {
   pi.registerTool({
     name: "web_search",
     label: "WebSearch",
-    description: "Search the web via DuckDuckGo and return the top ~8 results as Markdown. Supports an optional page number.",
+    description: "Search the web via DuckDuckGo and return results as JSON. Supports an optional page number. Call the web_fetch tool on a result's URL to retrieve the entire webpage.",
     parameters: Type.Object({
       query: Type.String({ description: "Search query" }),
       page: Type.Optional(
@@ -165,10 +165,12 @@ export default function (pi: ExtensionAPI) {
             details: {},
           };
         }
-        const out = titles
-          .map((t, i) => `**${t.title}**\n${t.link}\n${snippets[i] ?? ""}`)
-          .join("\n\n");
-        return { content: [{ type: "text", text: out }], details: {} };
+        const results = titles.map((t, i) => ({
+          title: t.title,
+          url: t.link,
+          excerpt: snippets[i] ?? "",
+        }));
+        return { content: [{ type: "text", text: JSON.stringify(results, null, 2) }], details: {} };
       } catch (e) {
         return {
           content: [{ type: "text", text: `Error: ${(e as Error).message}` }],
