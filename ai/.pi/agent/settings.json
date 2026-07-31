@@ -3,13 +3,13 @@
   "enableInstallTelemetry": false,
   "defaultProjectTrust": "ask",
   "theme": "adventure",
-  "hideThinkingBlock": false,
+  "hideThinkingBlock": true,
   "autocompleteMaxVisible": 10,
   "showCacheMissNotices": true,
   "terminal": {
     "showTerminalProgress": true
   },
-  "defaultProvider": "llama-server=http://llamacpp:8080",
+  "defaultProvider": "llama.cpp",
   "defaultModel": "unsloth/gemma-4-12b-it-GGUF:Q4_K_XL",
   "defaultThinkingLevel": "medium",
   "editorPaddingX": 1,
@@ -20,17 +20,32 @@
   "transport": "auto",
   "httpIdleTimeoutMs": 300000,
   "packages": [
-    "npm:pi-llama-cpp",
     "npm:@victor-software-house/pi-curated-themes",
     "npm:pi-subagents",
     "npm:@gotgenes/pi-permission-system",
-    "npm:@narumitw/pi-plan-mode",
     "npm:@zigai/pi-prompt-history",
     "npm:pi-tool-display",
-    "npm:pi-rtk-optimizer"
+    "npm:pi-rtk-optimizer",
+    "npm:pi-readseek"
   ],
-  "lastChangelogVersion": "0.82.1",
+  "lastChangelogVersion": "0.83.0",
   "quietStartup": false,
+  "readseek": {
+    "replacedTools": [],
+    "imageMode": "auto",
+    "syntaxValidation": "warn",
+    "timeoutMs": 120000,
+    "grep": {
+      "maxLines": 2000,
+      "maxBytes": 51200
+    },
+    "display": {
+      "read": "compact",
+      "grep": "compact",
+      "edit": "expanded",
+      "write": "expanded"
+    }
+  },
   "subagents": {
     "disableThinking": true,
     "agentOverrides": {

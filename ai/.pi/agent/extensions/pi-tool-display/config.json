@@ -9,12 +9,23 @@
     "ls": true,
     "bash": true
   },
-  "customToolOverrides": {},
+  "customToolOverrides": {
+    "web_fetch": {
+      "enabled": true,
+      "kind": "generic",
+      "outputMode": "preview"
+    },
+    "web_search": {
+      "enabled": true,
+      "kind": "generic",
+      "outputMode": "preview"
+    }
+  },
   "enableNativeUserMessageBox": true,
   "readOutputMode": "summary",
   "searchOutputMode": "count",
   "mcpOutputMode": "summary",
-  "previewLines": 8,
+  "previewLines": 4,
   "expandedPreviewMaxLines": 4000,
   "bashOutputMode": "summary",
   "bashCollapsedLines": 10,
