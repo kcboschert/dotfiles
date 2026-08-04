@@ -3,13 +3,18 @@
   "registerToolOverrides": {
     "read": true,
     "grep": true,
-    "edit": true,
-    "write": true,
     "find": true,
     "ls": true,
-    "bash": true
+    "bash": true,
+    "edit": true,
+    "write": true
   },
   "customToolOverrides": {
+    "skill": {
+      "enabled": true,
+      "kind": "generic",
+      "outputMode": "preview"
+    },
     "web_fetch": {
       "enabled": true,
       "kind": "generic",
@@ -27,8 +32,8 @@
   "mcpOutputMode": "summary",
   "previewLines": 4,
   "expandedPreviewMaxLines": 4000,
-  "bashOutputMode": "summary",
-  "bashCollapsedLines": 10,
+  "bashOutputMode": "opencode",
+  "bashCollapsedLines": 5,
   "diffViewMode": "auto",
   "diffIndicatorMode": "bars",
   "diffSplitMinWidth": 120,
