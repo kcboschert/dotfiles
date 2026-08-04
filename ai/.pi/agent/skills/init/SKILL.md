@@ -25,7 +25,7 @@ Explore the repository to build a mental model of the project. You determine whi
 
 ### 2. Synthesize & Generate
 
-Create or update `AGENTS.md` with your findings.
+Create or update `AGENTS.md` with your findings. If your updates aren't actually additive (purely phrasing, very minor details), don't bother updating it.
 
 #### Target Structure (Template)
 
