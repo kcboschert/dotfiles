@@ -15,4 +15,15 @@ yt-dlp \
   --convert-subs ${format} \
   "$@"
 
+# if there weren't any subs available, get the auto-generated ones
+if [ ! -f "${tmpfile}.en.${format}" ]; then
+  yt-dlp \
+    --skip-download \
+    --write-auto-sub \
+    --sub-lang en \
+    --output "${tmpfile}" \
+    --convert-subs ${format} \
+    "$@"
+fi
+
 cat "${tmpfile}.en.${format}"
