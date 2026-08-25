@@ -2,6 +2,31 @@
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import { Type } from "@sinclair/typebox";
 
+const decodeHtmlEntities = (str: string) => {
+  const entities: Record<string, string> = {
+    '&quot;': '"',
+    '&amp;': '&',
+    '&lt;': '<',
+    '&gt;': '>',
+    '&apos;': "'",
+    '&#39;': "'",
+    '&#x27;': "'",
+    '&nbsp;': ' ',
+  };
+  return str.replace(/&[a-z0-9]+;|&#[0-9]+;|&#x[0-9a-f]+;/gi, (match) => {
+    if (entities[match]) return entities[match];
+    if (match.startsWith('&#x')) {
+      const code = parseInt(match.slice(3, -1), 16);
+      return isNaN(code) ? match : String.fromCharCode(code);
+    }
+    if (match.startsWith('&#')) {
+      const code = parseInt(match.slice(2, -1), 10);
+      return isNaN(code) ? match : String.fromCharCode(code);
+    }
+    return match;
+  });
+};
+
 export default function (pi: ExtensionAPI) {
   pi.registerTool({
     name: "web_fetch",
@@ -37,6 +62,7 @@ export default function (pi: ExtensionAPI) {
           text = text.replace(/\s+/g, " ").trim();
         }
         if (text.length > 25_000) text = text.slice(0, 25_000);
+        text = decodeHtmlEntities(text);
         return { content: [{ type: "text", text }], details: {} };
       } catch (e) {
         return {
@@ -51,7 +77,7 @@ export default function (pi: ExtensionAPI) {
   pi.registerTool({
     name: "web_search",
     label: "WebSearch",
-    description: "Search the web via DuckDuckGo and return results as JSON. Supports an optional page number. Call the web_fetch tool on a result's URL to retrieve the entire webpage.",
+    description: "Search the web via DuckDuckGo and return results as JSON. Supports an optional page number. ALWAYS call the web_fetch tool on the most relevant excerpts' sourceUrl after calling this tool.",
     parameters: Type.Object({
       query: Type.String({ description: "Search query" }),
       page: Type.Optional(
@@ -60,31 +86,6 @@ export default function (pi: ExtensionAPI) {
     }),
     async execute(_id, { query, page }) {
       try {
-        const decodeHtmlEntities = (str: string) => {
-          const entities: Record<string, string> = {
-            '&quot;': '"',
-            '&amp;': '&',
-            '&lt;': '<',
-            '&gt;': '>',
-            '&apos;': "'",
-            '&#39;': "'",
-            '&#x27;': "'",
-            '&nbsp;': ' ',
-          };
-          return str.replace(/&[a-z0-9]+;|&#[0-9]+;|&#x[0-9a-f]+;/gi, (match) => {
-            if (entities[match]) return entities[match];
-            if (match.startsWith('&#x')) {
-              const code = parseInt(match.slice(3, -1), 16);
-              return isNaN(code) ? match : String.fromCharCode(code);
-            }
-            if (match.startsWith('&#')) {
-              const code = parseInt(match.slice(2, -1), 10);
-              return isNaN(code) ? match : String.fromCharCode(code);
-            }
-            return match;
-          });
-        };
-
         const base = "https://html.duckduckgo.com/html/";
         const pageNumber = typeof page === "number" && page >= 1 ? page : 1;
 
@@ -167,7 +168,7 @@ export default function (pi: ExtensionAPI) {
         }
         const results = titles.map((t, i) => ({
           title: t.title,
-          url: t.link,
+          sourceUrl: t.link,
           excerpt: snippets[i] ?? "",
         }));
         return { content: [{ type: "text", text: JSON.stringify(results, null, 2) }], details: {} };
