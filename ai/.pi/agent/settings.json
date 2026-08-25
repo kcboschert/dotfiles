@@ -9,92 +9,20 @@
   "terminal": {
     "showTerminalProgress": true
   },
-  "defaultProvider": "llama.cpp",
-  "defaultModel": "unsloth/gemma-4-12b-it-GGUF:Q4_K_XL",
+  "defaultProvider": "llama-server=http://llamacpp:8080",
+  "defaultModel": "unsloth/gemma-4-12B-it-qat-GGUF:Q4_K_XL",
   "defaultThinkingLevel": "medium",
   "editorPaddingX": 1,
-  "enabledModels": [
-    "unsloth/gemma-4-12b-it-GGUF:Q4_K_XL",
-    "unsloth/Qwen3.5-9B-GGUF:Q4_K_XL"
-  ],
   "transport": "auto",
   "httpIdleTimeoutMs": 300000,
   "packages": [
     "npm:@victor-software-house/pi-curated-themes",
-    "npm:pi-subagents",
+    "npm:@gotgenes/pi-subagents",
     "npm:@gotgenes/pi-permission-system",
-    "npm:@zigai/pi-prompt-history",
     "npm:pi-tool-display",
     "npm:pi-rtk-optimizer",
-    "npm:pi-readseek"
+    "npm:pi-llama-cpp"
   ],
-  "lastChangelogVersion": "0.83.0",
-  "quietStartup": false,
-  "readseek": {
-    "replacedTools": [],
-    "imageMode": "auto",
-    "syntaxValidation": "warn",
-    "timeoutMs": 120000,
-    "grep": {
-      "maxLines": 2000,
-      "maxBytes": 51200
-    },
-    "display": {
-      "read": "compact",
-      "grep": "compact",
-      "edit": "expanded",
-      "write": "expanded"
-    }
-  },
-  "subagents": {
-    "disableThinking": true,
-    "agentOverrides": {
-      "context-builder": {
-        "tools": [
-          "read",
-          "grep",
-          "find",
-          "ls",
-          "bash",
-          "write",
-          "web_search",
-          "intercom",
-          "edit"
-        ]
-      },
-      "planner": {
-        "tools": [
-          "read",
-          "grep",
-          "find",
-          "ls",
-          "write",
-          "intercom",
-          "edit"
-        ]
-      },
-      "researcher": {
-        "tools": [
-          "read",
-          "write",
-          "web_search",
-          "web_fetch",
-          "intercom",
-          "edit"
-        ]
-      },
-      "scout": {
-        "tools": [
-          "read",
-          "grep",
-          "find",
-          "ls",
-          "bash",
-          "write",
-          "intercom",
-          "edit"
-        ]
-      }
-    }
-  }
+  "lastChangelogVersion": "0.84.2",
+  "quietStartup": false
 }

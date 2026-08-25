@@ -14,17 +14,15 @@
       "*.env.example": "allow"
     },
     "subagent": "allow",
+    "get_subagent_result": "allow",
+    "steer_subagent": "allow",
     "edit": {
       "*": "ask",
-      "*.lock": "deny",
-      ".pi-subagents/*": "allow"
+      "*.lock": "deny"
     },
-    "webfetch": "ask",
-    "websearch": "ask",
-    "write": {
-      "*": "ask",
-      ".pi-subagents/*": "allow"
-    },
+    "web_fetch": "ask",
+    "web_search": "ask",
+    "write": "ask",
     "bash": {
       "*": "ask",
       "cat *": "allow",
