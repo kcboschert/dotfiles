@@ -16,10 +16,19 @@ install_cli_tools() {
   elif [[ "$(uname)" == "Linux" ]]; then
     brew install acl
   fi
+  mise use -g yq@latest
 }
 
 install_languages() {
-  mise install
+  mise use -g dotnet@9
+  mise use -g dotnet@10
+  mise use -g lua@latest
+  mise use -g go@latest
+  mise use -g ruby@latest
+  mise use -g node@latest
+  mise use -g python@latest
+
+  mise settings add idiomatic_version_file_enable_tools ruby
 }
 
 install_atuin() {

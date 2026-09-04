@@ -39,8 +39,7 @@ brew install \
 
 if ! command -v mise $ >/dev/null; then
   brew install mise
-  mkdir -p /etc/bash_completion.d/
-  mise completion bash >/etc/bash_completion.d/mise
+  mise completion zsh --install
 fi
 
 install_zgenom
