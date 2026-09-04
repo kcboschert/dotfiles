@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+set -o nounset -o pipefail -o errexit
+
+# Colors
+BLUE='\e[1;34m'
+GREEN='\e[1;32m'
+RESET='\e[0m'
+
+# Update apt-get
+if command -v apt-get >/dev/null 2>&1; then
+  echo -e "${BLUE}Updating apt packages...${RESET}"
+  sudo apt-get update && sudo apt-get upgrade && sudo apt-get autoremove && sudo apt-get clean
+fi
+
+# Update brew
+if command -v brew >/dev/null 2>&1; then
+  echo -e "${BLUE}Updating homebrew packages...${RESET}"
+  brew update && brew upgrade && brew upgrade --casks && brew cleanup
+fi
+
+# Update mise
+if command -v mise >/dev/null 2>&1; then
+  echo -e "${BLUE}Updating mise packages...${RESET}"
+  mise up
+fi
+
+echo -e "${GREEN}All updates complete!${RESET}"
