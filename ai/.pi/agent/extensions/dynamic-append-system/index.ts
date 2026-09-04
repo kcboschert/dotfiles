@@ -2,16 +2,19 @@ import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import { execSync } from "child_process";
 
 /**
- * Appends the current date and operating system to the system prompt at the start of every agent turn.
+ * Appends the selected model, current date, and operating system to the system prompt at the start of every agent turn.
  */
 export default function (pi: ExtensionAPI) {
   pi.on("before_agent_start", async (event, ctx) => {
+    const model = ctx.model ? `${ctx.model.name ?? ctx.model.id}` : "Unknown";
+
     try {
       const date = execSync('date +"%A, %B %d, %Y"').toString().trim();
       const os = execSync('uname -s').toString().trim();
       return {
         systemPrompt: `${event.systemPrompt}
 
+Model: ${model}
 Today's Date: ${date}
 Operating System: ${os}`,
       };
@@ -30,6 +33,7 @@ Operating System: ${os}`,
       return {
         systemPrompt: `${event.systemPrompt}
 
+Model: ${model}
 Today's Date: ${date}
 Operating System: ${os}`,
       };
