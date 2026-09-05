@@ -1,12 +1,41 @@
 -- https://wezterm.org/config/files.html
 
 local wezterm = require("wezterm")
-
+local act = wezterm.action
 local config = wezterm.config_builder()
 
 config.hide_tab_bar_if_only_one_tab = true
 
 config.window_background_opacity = 0.96
+
+config.mouse_bindings = {
+	-- CTRL-Click to open hyperlinks https://wezterm.org/recipes/hyperlinks.html#optional-configuration
+	-- Disable the 'Down' event when setting the 'Up' event to avoid weird program behaviors
+	{
+		event = { Up = { streak = 1, button = "Left" } },
+		mods = "CTRL",
+		action = act.Multiple({
+			act.OpenLinkAtMouseCursor,
+			act.Nop,
+		}),
+	},
+	{
+		event = { Down = { streak = 1, button = "Left" } },
+		mods = "CTRL",
+		action = act.Nop,
+	},
+	-- disable default hyperlink open on regular left click
+	{
+		event = { Up = { streak = 1, button = "Left" } },
+		mods = "NONE",
+		action = act.DisableDefaultAssignment,
+	},
+	{
+		event = { Down = { streak = 1, button = "Left" } },
+		mods = "NONE",
+		action = act.DisableDefaultAssignment,
+	},
+}
 
 config.hyperlink_rules = {
 	-- (URL)
