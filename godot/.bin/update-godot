@@ -1,0 +1,119 @@
+#!/bin/bash
+
+# update-godot: Updates the Godot engine from a zip file.
+# Usage: sudo update-godot <zip_file>
+
+set -o nounset -o pipefail -o errexit
+
+# Color definitions
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+BLUE='\033[0;34m'
+NC='\033[0m' # No Color
+
+info() { echo -e "${BLUE}[INFO]${NC} $1"; }
+success() { echo -e "${GREEN}[SUCCESS]${NC} $1"; }
+warning() { echo -e "${YELLOW}[WARNING]${NC} $1"; }
+error() {
+  echo -e "${RED}[ERROR]${NC} $1"
+  exit 1
+}
+
+if [ "$#" -ne 1 ]; then
+  warning "Usage: update-godot <zip_file>"
+  echo "  Download the latest version of godot from https://godotengine.org/download/linux/"
+  exit 1
+fi
+
+ZIP_FILE="$1"
+
+if [ ! -f "$ZIP_FILE" ]; then
+  error "File '$ZIP_FILE' not found."
+fi
+
+# Check for root privileges
+if [ "$EUID" -ne 0 ]; then
+  warning "Please run this script as root (use sudo)."
+  exit 1
+fi
+
+INSTALL_DIR="/usr/local/bin"
+GODOT_BIN="$INSTALL_DIR/godot"
+GODOT_SHARP_DIR="$INSTALL_DIR/GodotSharp"
+
+# Remove old installation
+if [ -f "$GODOT_BIN" ] || [ -d "$GODOT_SHARP_DIR" ]; then
+  info "Removing existing Godot installation..."
+  rm -rf "$GODOT_BIN"
+  rm -rf "$GODOT_SHARP_DIR"
+fi
+
+# Unzip to a temp directory
+TEMP_DIR=$(mktemp -d /tmp/godot_update.XXXXXX)
+info "Unzipping $ZIP_FILE to $TEMP_DIR..."
+unzip -q "$ZIP_FILE" -d "$TEMP_DIR"
+
+BASE_NAME="${ZIP_FILE%.zip}"
+EXTRACTED_DIR="$TEMP_DIR"
+
+# Check if the extracted content is in a subdirectory named after the zip
+if [ -d "$TEMP_DIR/$BASE_NAME" ]; then
+  EXTRACTED_DIR="$TEMP_DIR/$BASE_NAME"
+fi
+
+# Move the binary
+BINARY_PATH="$EXTRACTED_DIR/$BASE_NAME"
+
+if [ -f "$BINARY_PATH" ]; then
+  mv "$BINARY_PATH" "$GODOT_BIN"
+  chmod +x "$GODOT_BIN"
+  success "Moved binary to $GODOT_BIN"
+else
+  # Try to find a file that looks like the binary (starts with Godot, contains x86_64)
+  # Search inside EXTRACTED_DIR
+  MATCH=$(find "$EXTRACTED_DIR" -maxdepth 1 -type f -name "Godot*x86_64*" | head -n 1)
+  if [ -n "$MATCH" ]; then
+    mv "$MATCH" "$GODOT_BIN"
+    chmod +x "$GODOT_BIN"
+    success "Moved binary $(basename "$MATCH") to $GODOT_BIN"
+  else
+    echo "Error: Could not find the Godot binary in the extracted files."
+    exit 1
+  fi
+fi
+
+# Move GodotSharp directory
+if [ -d "$EXTRACTED_DIR/GodotSharp" ]; then
+  mv "$EXTRACTED_DIR/GodotSharp" "$GODOT_SHARP_DIR"
+  success "Moved GodotSharp/ to $GODOT_SHARP_DIR"
+else
+  warning "GodotSharp directory not found in the zip file."
+fi
+
+# Cleanup
+REMAINING=$(find "$TEMP_DIR" -mindepth 1 -maxdepth 1)
+
+# Filter out EXTRACTED_DIR from the warning as it's expected to remain
+FILTERED_REMAINING=""
+for item in $REMAINING; do
+  if [ "$item" != "$EXTRACTED_DIR" ]; then
+    FILTERED_REMAINING="$FILTERED_REMAINING $item"
+  fi
+done
+
+if [ -n "$FILTERED_REMAINING" ]; then
+  warning "The following files remain in the temp directory:"
+  echo $FILTERED_REMAINING
+else
+  # If EXTRACTED_DIR exists and is empty, remove it so we can delete TEMP_DIR
+  if [ -d "$EXTRACTED_DIR" ] && [ -z "$(ls -A "$EXTRACTED_DIR")" ]; then
+    rm -rf "$EXTRACTED_DIR"
+  fi
+
+  # Final check to see if TEMP_DIR is now empty
+  if [ -z "$(find "$TEMP_DIR" -mindepth 1 -maxdepth 1)" ]; then
+    rm -rf "$TEMP_DIR"
+    success "Cleanup complete. Temp directory removed."
+  fi
+fi
