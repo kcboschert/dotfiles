@@ -1,0 +1,6 @@
+[bootstrap.packages]
+"brew:yt-dlp" = "latest"
+
+[dotfiles]
+"~/.bin/*" = { source = "bin/*", mode = "symlink" }
+"~/.config/yt-dlp/config" = { source = "config", mode = "symlink" }
