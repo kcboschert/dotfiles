@@ -1,0 +1,6 @@
+[bootstrap.packages]
+"brew:vim" = "latest"
+
+[dotfiles]
+"~/.vimrc" = { source = "vimrc", mode = "symlink" }
+"~/.vim/colors/nord.vim" = { source = "config/colors/nord.vim", mode = "symlink" }
