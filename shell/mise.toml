@@ -1,0 +1,49 @@
+[bootstrap.packages]
+"brew:bash" = "latest"
+"brew:bat" = "latest"
+"brew:btop" = "latest"
+"brew:dust" = "latest"
+"brew:eza" = "latest"
+"brew:fzf" = "latest"
+"brew:glow" = "latest"
+"brew:jq" = "latest"
+"brew:yq" = "latest"
+"brew:ocrmypdf" = "latest"
+"brew:pandoc" = "latest"
+"brew:starship" = "latest"
+"brew:tesseract" = "latest"
+"brew:vhs" = "latest"
+"brew:zoxide" = "latest"
+"brew:zsh" = "latest"
+"brew:coreutils" = { version = "latest", os = "macos" }
+"brew:libyaml" = { version = "latest", os = "macos" }
+"brew:gawk" = { version = "latest", os = "macos" }
+"brew:gnu-sed" = { version = "latest", os = "macos" }
+"brew:gnu-tar" = { version = "latest", os = "macos" }
+"brew:gnu-which" = { version = "latest", os = "macos" }
+"brew:gpg" = { version = "latest", os = "macos" }
+"brew:grep" = { version = "latest", os = "macos" }
+"apt:command-not-found" = { version = "latest", os = "linux" }
+
+[bootstrap.repos]
+"~/.zgenom" = { url = "https://github.com/jandamm/zgenom.git" }
+
+[bootstrap.mise_shell_activate]
+zshrc = "activate"
+
+[dotfiles]
+"~/.bin/*" = { source = "bin/*", mode = "symlink" }
+"~/.aliases" = { source = "aliases", mode = "symlink" }
+"~/.profile" = { source = "profile", mode = "symlink" }
+"~/.zshrc" = { source = "zshrc", mode = "symlink" }
+"~/.config/atuin/*" = { source = "config/atuin/*", mode = "symlink" }
+"~/.config/glow/*" = { source = "config/glow/*", mode = "symlink" }
+"~/.config/starship.toml" = { source = "config/starship.toml", mode = "symlink" }
+
+[tools]
+atuin = "latest"
+dotnet = ["9", "10"]
+lua = "latest"
+go = "latest"
+node = "latest"
+python = "latest"
