@@ -1,0 +1,14 @@
+[bootstrap.packages]
+"brew:neovim" = "latest"
+"brew:bison" = "latest"
+"brew:fd" = "latest"
+"brew:fzf" = "latest"
+"brew:ctags" = "latest"
+"brew:ripgrep" = "latest"
+"brew:jq" = "latest"
+"brew:lazygit" = "latest"
+"brew:luarocks" = "latest"
+"brew:pybind11" = "latest"
+
+[dotfiles]
+"~/.config/nvim" = { source = "config/nvim", mode = "symlink" }
