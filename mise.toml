@@ -1,0 +1,11 @@
+[settings]
+dotfiles.root = "~/.dotfiles"
+
+[dotfiles]
+"~/.dotfiles" = "."
+
+[bootstrap.packages]
+"brew:curl" = "latest"
+"brew:git" = "latest"
+"brew:gum" = "latest"
+"apt:build-essential" = { version = "latest", os = "linux" }
