@@ -13,4 +13,4 @@
 "apt:xclip" = { os = "linux" }
 
 [dotfiles]
-"~/.config/yazi/*" = { source = "config/yazi/*", mode = "symlink" }
+"~/.config/yazi/*" = { source = "~/.dotfiles/yazi/config/yazi/*", mode = "symlink" }

@@ -32,13 +32,13 @@
 zshrc = "activate"
 
 [dotfiles]
-"~/.bin/*" = { source = "bin/*", mode = "symlink" }
-"~/.aliases" = { source = "aliases", mode = "symlink" }
-"~/.profile" = { source = "profile", mode = "symlink" }
-"~/.zshrc" = { source = "zshrc", mode = "symlink" }
-"~/.config/atuin/*" = { source = "config/atuin/*", mode = "symlink" }
-"~/.config/glow/*" = { source = "config/glow/*", mode = "symlink" }
-"~/.config/starship.toml" = { source = "config/starship.toml", mode = "symlink" }
+"~/.bin/*" = { source = "~/.dotfiles/shell/bin/*", mode = "symlink" }
+"~/.aliases" = { source = "~/.dotfiles/shell/aliases", mode = "symlink" }
+"~/.profile" = { source = "~/.dotfiles/shell/profile", mode = "symlink" }
+"~/.zshrc" = { source = "~/.dotfiles/shell/zshrc", mode = "symlink" }
+"~/.config/atuin/*" = { source = "~/.dotfiles/shell/config/atuin/*", mode = "symlink" }
+"~/.config/glow/*" = { source = "~/.dotfiles/shell/config/glow/*", mode = "symlink" }
+"~/.config/starship.toml" = { source = "~/.dotfiles/shell/config/starship.toml", mode = "symlink" }
 
 [tools]
 atuin = "latest"

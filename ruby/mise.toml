@@ -5,4 +5,4 @@ ruby = "latest"
 idiomatic_version_file_enable_tools = ["ruby"]
 
 [dotfiles]
-"~/.pryrc" = { source = "pryrc", mode = "symlink" }
+"~/.pryrc" = { source = "~/.dotfiles/ruby/pryrc", mode = "symlink" }

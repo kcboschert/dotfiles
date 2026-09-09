@@ -3,12 +3,12 @@
 "brew:openai-whisper" = "latest"
 
 [bootstrap.hooks.post-packages]
-run = "./setup_linux.sh"
+run = "~/.dotfiles/ai/setup_linux.sh"
 
 [tools]
 pi = "latest"
 rtk = "latest"
 
 [dotfiles]
-"~/.bin/*" = { source = "bin/*", mode = "symlink" }
-"~/.pi" = { source = "pi", mode = "symlink" }
+"~/.bin/*" = { source = "~/.dotfiles/ai/bin/*", mode = "symlink" }
+"~/.pi" = { source = "~/.dotfiles/ai/pi", mode = "symlink" }

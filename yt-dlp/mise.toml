@@ -2,5 +2,5 @@
 "brew:yt-dlp" = "latest"
 
 [dotfiles]
-"~/.bin/*" = { source = "bin/*", mode = "symlink" }
-"~/.config/yt-dlp/config" = { source = "config", mode = "symlink" }
+"~/.bin/*" = { source = "~/.dotfiles/yt-dlp/bin/*", mode = "symlink" }
+"~/.config/yt-dlp/config" = { source = "~/.dotfiles/yt-dlp/config", mode = "symlink" }

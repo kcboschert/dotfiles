@@ -11,4 +11,4 @@
 "brew:pybind11" = "latest"
 
 [dotfiles]
-"~/.config/nvim" = { source = "config/nvim", mode = "symlink" }
+"~/.config/nvim" = { source = "~/.dotfiles/neovim/config/nvim", mode = "symlink" }

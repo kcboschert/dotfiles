@@ -25,4 +25,4 @@
 run = "~/.tmux/plugins/tpm/scripts/install_plugins.sh"
 
 [dotfiles]
-"~/.tmux.conf" = { source = "tmux.conf", mode = "symlink" }
+"~/.tmux.conf" = { source = "~/.dotfiles/tmux/tmux.conf", mode = "symlink" }

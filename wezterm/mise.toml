@@ -1,5 +1,5 @@
 [bootstrap.hooks.pre-packages]
-run = './setup.sh'
+run = '~/.dotfiles/wezterm/setup.sh'
 
 [bootstrap.packages]
 "brew-cask:font-caskaydia-mono-nerd-font" = "latest"
@@ -9,4 +9,4 @@ run = './setup.sh'
 "apt:wezterm" = { version = "latest", os = "linux" }
 
 [dotfiles]
-"~/.wezterm.lua" = { source = "wezterm.lua", mode = "symlink" }
+"~/.wezterm.lua" = { source = "~/.dotfiles/wezterm/wezterm.lua", mode = "symlink" }

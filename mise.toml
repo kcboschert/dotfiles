@@ -9,3 +9,25 @@ dotfiles.root = "~/.dotfiles"
 "brew:git" = "latest"
 "brew:gum" = "latest"
 "apt:build-essential" = { version = "latest", os = "linux" }
+
+[tasks.all]
+description = "Activate all modules"
+run = 'bash module.sh activate_all'
+
+[tasks.activate]
+description = "Activate the named module"
+usage = '''
+arg "<module>" help="Module dir name, e.g. ruby, tmux, neovim"
+'''
+run = 'bash module.sh activate "{{ usage.module }}"'
+
+[tasks.deactivate]
+description = "Deactivate the named module"
+usage = '''
+arg "<module>" help="Module dir name, e.g. ruby, tmux, neovim"
+'''
+run = 'bash module.sh deactivate "{{ usage.module }}"'
+
+[tasks.deactivateall]
+description = "Remove all conf.d symlinks pointing into this repo"
+run = 'bash module.sh deactivate_all'

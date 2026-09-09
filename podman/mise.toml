@@ -4,4 +4,4 @@
 "apt:uidmap" = { version = "latest", os = "linux" }
 
 [dotfiles]
-"~/.bin/contain" = { source = "bin/contain", mode = "symlink" }
+"~/.bin/contain" = { source = "~/.dotfiles/podman/bin/contain", mode = "symlink" }
