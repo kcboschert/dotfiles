@@ -5,7 +5,7 @@ run = '~/.dotfiles/wezterm/setup.sh'
 "brew-cask:font-caskaydia-mono-nerd-font" = "latest"
 "brew-cask:font-fira-code-nerd-font" = "latest"
 "brew-cask:font-hack-nerd-font" = "latest"
-"brew:wezterm" = { version = "latest", os = "macos" }
+"brew-cask:wezterm" = { version = "latest", os = "macos" }
 "apt:wezterm" = { version = "latest", os = "linux" }
 
 [dotfiles]

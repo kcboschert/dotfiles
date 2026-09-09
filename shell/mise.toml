@@ -21,7 +21,7 @@
 "brew:gnu-sed" = { version = "latest", os = "macos" }
 "brew:gnu-tar" = { version = "latest", os = "macos" }
 "brew:gnu-which" = { version = "latest", os = "macos" }
-"brew:gpg" = { version = "latest", os = "macos" }
+"brew:gnupg" = { version = "latest", os = "macos" }
 "brew:grep" = { version = "latest", os = "macos" }
 "apt:command-not-found" = { version = "latest", os = "linux" }
 

@@ -3,7 +3,7 @@ run = '~/.dotfiles/discord/bin/install-discord'
 
 [bootstrap.packages]
 "brew:curl" = "latest"
-"brew:discord" = { version = "latest", os = "macos" }
+"brew-cask:discord" = { version = "latest", os = "macos" }
 
 [dotfiles]
 "~/.bin/*" = { source = "~/.dotfiles/discord/bin/*", mode = "symlink" }

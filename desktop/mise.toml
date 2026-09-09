@@ -1,3 +1,3 @@
 [bootstrap.packages]
-"brew:dozer" = { version = "latest", os = "macos" }
-"brew:meetingbar" = { version = "latest", os = "macos" }
+"brew-cask:hiddenbar" = { version = "latest", os = "macos" }
+"brew-cask:meetingbar" = { version = "latest", os = "macos" }
