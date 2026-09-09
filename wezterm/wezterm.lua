@@ -14,10 +14,7 @@ config.mouse_bindings = {
 	{
 		event = { Up = { streak = 1, button = "Left" } },
 		mods = "CTRL",
-		action = act.Multiple({
-			act.OpenLinkAtMouseCursor,
-			act.Nop,
-		}),
+		action = act.OpenLinkAtMouseCursor,
 	},
 	{
 		event = { Down = { streak = 1, button = "Left" } },
@@ -28,7 +25,7 @@ config.mouse_bindings = {
 	{
 		event = { Up = { streak = 1, button = "Left" } },
 		mods = "NONE",
-		action = act.Nop,
+		action = act.CompleteSelection("ClipboardAndPrimarySelection"),
 	},
 }
 
