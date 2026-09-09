@@ -1,0 +1,8 @@
+[bootstrap.hooks.pre-packages]
+run = './bin/install-discord'
+
+[bootstrap.packages]
+"brew:discord" = { version = "latest", os = "macos" }
+
+[dotfiles]
+"~/.bin/*" = { source = "bin/*", mode = "symlink" }
