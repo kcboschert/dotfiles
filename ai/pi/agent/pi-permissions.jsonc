@@ -1,3 +1,4 @@
+// config file for https://github.com/MasuRii/pi-permission-system
 {
   "defaultPolicy": {
     "tools": "ask",
@@ -77,7 +78,8 @@
     "uptime": "allow",
     "wc *": "allow",
     "which *": "allow",
-    "whoami": "allow"
+    "whoami": "allow",
+    "*>*": "ask"
   },
   "mcp": {
     "*": "ask"

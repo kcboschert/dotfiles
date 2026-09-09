@@ -55,7 +55,22 @@ export default function (pi: ExtensionAPI) {
         }
         const ct = res.headers.get("content-type") || "";
         let text = await res.text();
+        let links: Array<{ url: string; text: string }> = [];
+        let seenUrls = new Set<string>();
         if (ct.includes("html")) {
+          const linkRe = /<a\s+[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/gi;
+          let m: RegExpExecArray | null;
+          while ((m = linkRe.exec(text)) && links.length < 100) {
+            const url = m[1];
+            if (!seenUrls.has(url)) {
+              seenUrls.add(url);
+              links.push({
+                url: url,
+                text: decodeHtmlEntities(m[2].replace(/<[^>]+>/g, "").trim()),
+              });
+            }
+          }
+
           text = text.replace(/<script[^>]*>[\s\S]*?<\/script>/gi, "");
           text = text.replace(/<style[^>]*>[\s\S]*?<\/style>/gi, "");
           text = text.replace(/<[^>]+>/g, " ");
@@ -63,7 +78,8 @@ export default function (pi: ExtensionAPI) {
         }
         if (text.length > 25_000) text = text.slice(0, 25_000);
         text = decodeHtmlEntities(text);
-        return { content: [{ type: "text", text }], details: {} };
+        let linksText = links.length > 0 ? "\n\nLinks found on page:\n" + links.map(l => `- ${l.text} (${l.url})`).join("\n") : "";
+        return { content: [{ type: "text", text: text + linksText }], details: { links } };
       } catch (e) {
         return {
           content: [{ type: "text", text: `Error: ${(e as Error).message}` }],

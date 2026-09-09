@@ -19,10 +19,11 @@
     "npm:@victor-software-house/pi-curated-themes",
     "npm:@gotgenes/pi-subagents",
     "npm:@gotgenes/pi-permission-system",
+    "npm:@gotgenes/pi-nocd",
     "npm:pi-tool-display",
     "npm:pi-rtk-optimizer",
     "npm:pi-llama-cpp"
   ],
-  "lastChangelogVersion": "0.84.2",
+  "lastChangelogVersion": "0.85.1",
   "quietStartup": false
 }
