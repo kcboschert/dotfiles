@@ -2,4 +2,4 @@
 
 set -o nounset -o pipefail -o errexit
 
-brew install git-lfs
+mise bootstrap

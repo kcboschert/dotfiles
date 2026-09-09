@@ -1,0 +1,10 @@
+[bootstrap.packages]
+"brew:git" = "latest"
+"brew:git-lfs" = "latest"
+"brew:hunk" = "latest"
+
+[dotfiles]
+"~/.bin/diff-highlight" = { source = "bin/diff-highlight", mode = "symlink" }
+"~/.bin/gitcc" = { source = "bin/gitcc", mode = "symlink" }
+"~/.gitconfig" = { source = "gitconfig", mode = "symlink" }
+"~/.gitignore" = { source = "gitignore", mode = "symlink" }
