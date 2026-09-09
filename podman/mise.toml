@@ -1,0 +1,7 @@
+[bootstrap.packages]
+"brew:podman" = "latest"
+"brew:podman-compose" = "latest"
+"apt:uidmap" = { version = "latest", os = "linux" }
+
+[dotfiles]
+"~/.bin/contain" = { source = "bin/contain", mode = "symlink" }
