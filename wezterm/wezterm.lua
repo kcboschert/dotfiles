@@ -28,53 +28,65 @@ config.mouse_bindings = {
 	{
 		event = { Up = { streak = 1, button = "Left" } },
 		mods = "NONE",
-		action = act.DisableDefaultAssignment,
-	},
-	{
-		event = { Down = { streak = 1, button = "Left" } },
-		mods = "NONE",
-		action = act.DisableDefaultAssignment,
+		action = act.Nop,
 	},
 }
 
+-- https://github.com/wezterm/wezterm/issues/3803#issuecomment-2379791340
+-- FIXME: this still has some problems:
+-- https://en.wikipedia.org/wiki/Class_(set_theory) includes the end parenthesis, and it should.
+-- (follow this link: https://example.com) includes the end parenthesis when it shouldn't.
 config.hyperlink_rules = {
-	-- (URL)
+	-- FIXME: currently the match includes the trailing double-quote
+	-- Matches: a URL in quotes: "https://example.com"
 	{
-		regex = [[\((\w+://\S+)\)]],
+		regex = [[(?<![\w\\({\[<"'])(\w+://\S+)]],
 		format = "$1",
 		highlight = 1,
 	},
-	-- [URL]
+	-- Matches: a URL in parens: (https://example.com)
+	-- Markdown: [text](https://example.com)
 	{
-		regex = [[\[(\w+://\S+)\)]],
+		regex = "\\((\\w+://\\S+?)(?:\\s+.+)?\\)",
 		format = "$1",
 		highlight = 1,
 	},
-	-- {URL}
+	-- Matches: a URL in brackets: [https://example.com]
 	{
-		regex = [[\{(\w+://\S+)\}]],
+		regex = "\\[(\\w+://\\S+?)\\]",
 		format = "$1",
 		highlight = 1,
 	},
-	-- <URL>
+	-- Matches: a URL in curly braces: {https://example.com}
 	{
-		regex = [[<(\w+://\S+)>]],
+		regex = "\\{(\\w+://\\S+?)\\}",
 		format = "$1",
 		highlight = 1,
 	},
-	-- Unwrapped URLs: match only balanced parens or non-paren chars
-	-- https://example.com) excludes the parenthesis
-	-- https://en.wikipedia.org/wiki/Class_(set_theory) includes the parentheses
-	-- FIXME: this breaks with
-	-- (nested parentheses: (http://example.com))
+	-- Matches: a URL in angle brackets: <https://example.com>
 	{
-		regex = [[\b\w+://(?:[^\s()]|\([^)]*\))+]],
+		regex = "<(\\w+://\\S+?)>",
+		format = "$1",
+		highlight = 1,
+	},
+	-- Then handle URLs not wrapped in brackets
+	-- regex = '\\b\\w+://\\S+[)/a-zA-Z0-9-]+',
+	{
+		regex = "(?<![\\(\\{\\[<])\\b\\w+://\\S+",
 		format = "$0",
 	},
-	-- mailto
+	-- Matches: an email address: test@example.com
 	{
 		regex = [[\b\w+@[\w-]+(\.[\w-]+)+\b]],
 		format = "mailto:$0",
+	},
+	-- make username/project paths clickable. this implies paths like the following are for github.
+	-- ( "nvim-treesitter/nvim-treesitter" | wbthomason/packer.nvim | wezterm/wezterm | "wezterm/wezterm.git" )
+	-- as long as a full url hyperlink regex exists above this it should not match a full url to
+	-- github or gitlab / bitbucket (i.e. https://gitlab.com/user/project.git is still a whole clickable url)
+	{
+		regex = [[["]?([\w\d]{1}[-\w\d]+)(/){1}([-\w\d\.]+)["]?]],
+		format = "https://www.github.com/$1/$3",
 	},
 }
 
