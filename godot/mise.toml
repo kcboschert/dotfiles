@@ -1,0 +1,2 @@
+[tools]
+"github:godotengine/godot" = { version = "latest", matching_regex = "^Godot_.*-stable_mono_", rename_exe = "godot" }
