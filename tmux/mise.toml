@@ -21,8 +21,9 @@
 [bootstrap.repos]
 "~/.tmux/plugins/tpm" = { url = "https://github.com/tmux-plugins/tpm.git" }
 
-[bootstrap.hooks.post-repos]
-run = "~/.tmux/plugins/tpm/scripts/install_plugins.sh"
-
 [dotfiles]
 "~/.tmux.conf" = { source = "~/.dotfiles/tmux/tmux.conf", mode = "symlink" }
+
+# post dotfiles because tmux.conf is needed, and dotfiles follow repos
+[bootstrap.hooks.post-dotfiles]
+run = "~/.tmux/plugins/tpm/scripts/install_plugins.sh"
