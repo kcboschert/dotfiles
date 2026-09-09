@@ -1,0 +1,16 @@
+[bootstrap.packages]
+"brew:yazi" = "latest"
+"brew:ffmpeg" = "latest"
+"brew:sevenzip" = "latest"
+"brew:jq" = "latest"
+"brew:poppler" = "latest"
+"brew:fd" = "latest"
+"brew:ripgrep" = "latest"
+"brew:fzf" = "latest"
+"brew:zoxide" = "latest"
+"brew:resvg" = "latest"
+"brew:imagemagick" = "latest"
+"apt:xclip" = { os = "linux" }
+
+[dotfiles]
+"~/.config/yazi/*" = { source = "config/yazi/*", mode = "symlink" }
