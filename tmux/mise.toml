@@ -1,0 +1,28 @@
+[bootstrap.packages]
+# required
+"brew:tmux" = "latest"
+"brew:bash" = "latest"
+
+# plugin: now playing
+"brew:nowplaying-cli" = { os = "darwin" }
+"apt:playerctl" = { os = "linux" }
+
+# plugin: weather
+"brew:curl" = "latest"
+
+# plugin: netspeed
+"brew:ifstat" = "latest"
+
+# nerd fonts
+"brew-cask:font-caskaydia-mono-nerd-font" = "latest"
+"brew-cask:font-fira-code-nerd-font" = "latest"
+"brew-cask:font-hack-nerd-font" = "latest"
+
+[bootstrap.repos]
+"~/.tmux/plugins/tpm" = { url = "https://github.com/tmux-plugins/tpm.git" }
+
+[bootstrap.hooks.post-repos]
+run = "~/.tmux/plugins/tpm/scripts/install_plugins.sh"
+
+[dotfiles]
+"~/.tmux.conf" = { source = "tmux.conf", mode = "symlink" }
