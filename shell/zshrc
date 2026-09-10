@@ -4,7 +4,6 @@
 
 [[ -s "$HOME/.profile" ]] && source "$HOME/.profile" # Load the default .profile
 
-. "$HOME/.atuin/bin/env"
 source "${HOME}/.zgenom/zgenom.zsh"
 
 zgenom autoupdate
