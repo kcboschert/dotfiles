@@ -7,3 +7,4 @@
 "~/.bin/diff-highlight" = { source = "~/.dotfiles/git/bin/diff-highlight", mode = "symlink" }
 "~/.gitconfig" = { source = "~/.dotfiles/git/gitconfig", mode = "symlink" }
 "~/.gitignore" = { source = "~/.dotfiles/git/gitignore", mode = "symlink" }
+"~/.config/hunk/config.toml" = { source = "~/.dotfiles/git/hunk.toml", mode = "symlink" }
