@@ -1,0 +1,3 @@
+[tools]
+uv = { version = "latest", os = "macos" }
+"pipx:Mic92/strace-macos" = { version = "latest", os = "macos", uvx_args = "--python /usr/bin/python3" }
