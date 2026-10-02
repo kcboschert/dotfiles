@@ -31,3 +31,7 @@ run = 'bash module.sh deactivate "{{ usage.module }}"'
 [tasks.deactivateall]
 description = "Remove all conf.d symlinks pointing into this repo"
 run = 'bash module.sh deactivate_all'
+
+[tasks.status]
+description = "Show which modules are active/inactive"
+run = 'bash module.sh status'

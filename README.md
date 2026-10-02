@@ -8,6 +8,7 @@ mise run activate neovim # install single module
 mise run all # install all modules
 mise run deactivate neovim # stop using a module
 mise run deactivateall # stop using all modules
+mise run status # show which modules are active/inactive
 ```
 
 ## Manual Steps (required)
