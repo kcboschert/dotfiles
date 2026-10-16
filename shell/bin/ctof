@@ -3,6 +3,6 @@
 set -o nounset -o pipefail -o errexit
 
 celsius=$1
-fahrenheit=$((celsius * 9 / 5 + 32))
+fahrenheit=$(awk "BEGIN {print $celsius * 9 / 5 + 32}")
 
 echo "${fahrenheit}"
