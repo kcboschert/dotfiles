@@ -24,6 +24,7 @@
     "npm:pi-rtk-optimizer",
     "npm:pi-llama-cpp"
   ],
-  "lastChangelogVersion": "0.85.1",
-  "quietStartup": false
+  "lastChangelogVersion": "1.4.0",
+  "quietStartup": false,
+  "tuiMode": "regular"
 }
