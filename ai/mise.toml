@@ -1,6 +1,7 @@
 [bootstrap.packages]
 "brew:llama.cpp" = { version = "latest", os = "macos" }
 "brew:openai-whisper" = "latest"
+"brew:hf" = "latest"
 
 [bootstrap.hooks.post-packages]
 run = "~/.dotfiles/ai/setup_linux.sh"
